@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const session = require("express-session");
 
-const { pool } = require("dbConfig");
+import {pool} from "./dbconfig"
 
 const {
   insertComponents,
