@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Help</title>
+        <link rel="stylesheet" href="/static/styles/help.css" />
+    </head>
+
+    <body>
+        <div>$%=Navbar</div>
+        <div class="block">
+            <div class="help-heading">
+
+                <h1>Help & Support</h1>
+                <p>Let's take a step ahead and help you better.</p>
+            </div>
+            <div class="inner-block">
+                <div class="left-block">
+                    <ul style="list-style-type:none;">
+                        <li id="list-item2" onclick="helpShowCustomers()">Help for Customers</li>
+                        <li id="list-item1" onclick="helpShowRestaurents()">Help for Restaurants</li> 
+                    </ul>
+                </div>
+                <div class="right-block">
+
+<!-- Help for Restaurants -->
+                   <div id="help-for-restaurents">
+                    <h1>Help for Restaurants</h1>
+                    <ul style="list-style-type:none;">
+                        <div class="help-list-title-container">
+                            <li class="list-restaurents" onclick="showContentR(this)" id="rcontent1">I want to partner my restaurant with MarsFood
+                            </li>
+                            <p id="rselector1">🞃</p>
+                        </div>
+                        <a href="#" id="rpara1">Click here to partner with us</a>
+                        <hr>
+                        <div class="help-list-title-container">
+                        <li class="list-restaurents" onclick="showContentR(this)" id="rcontent2">What are the mandatory documents needed to list my restaurant on MarsFood?</li>
+                        <p id="rselector2">🞃</p>
+                        </div>
+                        <ul id="rpara2" style="list-style-type:none;">
+                            <li>- Email-ID</li>
+                            <li>- Detailed Restaurent <Address></Address></li>
+                            <li>- Pan Card</li>
+                            <li>- GSTIN Certificate</li>
+                            <li>- Cancelled Cheque OR bank Passbook</li>
+                            <li>- Restaurent Menu</li>
+                        </ul>
+                        <hr>
+                        <div class="help-list-title-container">
+                        <li class="list-restaurents" onclick="showContentR(this)" id="rcontent3">After I submit all documents, how long will it take for my restaurant to go live on MarsFood?</li>
+                        <p id="rselector3">🞃</p>
+                        </div>
+                        <p id="rpara3">With Just a snap of finger, your restaurant will be live on MarsFood!</p>
+                        <hr>
+
+                        <div class="help-list-title-container">
+                            <li class="list-restaurents" onclick="showContentR(this)" id="rcontent4">Who should I contact if I need help & support in getting onboarded?</li>
+                            <p id="rselector4">🞃</p>
+                            </div>
+                            <p id="rpara4">You can connect with Partner Support on 7878271535/932178188 or write to partnersuport@MarsFood.in
+                            </p>
+                            <hr>
+
+                        <div class="help-list-title-container">
+                            <li class="list-restaurents" onclick="showContentR(this)" id="rcontent5">How much commission will I be charged by MarsFood</li>
+                            <p id="rselector5">🞃</p>
+                        </div>
+                            <p id="rpara5">The commission charges vary for different cities. You will be able to see the commission applicable for you once the preliminary onboarding details have been filled.
+                            </p>
+                            <hr>    
+
+                    </ul>
+                   </div> 
+
+
+
+<!-- Help for customer -->
+                   <div id="help-for-customer">
+                    <h1>Help for Customers</h1>
+                    <ul style="list-style-type:none;">
+                        <div class="help-list-title-container">
+                            <li class="list-customer" onclick="showContentC(this)" id="ccontent1">I want to provide Feedback
+                            </li>
+                            <p id="cselector1">🞃</p>
+                        </div>
+                        <a href="#" id="cpara1">Click here to Send us Feedback</a>
+                        <hr>
+                        <div class="help-list-title-container">
+                        <li class="list-customer" onclick="showContentC(this)" id="ccontent2">Can I edit my order?</li>
+                        <p id="cselector2">🞃</p>
+                        </div>
+                        <p id="cpara2">
+                        Your order can be edited before it reaches the restaurant. Once order is placed and restaurant starts preparing your food, you may not edit its contents</p>
+                        <hr>
+                        <div class="help-list-title-container">
+                        <li class="list-customer" onclick="showContentC(this)" id="ccontent3">Can I order in advance?</li>
+                        <p id="cselector3">🞃</p>
+                        </div>
+                        <p id="cpara3">We currently do not support this functionality. All our orders are placed and executed on-demand.</p>
+                        <hr>
+
+                        <div class="help-list-title-container">
+                            <li class="list-customer" onclick="showContentC(this)" id="ccontent4">How long do you take to deliver?</li>
+                            <p id="cselector4">🞃</p>
+                            </div>
+                            <p id="cpara4">Standard delivery times vary by the location selected and prevailing conditions. Once you select your location, an estimated delivery time is mentioned for each restaurant.
+                            </p>
+                            <hr>
+
+                        <div class="help-list-title-container">
+                            <li class="list-customer" onclick="showContentC(this)" id="ccontent5">I want to cancel my order</li>
+                            <p id="cselector5">🞃</p>
+                        </div>
+                            <p id="cpara5">We will do our best to accommodate your request if the order is not placed to the restaurant (Customer service number:8445050264). Please note that we will have a right to charge a cancellation fee up to full order value to compensate our restaurant and delivery partners if your order has been confirmed.
+                            </p>
+                            <hr>
+                            
+
+                        <div class="help-list-title-container">
+                            <li class="list-customer" onclick="showContentC(this)" id="ccontent6"> Do you charge for delivery?</li>
+                            <p id="cselector6">🞃</p>
+                        </div>
+                            <p id="cpara6">Delivery fee varies from city to city and is applicable if order value is below a certain amount. Additionally, certain restaurants might have fixed delivery fees. Delivery fee (if any) is specified on the 'Review Order' page. 
+                            </p>
+                            <hr>
+
+                               
+
+                    </ul>
+
+                   </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    $%=Footer 
+    $%=Preloader
+    </body>
+    <script src="/static/js/help.js"></script>
+</html>
