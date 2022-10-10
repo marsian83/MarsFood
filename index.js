@@ -99,4 +99,12 @@ app.get("/", (req, res) => {
   res.redirect(userId ? "/user/home" : "/user/login");
 });
 
+app.get("/help", (req, res) => {
+  res
+    .status(200)
+  .send(
+    renderHtml(path.join(__dirname, "./templates/help.html"))
+  );
+})
+
 app.listen(PORT, HOSTNAME);
