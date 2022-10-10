@@ -107,4 +107,4 @@ app.get("/help", (req, res) => {
   );
 })
 
-app.listen(PORT, HOSTNAME);
+app.listen(PORT);
