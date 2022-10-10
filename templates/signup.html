@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup for MarsFood</title>
+    <link rel="stylesheet" href="/static/styles/templates/universal.css" />
+    <link rel="stylesheet" href="/static/styles/templates/forms.css" />
+    <link rel="stylesheet" href="/static/styles/signup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">$%=Navbar</div>
+    <div class="container">
+      <div class="restaurant-hint">
+        <a href="/restaurant/auth"
+          >Looking to register as a restaurant? Click here</a
+        >
+      </div>
+      <div class="container body">
+        <div class="container form-container">
+          <h1>Register</h1>
+          <form action="/user/signup" method="POST">
+            <div class="container">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+            <div class="container">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="container">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="container">
+              <input
+                type="password"
+                id="passwordConfirm"
+                name="passwordConfirm"
+                placeholder="Confirm password"
+                required
+              />
+            </div>
+            <div class="container register-button">
+              <span class="popuptext" id="errorPopup"></span
+              ><input type="submit" value="Register" />
+            </div>
+            <a href="/user/login"
+              >Already have an account? click here to login</a
+            >
+          </form>
+        </div>
+        <div class="container body-branding">
+          <img
+            src="/static/assets/login/deliveryman.png"
+            id="deliveryman"
+            alt="deliveryman"
+          />
+        </div>
+      </div>
+      <div class="error-catcher">#%=errors</div>
+    </div>
+    $%=Footer
+    $%=Preloader
+  </body>
+  <script src="/static/js/signup.js"></script>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Dish</title>
+    <link rel="stylesheet" href="/static/styles/new-dish.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">$%=RestaurantNavbar</div>
+    <div class="container body">
+      <div class="container form-container">
+        <h2 id="top-heading">Add New Dish</h2>
+        <form action="/restaurant/dish/new" enctype="multipart/form-data" method="POST">
+          <div class="container namecost-container">
+            <div class="container name-container">
+              <h4>Dish Name</h4>
+              <input
+                type="text"
+                class="field"
+                id="name-field"
+                name="name"
+                placeholder="Enter dish name"
+                required
+              />
+            </div>
+            <div class="container cost-container">
+              <h4>Cost</h4>
+              <input
+                type="number"
+                class="field"
+                id="cost-field"
+                name="cost"
+                min="1"
+                required
+              />
+            </div>
+          </div>
+          <div class="container upload-container">
+            <input
+              type="file"
+              name="thumbnail"
+              id="image-input"
+              accept="image/jpeg"
+              hidden
+            />
+            <label id="upload-label" for="image-input"
+              ><img
+                id="upload-icon"
+                src="/static/assets/upload-image.png"
+                alt="upload-thumbnail"
+              />
+              Upload an image of the dish</label
+            >
+          </div>
+          <div class="container preview-container">
+            <p id="preview-hint">This is how your dish will appear to users</p>
+            <div id="display-preview"></div>
+          </div>
+          <div class="container">
+            <textarea
+              type="text"
+              class="field"
+              id="description-field"
+              name="description"
+              placeholder="Describe the dish in a few words"
+              maxlength="512"
+            ></textarea>
+          </div>
+          <div class="container radios-container">
+            <div class="container radio-container veg-radio">
+              <label class="isveg-label"
+                >Veg
+                <input
+                  type="radio"
+                  id="isveg-radio"
+                  name="isnonveg"
+                  value="0"
+                  checked />
+                <span class="checkbox"></span
+              ></label>
+            </div>
+            <div class="container radio-container nonveg-radio">
+              <label class="isnonveg-label"
+                >Non-Veg
+                <input
+                  type="radio"
+                  id="isnonveg-radio"
+                  name="isnonveg"
+                  value="1" />
+                <span class="checkbox"></span
+              ></label>
+            </div>
+          </div>
+          <div class="container upload-button">
+            <button type="submit" id="upload-input-button">Upload Dish</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    $%=Footer
+    $%=Preloader
+  </body>
+  <script src="/static/js/new-dish.js"></script>
+</html>

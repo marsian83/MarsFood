@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles/dish.css" />
+    <title>Dish</title>
+  </head>
+  <body>
+    <div class="container">$%=Navbar</div>
+
+    <div class="container">
+      <div class="header" id="header-container">
+        <img
+          src="/static/assets/placeholder_food.jpg"
+          alt="dish image"
+          onerror="this.style.display='none'"
+          id="header-food-image"
+        />
+        <div class="header-right">
+          <h1 id="header-food-name"></h1>
+          <div id="dishrating-container"></div>
+          <p id="header-food-ratings"></p>
+          <p id="header-food-orders"></p>
+          <div id="header-seller-text"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container body">
+      <div class="container description-container">
+        <h2>Description :</h2>
+        <p id="description"></p>
+      </div>
+      <div class="container buy-container">
+        <button id="buy-button">
+          <p></p>
+        </button>
+      </div>
+      <div class="container reviews-container" id="reviews-holder">
+        <h2>Reviews :</h2>
+        <p>No reviews yet</p>
+
+      </div>
+      <div class="container moredishes-container">
+        <div id="moreby-heading">More by this restaurant</div>
+      </div>
+      <div class="container moredishes-container">
+        <button
+          class="moredishes-scroller"
+          id="moredishes-scroller-left"
+          onclick="document.getElementById('food-carousel').scrollBy({left:-500, behavior: 'smooth'})"
+        >
+          &lt;
+        </button>
+        <div class="container" id="food-carousel"></div>
+        <button
+          class="moredishes-scroller"
+          id="moredishes-scroller-right"
+          onclick="document.getElementById('food-carousel').scrollBy({left:500, behavior: 'smooth'})"
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
+
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header" id="order-modal-header">
+          <span class="close">&times;</span>
+          <h2 id="order-modal-buyfor">Buy this dish for</h2>
+        </div>
+        <div class="modal-body">
+          <form action="/user/buy" id="order-modal-form" method="post">
+            <div class="container">
+              <div class="container" id="order-modal-qty-container">
+                <p>Quantity :</p>
+                <input
+                  type="number"
+                  id="qty-input"
+                  value="1"
+                  name="quantity"
+                  min="1"
+                />
+              </div>
+              <div class="container order-modal-subtotal-container">
+                <h5 id="order-modal-subtotal">Subtotal :</h5>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="order-modal-confirm-button"
+              onclick="addToCart()"
+            >
+              Add to cart
+            </button>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <h3 id="order-modal-subtotal">Total : </h3>
+        </div> -->
+      </div>
+    </div>
+
+    <div id="snackbar">Dish has been added to your cart</div>
+    $%=Footer $%=Preloader
+  </body>
+  <script src="/static/js/dish.js"></script>
+</html>

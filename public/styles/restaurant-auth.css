@@ -1,0 +1,250 @@
+@import "/constants.css";
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  background-color: var(--foreground);
+  color: var(--text-secondary);
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* z-index: -5; */
+}
+
+.header .container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header .container h2 {
+  font-size: 1.69vw;
+}
+.header .container h4 {
+  font-size: 1.38vw;
+}
+.header .container h3 {
+  padding-top: 3ch;
+  justify-self: flex-end;
+}
+
+@keyframes header-branding-image-popup {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.header .container img {
+  animation-name: header-branding-image-popup;
+  animation-duration: 836ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  width: 100%;
+}
+
+.header-logo-branding {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header-logo-branding img {
+  height: 3.8vw;
+  padding-right: 1ch;
+  filter: invert(100%);
+}
+
+.body {
+  margin-left: var(--edge-border-left);
+  margin-right: var(--edge-border-right);
+}
+
+.user-hint {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.user-hint a {
+  color: var(--foreground);
+  font-weight: 800;
+  font-size: 2.2vh;
+  padding-top: 2vh;
+  padding-bottom: 5vh;
+}
+
+.form-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-holder {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+.form-holder-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1vh;
+}
+
+.switch-buttons button {
+  width: 20vw;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--foreground);
+  cursor: pointer;
+  transform-origin: 100% 50%;
+  font-size: 2.34vh;
+  padding: 1.23vh 0;
+  transition: 200ms ease;
+}
+
+.switch-selected {
+  box-shadow: 0px 2px black;
+}
+
+.form-holder {
+  border-radius: 1rem;
+  padding: 3vh 0;
+}
+
+.form-container {
+  padding: 2.34vh 0;
+}
+
+.form-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes input-fade-in {
+  0% {
+    transform: scale(0.33);
+    opacity: 0%;
+  }
+  75% {
+    transform: scale(1.05);
+    opacity: 50%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
+
+.form-container input {
+  animation-name: input-fade-in;
+  animation-duration: 234ms;
+  padding: 1vh 5vw;
+  margin-bottom: 1.3vh;
+  color: var(--foreground);
+  background-color: var(--background);
+  border: 1px solid var(--foreground);
+  font-size: 1.11rem;
+  transform-origin: 50% 0%;
+  text-align: center;
+}
+
+.login-button input,
+.register-button input {
+  background-color: var(--foreground);
+  text-align: center;
+  color: var(--text-secondary);
+  border: 1px solid var(--text-secondary);
+  margin-top: 1vh;
+  font-size: 1.23rem;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 200ms ease;
+}
+
+.login-button :hover,
+.register-button :hover {
+  transform: scale(1.03);
+}
+
+.site-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--foreground);
+}
+
+.site-stat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.site-stat h1 {
+  color: var(--primary);
+  margin-right: 1vw;
+}
+
+.site-stats h3 {
+  font-weight: 600;
+  font-size: 1.33vw;
+}
+
+.footer {
+  margin-top: 2.34vh;
+}
+
+.switch-state {
+  display: none;
+}
+
+.display-errors {
+  color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 600;
+  padding: 2%;
+  border-radius: 6px;
+  width: 100%;
+  padding-bottom: 2vh;
+  align-items: center;
+  transition: 300ms ease;
+}
+
+.display-errors img {
+  height: 2ch;
+  margin-right: 0.83ch;
+}
+
+.hidden-form {
+  display: none;
+}
+
+.hidden {
+  opacity: 0%;
+}

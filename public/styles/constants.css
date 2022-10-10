@@ -1,0 +1,11 @@
+:root {
+  --primary: #ec3333;
+  --background: #ffffff;
+  --foreground: #282c3f;
+  --text-primary: #282c3f;
+  --text-secondary: #ffffff;
+  --high-contrast-bg: #000000;
+  --high-contrast-fg: #ffffff;
+  --edge-border-left: 8vw;
+  --edge-border-right: 8vw;
+}

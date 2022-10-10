@@ -1,0 +1,345 @@
+@import "/constants.css";
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+.body {
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+}
+
+#top-heading {
+  color: var(--text-primary);
+  text-align: center;
+  font-size: 3rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 3.8vh 0;
+}
+
+.field {
+  border: 1px solid var(--foreground);
+  color: var(--foreground);
+  width: calc(
+    (100vw - var(--edge-border-left) - var(--edge-border-right)) * (0.75)
+  );
+  font-size: 1.23rem;
+  text-align: center;
+  padding: 1vh 0;
+  margin-bottom: 5vh;
+  border-radius: 12px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea {
+  border: 3px solid rgba(128, 128, 128, 0.5);
+  transition: 500ms ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="number"]:focus,
+.form-container input:focus {
+  border: 3px solid var(--text-primary);
+  transform: scaleX(1.02);
+  box-shadow: 0px 1px 15px rgba(27, 26, 26, 0.38);
+}
+
+.namecost-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.namecost-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.namecost-container div h4 {
+  margin-bottom: 1vh;
+}
+
+.name-container {
+  width: 60%;
+}
+
+.cost-container {
+  width: 20%;
+}
+
+.name-container input {
+  width: 100%;
+}
+
+.cost-container input {
+  width: 100%;
+}
+
+/* .form-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+} */
+
+.upload-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--primary);
+  color: var(--text-secondary);
+  padding: 1.23vh 4vw;
+  font-family: sans-serif;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: 400ms ease;
+}
+
+#upload-label:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+}
+
+#upload-icon {
+  height: 4ch;
+  width: 4ch;
+  object-fit: cover;
+  filter: invert(100%);
+  padding: 5%;
+  transition: 200ms ease;
+}
+
+.preview-container {
+  padding: 5% 0;
+}
+
+#preview-hint {
+  text-align: center;
+  font-size: 1.47rem;
+  font-weight: 600;
+}
+
+#display-thumbnail {
+  width: 80%;
+  height: 30vh;
+}
+
+#description-field {
+  height: 20vh;
+}
+
+#cost-field {
+  background-color: white;
+  background-image: url("https://cdn-icons-png.flaticon.com/512/25/25473.png");
+  background-size: 1.47ch;
+  background-position: calc(49% - 0.6rem) 50%;
+  background-repeat: no-repeat;
+  font-size: 1.2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.radios-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.47rem;
+}
+
+.radio-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radios-container .radio-container label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radios-container input {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+input[type="radio"] {
+  transition: 100ms ease;
+  cursor: pointer;
+}
+
+#isveg-radio:after {
+  width: 1.75rem;
+  height: 1.75rem;
+  position: relative;
+  background-image: url(/static/assets/isnonveg-indicator.png);
+  background-size: 100%;
+  background-color: var(--background);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+#isveg-radio:checked:after {
+  width: 1.75rem;
+  height: 1.75rem;
+  position: relative;
+  background-image: url(/static/assets/veg.png);
+  background-size: 100%;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+#isnonveg-radio:after {
+  width: 1.75rem;
+  height: 1.75rem;
+  position: relative;
+  background-image: url(/static/assets/isnonveg-indicator.png);
+  background-size: 100%;
+  background-color: var(--background);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+#isnonveg-radio:checked:after {
+  width: 1.75rem;
+  height: 1.75rem;
+  position: relative;
+  background-image: url(/static/assets/nonveg.png);
+  background-size: 100%;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#upload-input-button {
+  color: var(--high-contrast-fg);
+  background-color: var(--primary);
+  padding: 1vh 2vw;
+  margin: 16vh 0%;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  transition: 300ms ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#upload-input-button img {
+  width: 2.8rem;
+  height: 2.8rem;
+  object-fit: cover;
+  filter: invert(100%);
+  padding: 1.47vh 0;
+}
+
+#upload-input-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+}
+
+.body-card-dish {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding: 3vh 1.3vw 8vh 1.3vw;
+  margin-bottom: 4vh;
+  margin-top: 5vh;
+  width: 20%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 200ms linear;
+  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+  margin-left: calc(50% - 10% - 1.3vw);
+  text-align: center;
+}
+
+.body-card-dish:hover {
+  transform: scale(1.05);
+}
+
+.body-card-dish div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.body-card-dish div h3{
+  color:var(--foreground);
+  margin:0;
+  padding: 1vh 0vw;
+}
+
+.body-card-dish div img.dish-thumbnail {
+  width: 88%;
+  height: 20vh;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: var(--background);
+}
+
+.body-card-dish div h2{
+  color:var(--foreground);
+  margin:0;
+  padding: 1vh 0vw;
+}
+
+.body-card-dish div p {
+  padding: 2vh 0;
+  margin:0;
+  text-align: center;
+}
+
+.body-card-dish span {
+  font-size: 2vw;
+  margin-left: 16%;
+}
+
+.vegan-indicator{
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+  left: 50%;
+  padding-bottom: 5%;
+}

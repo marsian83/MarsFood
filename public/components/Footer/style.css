@@ -1,0 +1,129 @@
+
+.footer {
+    padding-left: var(--edge-border-left);
+    padding-right: var(--edge-border-right);
+    background-color: var(--high-contrast-bg);
+  }
+  
+  .footer-info {
+    color: var(--high-contrast-fg);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    opacity: 83%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #footer-branding {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--high-contrast-fg);
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #footer-logo-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .footer-logo {
+    height: 4rem;
+    filter: invert(100%);
+  }
+  
+  #footer-logo-link p {
+    margin-left: 0.5rem;
+    font-size: 1.69rem;
+    font-weight: 800;
+    color: var(--high-contrast-fg);
+  }
+  
+  .footer-credit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-credit {
+    margin: 0;
+    padding: 0;
+    /* justify-self: center; */
+  }
+  
+  #footer-credit-heart {
+    color: red;
+    font-size: 2rem;
+    padding: 0.5ch;
+    cursor: none;
+  }
+  
+  @keyframes heart-beat {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.75);
+    }
+    90% {
+      transform: scale(1);
+    }
+  }
+  
+  #footer-credit-heart:hover,
+  #footer-credit-heart:hover {
+    animation-name: heart-beat;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+  
+  .footer-credit-icon {
+    text-decoration: none;
+  }
+  
+  .footer-credit-icon img {
+    padding-left: 2ch;
+    height: 2.5rem;
+    filter: invert(100%);
+  }
+  
+  
+
+  
+  /* RIYA COMMIT */
+  .footer-column{
+    float :left;
+    width:33.33%;
+  }
+  
+  .footer-row:after:after{
+    content:"";
+    display:table;
+    clear:both;
+  }
+  
+  .footer-heading{
+    color:grey;
+    font-size:20px;
+    align-content: center;
+  }
+  
+  .footer-link{
+    line-height:2;
+    color:white;
+    text-decoration:none;
+    /* transition: 400ms ease; */
+  }
+  
+  .footer-link:hover{
+    font-weight:600;
+  }
+  
+  /* RIYA COMMIT END */

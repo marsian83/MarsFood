@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <a href="/" id="navbar-logo-link">
+    <img class="navbar-logo" src="/static/assets/logo.png" alt="logo" />
+    <p>MarsFood</p></a
+  >
+  <div class="container mobile-searchbar">
+    <!-- <img src="/static/assets/search-icon.png" /> -->
+    <a href="/user/search">Search</a>
+  </div>
+  <div class="container" id="navbar-items-container">
+    <ul>
+      <li class="navbar-item" id="navbar-search-item">
+        <img src="/static/assets/search-icon.png" onclick="location.href = '/user/search'"/>
+        <a href="/user/search">Search</a>
+      </li>
+      <li class="navbar-item" id="navbar-help-item">
+        <img src="/static/assets/help-icon.png" onclick="location.href = '/help'"/>
+        <a href="/help">Help</a>
+      </li>
+      <li class="navbar-item" id="navbar-profile-item">
+        <img src="/static/assets/profile-icon.png" onclick="location.href = '/user/dashboard'"/>
+        <a href="/user/dashboard">#%=username</a>
+      </li>
+      <li class="navbar-item" itemref="navbar-cart-item">
+        <img src="/static/assets/cart-icon.png" onclick="location.href = '/user/cart'"/>
+        <a href="/user/cart">Cart</a>
+      </li>
+    </ul>
+  </div>
+</nav>

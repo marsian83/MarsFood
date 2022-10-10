@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="/static/styles/cart.css" />
+  </head>
+  <body>
+    <div class="container">$%=Navbar</div>
+
+    <div class="container">
+      <div class="body">
+        <h2 id="cart-heading">Your Cart</h2>
+        <div class="container" id="cart-card-holder"></div>
+        <div class="container" id="order-final-holder"></div>
+        <div id="cart-empty">
+          <h4>Your cart appears to be empty</h4>
+          <a href="/user/home">Continue shopping</a>
+        </div>
+      </div>
+    </div>
+
+    $%=Footer
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>Confirm your delivery info</h2>
+        </div>
+        <div class="modal-body">
+          <form action="/user/cart/buy" method="POST">
+            <div class="container">
+              <p>Name of reciever</p>
+              <input
+                type="text"
+                name="name"
+                placeholder="Who are we deliving the order to?"
+                maxlength="64"
+                required
+              />
+            </div>
+            <div class="container">
+              <p>Mobile number</p>
+              <input
+                type="number"
+                name="mobile"
+                min="0"
+                max="9999999999"
+                required
+                placeholder="Mobile Number"
+              />
+            </div>
+            <div class="container">
+              <p>Address line 1</p>
+              <input
+                type="text"
+                name="line1"
+                placeholder="Address line 1"
+                maxlength="128"
+                required
+              />
+            </div>
+            <div class="container">
+              <p>Address line 2</p>
+              <input
+                type="text"
+                name="line2"
+                maxlength="128"
+                required
+                placeholder="Address line 2"
+              />
+            </div>
+            <div class="container" id="payment-holder">
+              <p>Payment Method</p>
+              <input
+                type="radio"
+                id="payment"
+                name="payment-method"
+                value="1"
+                checked
+                required
+              />
+              <label for="payment-method">Pay on delivery</label>
+            </div>
+            <div id="order-button-holder">
+              <button id="order-button">Confirm Order</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/static/js/cart.js"></script>
+</html>

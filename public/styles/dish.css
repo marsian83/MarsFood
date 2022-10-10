@@ -1,0 +1,584 @@
+@import "/constants.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+:root {
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+  background-color: var(--foreground);
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#header-food-image {
+  border: 2px solid var(--background);
+  border-radius: 1rem;
+  object-fit: cover;
+  transition: 300ms all ease-in-out;
+  max-height: 35vh;
+}
+
+#header-food-image:hover {
+  transform: scale(1.02) translateY(-0.1rem);
+}
+
+.header-right {
+  margin-left: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#header-food-name {
+  font-size: 3rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  padding: 2vh 0;
+  margin: 0;
+}
+
+#header-food-stars {
+  font-size: 2rem;
+}
+
+#header-seller-text {
+  font-size: 1.23rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#header-seller-text a {
+  padding-left: 0.83ch;
+  color: var(--text-secondary);
+}
+
+.body {
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  color: var(--text-primary);
+}
+
+#description {
+  font-size: 1.23rem;
+}
+
+.buy-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#buy-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
+  padding: 0% 1vw;
+  background-color: var(--foreground);
+  color: var(--text-secondary);
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1rem;
+  transition: 300ms ease;
+}
+
+#buy-button:hover {
+  transform: scale(1.03) translateY(-0.12rem);
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.38);
+}
+
+.reviews-container {
+  margin: 8vh 0 3vh 0;
+}
+
+.review-container {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0px 0px 1px var(--text-primary);
+  margin: 2vh 0px;
+}
+
+.review-left {
+  padding: 1% 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-left span {
+  font-size: 1.23rem;
+}
+
+.user-review {
+  background-color: rgba(128, 128, 128, 0.1);
+}
+
+#user-reviews-box {
+  background-color: rgba(128, 128, 128, 0.05);
+  box-shadow: 0px 0px 1px var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-reviews {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  box-shadow: none;
+}
+
+#user-reviews h3 {
+  margin: 1vh 0%;
+}
+
+.user-rating-star {
+  color: rgba(128, 128, 128, 0.038);
+  font-size: 2rem;
+  margin: 0;
+  margin-left: 0.5ch;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-shadow: 0px 0px 1px var(--foreground);
+  /* margin: 0% 0.5ch; */
+}
+
+.user-rating-star:hover {
+  color: gold;
+  /* transform: scale(1.08); */
+}
+
+.user-rating-star-selected{
+  color:gold;
+}
+
+#user-rates1 {
+  margin: 0;
+  padding: 0;
+}
+
+#user-review-textarea {
+  resize: none;
+  width: 60%;
+  height: 100%;
+  margin-right: 1rem;
+}
+
+.user-reviews-button {
+  background-color: var(--foreground);
+  color: var(--text-secondary);
+  padding: 1vh 1vw;
+  margin-bottom: 2vh;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 300ms ease-in;
+  border: none;
+}
+
+.user-reviews-button:hover {
+  box-shadow: 0px 0px 13px rgba(0, 0, 0, 0.08);
+  transform: scale(1.1);
+}
+
+#moreby-heading {
+  font-size: 1.69rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+#moreby-heading a {
+  color: var(--text-primary);
+  padding: 0% 0.83ch;
+}
+
+.moredishes-container {
+  position: relative;
+}
+
+.moredishes-scroller {
+  position: absolute;
+  height: 100%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2rem;
+  padding: 0 0.38vw;
+  border: none;
+  cursor: pointer;
+  transition: 200ms ease;
+}
+
+.moredishes-scroller:hover {
+  font-size: 4rem;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#moredishes-scroller-left {
+  left: 0%;
+}
+
+#moredishes-scroller-right {
+  right: 0%;
+}
+
+#food-carousel {
+  color: var(--text-secondary);
+  background-color: rgba(128, 128, 128, 0.069);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 19%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 2vh 1vw;
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-color: white black;
+  scrollbar-width: thin;
+  margin-bottom: 10vh;
+  transition: 400ms linear;
+}
+
+#food-carousel::-webkit-scrollbar {
+  height: 0.38ch;
+}
+
+#food-carousel::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+#food-carousel::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 100vh;
+}
+
+#food-carousel > * {
+  scroll-snap-align: start;
+}
+
+.food-carousel-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0rem 1.5vw 1.5vh 0rem;
+  padding: 0rem 0.6rem 1rem 0.6rem;
+  flex-direction: column;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: 420ms ease;
+  border-radius: 10px;
+  width: calc(
+    (100vw - var(--edge-border-left) - var(--edge-border-right) - 16vw) / 6
+  );
+  font-family: "Roboto", sans-serif;
+}
+
+.food-carousel-card:hover {
+  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+}
+
+.food-carousel-card-image {
+  width: calc(
+    (93vw - var(--edge-border-left) - var(--edge-border-right) - 1.5vw * 5) / 6 -
+      3vw
+  );
+  height: calc(
+    (
+      (93vw - var(--edge-border-left) - var(--edge-border-right) - 1.5vw * 5) /
+        6 - 3vw
+    )
+  );
+  object-fit: cover;
+  border-radius: 100%;
+  margin: 0.8vw 0 0.8vh 0;
+}
+
+.food-carousel-card h5 {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  padding-top: 5%;
+  letter-spacing: 0.075em;
+}
+
+.food-carousel-card h2 {
+  margin-top: 5%;
+  margin-bottom: 0%;
+  font-weight: 800;
+  font-size: 1.2rem;
+  /* color: var(--primary); */
+}
+
+.food-carousel-card span {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.vegan-and-image-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding-top: 3%;
+}
+
+.vegan-indicator {
+  width: 0.69rem;
+  height: 0.69rem;
+  position: relative;
+  left: 50%;
+  top: 0%;
+  padding: 0%;
+  margin: 0%;
+  /* display: none; */
+}
+
+/* ORDERING MODAL */
+
+.modal {
+  font-family: "Nunito", sans-serif;
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  -webkit-animation-name: fadeIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
+
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: var(--background);
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+
+.close {
+  color: var(--text-secondary);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 1vh 0;
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  background-color: #e64848;
+  color: var(--text-secondary);
+}
+
+.modal-header h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.modal-body {
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  padding-bottom: 5vh;
+}
+
+#order-modal-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#order-modal-qty-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2vh 0vh;
+  align-items: center;
+}
+
+#order-modal-confirm-button {
+  border-radius: 2rem;
+  background-color: #47b881;
+  padding: 2vh 2vw;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 400ms ease;
+  cursor: pointer;
+}
+
+#order-modal-confirm-button:hover {
+  transform: scale(1.08);
+  animation-name: order-button-hover;
+  background-color: #3ec86a;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.38);
+}
+
+#order-modal-qty-container input {
+  height: 3ch;
+  margin-left: 1ch;
+}
+
+#order-modal-subtotal {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -50vh;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -50vh;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* animation */
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* CONFIRMATION ANIMATioN  */
+
+#snackbar {
+  font-family: "Nunito", sans-serif;
+  visibility: hidden;
+  min-width: 25vw;
+  /* margin-left: var(--edge-border-left);
+  margin-right: var(--edge-border-right); */
+  background-color: #47b881;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  padding: 1rem;
+  position: fixed;
+  z-index: 1010;
+  left: calc(50% - var(--edge-border-left) - var(--edge-border-right));
+  bottom: 2rem;
+  font-size: 1.23rem;
+  font-weight: 400;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.38);
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: toast-fadein 0.5s, toast-fadeout 0.5s 2.5s;
+  animation: toast-fadein 0.5s, toast-fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes toast-fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes toast-fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes toast-fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes toast-fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

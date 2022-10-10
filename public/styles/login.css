@@ -1,0 +1,89 @@
+@import "/constants.css";
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.body-branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  width: 50%;
+}
+
+.body-branding img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: var(--edge-border-left);
+  margin-right: var(--edge-border-right);
+}
+
+#navbar-profile-item {
+    display: none;
+}
+
+
+
+
+.login-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.login-button .popuptext {
+  visibility: hidden;
+  width: 100%;
+  background-color: rgba(255, 0, 0, 0.695);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -50%;
+}
+
+.login-button .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -0.38rem;
+  border-width: 0.38rem;
+  border-style: solid;
+  border-color: rgba(255, 0, 0, 0.695) transparent transparent transparent;
+}
+
+.login-button .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}

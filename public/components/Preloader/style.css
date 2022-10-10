@@ -1,0 +1,61 @@
+.preloader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  font-size: 50vw;
+  transform: scale(2);
+}
+.fas {
+  opacity: 0;
+  animation-timing-function: linear;
+}
+.fa-hamburger {
+  animation: spinner 5s ease-in-out 0s infinite;
+  color: var(--primary);
+}
+.fa-ice-cream {
+  animation: spinner 5s ease-in-out 1.25s infinite;
+  color: var(--foreground);
+}
+.fa-pizza-slice {
+  animation: spinner 5s ease-in-out 2.5s infinite;
+  color: var(--primary);
+}
+.fa-hotdog {
+  animation: spinner 5s ease-in-out 3.75s infinite;
+  color: var(--foreground);
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+}

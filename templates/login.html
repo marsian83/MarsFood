@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login to MarsFood</title>
+    <link rel="stylesheet" href="/static/styles/templates/universal.css" />
+    <link rel="stylesheet" href="/static/styles/templates/forms.css" />
+    <link rel="stylesheet" href="/static/styles/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">$%=Navbar</div>
+    <div class="container">
+      <div class="restaurant-hint">
+        <a href="/restaurant/auth"
+          >Looking to login as a restaurant? Click here</a
+        >
+      </div>
+      <div class="container body">
+        <div class="container form-container">
+          <h1>Login</h1>
+          <form action="/user/login" method="POST">
+            <div class="container">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                autofocus
+                required
+              />
+            </div>
+            <div class="container">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <div class="container login-button">
+              <span class="popuptext" id="errorPopup"></span
+              ><input type="submit" value="Login" />
+            </div>
+            <a href="/user/signup"
+              >Don't have an account? Click here to sign up</a
+            >
+          </form>
+        </div>
+        <div class="container body-branding">
+          <img src="/static/assets/login/loginbranding.png" alt="deliveryman" />
+        </div>
+      </div>
+      <div class="error-catcher">#%=errors</div>
+    </div>
+    $%=Footer
+    $%=Preloader
+  </body>
+  <script src="/static/js/login.js"></script>
+</html>
