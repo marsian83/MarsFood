@@ -5,11 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>restaurantName</title>
-    <link rel="stylesheet" href="/static/styles/restaurant-home.css" />
+      <link rel="stylesheet" href="/static/styles/restaurant-home.css" />
   </head>
   <body>
     <div class="container">$%=RestaurantNavbar</div>
-    <a href="/restaurant/dish/new">ADD NEW DISH</a>
+    <div class="restaurant-container">
+    <div class="restaurant-detail">
+      <div class="logout-button-div">
+      <h1>Restaurent-Name</h1>
+      <button class="logout-button" onclick="window.location.href='/user/logout'">LOGOUT <i class="fa fa-sign-out"></i></button>
+      </div>
+      <p>Restaurent-Address</p>
+      <p>Restaurent-email</p>
+      <p>Edit details</p>
+    </div>
+      <div class="add-new-dish">
+    <button class="add-dish-button" onclick="window.location.href='/restaurant/dish/new'">ADD NEW DISH <i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+        <div class="container body-holder">
+          <h3>Your Dishes :</h3>
+          <div class="dish-container container">
+
+              <div class="dish-card">
+                  <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2022%2F03%2F29%2Fpasta-power-tout.jpg"
+                      alt="food-thumbnail">
+                  <div class="dish-card-content">
+                    <div class="delete-dish">
+                        <h5>Dish Name</h5>
+                        <button class="delete-dish-button">DELETE DISH <i class="fa fa-trash"></i></button>
+                      </div>
+                      <div class="container dish-info">
+                          <div class="dish-info-list-item-container">
+                              <h6>Cost : </h6>
+                              <p>100</p>
+                          </div>
+                          <div class="dish-info-list-item-container">
+                              <h6>Discription : </h6>
+                              <p>tasty very teasty</p>
+                          </div>
+                          <div class="dish-info-list-item-container">
+                              <h6>Quantity sold till now : </h6>
+                              <p>10</p>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     $%=Footer
     $%=Preloader
   </body>

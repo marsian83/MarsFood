@@ -1,1 +1,5 @@
-console.log('u')
+userid = params.userid
+
+async function fetchOrderData(uid){
+
+}
