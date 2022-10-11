@@ -91,8 +91,13 @@ async function renderData() {
   await loadData();
   document.title = document.getElementById("header-food-name").innerText =
     dishData.name;
+  document.getElementById("header-food-image-container").innerHTML = `<img
+    src="${dishData.image_url || " /static/assets/placeholder_food.jpg"}"
+    alt="dish image"
+    onerror="this.style.display='none'"
+    id="header-food-image"
+    />`;
   document.getElementById("header-food-image").crossOrigin = "";
-  document.getElementById("header-food-image").src = dishData.image_url;
   document.getElementById(
     "dishrating-container"
   ).innerHTML = `<span class="stars-container stars-${closestMultiple(
@@ -169,7 +174,8 @@ async function renderReviews() {
       </div>
       <p id="review-content">
         ${
-          userRev.content || "This review does not have any description of the dish"
+          userRev.content ||
+          "This review does not have any description of the dish"
         }
       </p>
     </div>
