@@ -105,3 +105,25 @@ margin: 0;
     padding-left: 1ch;
     margin: 0;
 }
+
+.logout-button-div{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.logout-button{
+    border:none;
+    border-radius:4rem;
+    width: 8.5rem;
+    height: 2.8rem;
+    font-size: 1rem;
+    opacity: 90%;
+    color:var(--text-secondary);
+    background-color:var(--primary);
+}
+
+.logout-button:hover{
+    cursor: pointer;
+    opacity: 100%;
+}

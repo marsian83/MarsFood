@@ -4,4 +4,145 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.restaurant-container{
+  padding-left:var(--edge-border-left);
+  padding-right:var(--edge-border-right);
+  background-color:var(--foreground);
+  padding-bottom: 4vh;
+}
 
+.add-new-dish{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-dish-button{
+  background-color: var(--primary);
+  color:var(--text-secondary);
+  border:none;
+  border-radius: 40rem;
+  width: 10rem;
+  height: 3.5rem;
+  font-size:1rem;
+  opacity: 90%;
+}
+
+.add-dish-button:hover{
+  cursor:pointer;
+  opacity:100%;
+}
+
+.restaurant-detail{
+  padding-top: 4vh;
+  color:var(--text-secondary);
+}
+
+.logout-button-div{
+  display:flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.logout-button{
+  border:none;
+  border-radius:4rem;
+  width: 8.5rem;
+  height: 2.8rem;
+  font-size: 1rem;
+  opacity: 90%;
+  color:var(--text-secondary);
+  background-color:var(--primary);
+
+}
+
+.logout-button:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.body-holder {
+  /* min-height: 38vh; */
+  color: var(--text-primary);
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+}
+
+.dish-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dish-card {
+  width: 91%;
+  display: flex;
+  flex-direction: row;
+  padding: 3vh 2vw;
+  margin: 3vh 0;
+  /* min-height: 4vh; */
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+}
+
+.dish-card img {
+  width: 15%;
+  border-radius: 100vw;
+  aspect-ratio: 1;
+  padding: 0;
+  object-fit: cover;
+  margin: 0;
+}
+
+.dish-card-content {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1vh 3vw;
+}
+
+.dish-card-content h5{
+font-size: 2rem;
+margin: 0;
+}
+
+
+
+.dish-info-list-item-container{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2vh 0;
+}
+
+.dish-info-list-item-container h6{
+font-size: 1rem;
+margin: 0;
+}
+
+.dish-info-list-item-container p{
+  padding-left: 1ch;
+  margin: 0;
+}
+
+.delete-dish-button{
+  background-color: var(--primary);
+  color:var(--text-secondary);
+  border:none;
+  border-radius: 40rem;
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 0.8rem;
+  opacity: 90%;
+}
+
+.delete-dish-button:hover{
+  cursor:pointer;
+  opacity:100%;
+}
+
+.delete-dish{
+  display:flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
