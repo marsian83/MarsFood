@@ -68,10 +68,12 @@ router.get("/cart", redirectLogin, async (req, res) => {
 });
 
 router.get("/dashboard", redirectLogin, (req, res) => {
-  return res.redirect("/user/logout");
   res
     .status(200)
-    .send(renderHtml(path.join(__dirname, "../templates/dashboard.html")));
+    .send(renderHtml(path.join(__dirname, "../templates/dashboard.html"), {
+      username: req.app.locals.user.name || "Login",
+      userid: req.session.userId,
+    }));
 });
 
 // POST REQUESTS
