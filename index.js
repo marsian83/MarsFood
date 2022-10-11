@@ -18,7 +18,8 @@ const restaurantRouter = require(path.join(__dirname, "/routes/restaurant.js"));
 const userRouter = require(path.join(__dirname, "/routes/user.js"));
 const apiRouter = require(path.join(__dirname, "/routes/api.js"));
 
-const app = express();
+const app = express()
+app.enable('trust proxy');
 
 PORT = process.env.PORT || 8000;
 HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
