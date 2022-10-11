@@ -104,38 +104,43 @@ router.post("/auth", async (req, res) => {
         [email],
         (err, results) => {
           if (err) {
-            throw err;
-          }
-          if (results.rows.length > 0) {
-            errors.push(4);
-            res.send(
-              renderHtml(
-                path.join(__dirname, "../templates/restaurant-auth.html"),
-                {
-                  errors: errors,
-                  switchState: 1,
-                }
-              )
-            );
+            console.log(err);
           } else {
-            pool.query(
-              "INSERT INTO restaurants (name,email,address,password) VALUES($1,$2,$3,$4)",
-              [name, email, address, sha256(password)],
-              (err, results) => {
-                if (err) {
-                  throw err;
+            if (results.rows.length > 0) {
+              errors.push(4);
+              res.send(
+                renderHtml(
+                  path.join(__dirname, "../templates/restaurant-auth.html"),
+                  {
+                    errors: errors,
+                    switchState: 1,
+                  }
+                )
+              );
+            } else {
+              pool.query(
+                "INSERT INTO restaurants (name,email,address,password) VALUES($1,$2,$3,$4)",
+                [name, email, address, sha256(password)],
+                (err, results) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    res.send(
+                      renderHtml(
+                        path.join(
+                          __dirname,
+                          "../templates/restaurant-auth.html"
+                        ),
+                        {
+                          switchState: 0,
+                          loginPrompt: true,
+                        }
+                      )
+                    );
+                  }
                 }
-                res.send(
-                  renderHtml(
-                    path.join(__dirname, "../templates/restaurant-auth.html"),
-                    {
-                      switchState: 0,
-                      loginPrompt: true,
-                    }
-                  )
-                );
-              }
-            );
+              );
+            }
           }
         }
       );
@@ -161,24 +166,25 @@ router.post("/auth", async (req, res) => {
         [email],
         (err, results) => {
           if (err) {
-            throw err;
-          }
-          if (results.rows.length > 0) {
-            let user = results.rows[0];
-            if (sha256(password) === user.password) {
-              req.session.restaurantId = user.restaurant_id;
-              return res.redirect("/restaurant/home");
-            }
-          }
-          res.send(
-            renderHtml(
-              path.join(__dirname, "../templates/restaurant-auth.html"),
-              {
-                errors: 5,
-                switchState: 0,
+            console.log(err);
+          } else {
+            if (results.rows.length > 0) {
+              let user = results.rows[0];
+              if (sha256(password) === user.password) {
+                req.session.restaurantId = user.restaurant_id;
+                return res.redirect("/restaurant/home");
               }
-            )
-          );
+            }
+            res.send(
+              renderHtml(
+                path.join(__dirname, "../templates/restaurant-auth.html"),
+                {
+                  errors: 5,
+                  switchState: 0,
+                }
+              )
+            );
+          }
         }
       );
     }
@@ -235,9 +241,10 @@ router.post("/dish/new", async (req, res) => {
           [newId, req.app.locals.restaurant.restaurant_id],
           (err, results) => {
             if (err) {
-              throw err;
+              console.log(err);
+            } else {
+              res.redirect("/restaurant/home");
             }
-            res.redirect("/restaurant/home");
           }
         );
       }

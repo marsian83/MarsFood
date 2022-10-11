@@ -37,7 +37,7 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json())
+app.use(express.json());
 
 app.use(
   session({
@@ -76,12 +76,13 @@ app.use((req, res, next) => {
       [restaurantId],
       (err, results) => {
         if (err) {
-          throw err;
+          console.log(err);
+        } else {
+          if (results.rows.length > 0) {
+            app.locals.restaurant = results.rows[0];
+          }
+          next();
         }
-        if (results.rows.length > 0) {
-          app.locals.restaurant = results.rows[0];
-        }
-        next();
       }
     );
   } else {
@@ -102,9 +103,7 @@ app.get("/", (req, res) => {
 app.get("/help", (req, res) => {
   res
     .status(200)
-  .send(
-    renderHtml(path.join(__dirname, "./templates/help.html"))
-  );
-})
+    .send(renderHtml(path.join(__dirname, "./templates/help.html")));
+});
 
 app.listen(PORT);

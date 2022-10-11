@@ -103,26 +103,28 @@ router.post("/signup", redirectHome, async (req, res) => {
       [email],
       (err, results) => {
         if (err) {
-          throw err;
-        }
-        if (results.rows.length > 0) {
-          errors.push(4);
-          res.send(
-            renderHtml(path.join(__dirname, "../templates/signup.html"), {
-              errors: errors,
-            })
-          );
+          console.log(err);
         } else {
-          pool.query(
-            "INSERT INTO users (name,email,password) VALUES($1,$2,$3) RETURNING user_id",
-            [name, email, sha256(password)],
-            (err, results) => {
-              if (err) {
-                throw err;
+          if (results.rows.length > 0) {
+            errors.push(4);
+            res.send(
+              renderHtml(path.join(__dirname, "../templates/signup.html"), {
+                errors: errors,
+              })
+            );
+          } else {
+            pool.query(
+              "INSERT INTO users (name,email,password) VALUES($1,$2,$3) RETURNING user_id",
+              [name, email, sha256(password)],
+              (err, results) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.redirect("/user/login");
+                }
               }
-              res.redirect("/user/login");
-            }
-          );
+            );
+          }
         }
       }
     );
@@ -150,21 +152,22 @@ router.post("/login", redirectHome, (req, res) => {
       [email],
       (err, results) => {
         if (err) {
-          throw err;
-        }
-        if (results.rows.length > 0) {
-          let user = results.rows[0];
-          if (sha256(password) === user.password) {
-            req.session.userId = user.user_id;
-            req.session.cart = [];
-            return res.redirect("/user/home");
+          console.log(err);
+        } else {
+          if (results.rows.length > 0) {
+            let user = results.rows[0];
+            if (sha256(password) === user.password) {
+              req.session.userId = user.user_id;
+              req.session.cart = [];
+              return res.redirect("/user/home");
+            }
           }
+          res.send(
+            renderHtml(path.join(__dirname, "../templates/login.html"), {
+              errors: 2,
+            })
+          );
         }
-        res.send(
-          renderHtml(path.join(__dirname, "../templates/login.html"), {
-            errors: 2,
-          })
-        );
       }
     );
   }
@@ -194,7 +197,7 @@ router.post("/cart/buy", redirectLogin, (req, res) => {
                 if (err) {
                   console.log(err);
                 } else {
-                  req.session.cart=[]
+                  req.session.cart = [];
                   res.redirect("/user/home");
                 }
               }
@@ -233,7 +236,7 @@ router.post("/dish/review/new", redirectLogin, (req, res) => {
                     if (err) {
                       console.log(err);
                     } else {
-                      res.status(200).send({message:"Success"})
+                      res.status(200).send({ message: "Success" });
                     }
                   }
                 );
