@@ -18,11 +18,9 @@ async function getAverageRGB(src) {
   return new Promise((resolve) => {
     let context = document.createElement("canvas").getContext("2d");
     context.imageSmoothingEnabled = true;
-
     let img = new Image();
     img.src = src;
     img.crossOrigin = "";
-
     img.onload = () => {
       context.drawImage(img, 0, 0, 1, 1);
       resolve(context.getImageData(0, 0, 1, 1).data.slice(0, 3));
@@ -97,7 +95,7 @@ async function renderData() {
     onerror="this.style.display='none'"
     id="header-food-image"
     />`;
-  document.getElementById("header-food-image").crossOrigin = "";
+  // document.getElementById("header-food-image").crossOrigin = "";
   document.getElementById(
     "dishrating-container"
   ).innerHTML = `<span class="stars-container stars-${closestMultiple(
@@ -137,7 +135,7 @@ async function renderData() {
     `<a href="/user/restaurant/${restaurantData.restaurant_id}">${restaurantData.name}</a>` +
     "<p>:</p>";
 
-  let dishDomRGB = await getAverageRGB("/" + dishData.image_url);
+  let dishDomRGB = await getAverageRGB(dishData.image_url);
   var dr = dishDomRGB[0];
   var dg = dishDomRGB[1];
   var db = dishDomRGB[2];
