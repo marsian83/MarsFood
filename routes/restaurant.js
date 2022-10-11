@@ -16,6 +16,17 @@ const {
   sha256,
 } = require("../functions");
 
+const { app} = require("../firebaseconfig");
+
+const {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} = require("firebase/storage");
+
+const storage = getStorage(app)
+
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(fileupload());
 //redirecting user
@@ -203,39 +214,43 @@ router.post("/dish/new", async (req, res) => {
         console.log(err);
       } else {
         let newId = results.rows[0].dish_id;
-        if (image) {
-          fs.closeSync(
-            fs.openSync(
-              path.join(
-                USERDATA_ABSOLUTE_LOCATION,
-                "/images/dishes/",
-                `${newId}.jpg`
-              ),
-              "w"
-            )
-          );
-          image.mv(
-            path.join(
-              USERDATA_ABSOLUTE_LOCATION,
-              "/images/dishes/",
-              `${newId}.jpg`
-            ),
-            (err) => {
-              if (err) {
-                console.log(err);
-              }
-            }
-          );
-          pool.query(
-            "UPDATE dishes SET image_url=$1 WHERE dish_id=$2",
-            [`/images/dishes/${newId}.jpg`, newId],
-            (err, results) => {
-              if (err) {
-                console.log(err);
-              }
-            }
-          );
-        }
+        const storageRef = ref(storage, `userdata/images/dishes/${newId}.jpg`);
+        const metadata = {
+          contentType: "image/jpeg",
+        };
+        const uploadTask = uploadBytesResumable(
+          storageRef,
+          image.data,
+          metadata
+        );
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + progress + "% done")
+          },
+          (err) => {
+            console.log(err)
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log("File available at", downloadURL);
+              pool.query(
+                "UPDATE dishes SET image_url=$1 WHERE dish_id=$2",
+                [downloadURL, newId],
+                (err, results) => {
+                  if (err) {
+                    console.log(err);
+                  }
+                }
+              );
+            });
+          }
+        );
+
         pool.query(
           "INSERT INTO sells(dish_id,restaurant_id) VALUES($1,$2)",
           [newId, req.app.locals.restaurant.restaurant_id],

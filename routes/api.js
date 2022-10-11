@@ -94,14 +94,6 @@ router.get("/restaurants/id/:id/dishes", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        results.rows.forEach((dish) => {
-          if (dish.image_url) {
-            dish.image_url = path.join(
-              USERDATA_RELATIVE_LOCATION,
-              dish.image_url
-            );
-          }
-        });
         res.send(results.rows);
       }
     }
@@ -128,11 +120,6 @@ router.get("/dishes", (req, res) => {
     if (err) {
       throw err;
     }
-    results.rows.forEach((dish) => {
-      if (dish.image_url) {
-        dish.image_url = path.join(USERDATA_RELATIVE_LOCATION, dish.image_url);
-      }
-    });
     res.send(results.rows);
   });
 });
@@ -146,14 +133,6 @@ router.get("/dishes/id/:id", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        results.rows.forEach((dish) => {
-          if (dish.image_url) {
-            dish.image_url = path.join(
-              USERDATA_RELATIVE_LOCATION,
-              dish.image_url
-            );
-          }
-        });
         res.send(results.rows[0]);
       }
     }

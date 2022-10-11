@@ -92,7 +92,7 @@ async function renderData() {
   document.title = document.getElementById("header-food-name").innerText =
     dishData.name;
   document.getElementById("header-food-image").crossOrigin = "";
-  document.getElementById("header-food-image").src = "/" + dishData.image_url;
+  document.getElementById("header-food-image").src = dishData.image_url;
   document.getElementById(
     "dishrating-container"
   ).innerHTML = `<span class="stars-container stars-${closestMultiple(
@@ -251,7 +251,7 @@ async function renderDishes() {
     }>
     <img
       class="food-carousel-card-image"
-      src="/${dish.image_url || "static/assets/placeholder_food.jpg"}"
+      src="${dish.image_url || "static/assets/placeholder_food.jpg"}"
       alt="card-placeholder" onerror="this.style.display='none'"
     />
     </div>

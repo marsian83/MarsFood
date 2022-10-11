@@ -31,7 +31,7 @@ async function renderCart(cart) {
       cartItem.dish.dish_id
     }">
     <img
-      src="/${cartItem.dish.image_url}"
+      src="${cartItem.dish.image_url}"
       class="cart-card-img"
       alt="dish image"
       onerror="this.style.display='none'"
