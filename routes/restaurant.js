@@ -68,10 +68,9 @@ router.get("/dish/new", (req, res) => {
 });
 
 router.get("/orders", (req, res) => {
-  return res.redirect("/restaurant/logout");
   res
     .status(200)
-    .send(renderHtml(path.join(__dirname, "../templates/dashboard.html")));
+    .send(renderHtml(path.join(__dirname, "../templates/orders.html")));
 });
 
 // POST REQUESTS
