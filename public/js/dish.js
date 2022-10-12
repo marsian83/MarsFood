@@ -18,11 +18,9 @@ async function getAverageRGB(src) {
   return new Promise((resolve) => {
     let context = document.createElement("canvas").getContext("2d");
     context.imageSmoothingEnabled = true;
-
     let img = new Image();
     img.src = src;
     img.crossOrigin = "";
-
     img.onload = () => {
       context.drawImage(img, 0, 0, 1, 1);
       resolve(context.getImageData(0, 0, 1, 1).data.slice(0, 3));
@@ -91,8 +89,13 @@ async function renderData() {
   await loadData();
   document.title = document.getElementById("header-food-name").innerText =
     dishData.name;
-  document.getElementById("header-food-image").crossOrigin = "";
-  document.getElementById("header-food-image").src = "/" + dishData.image_url;
+  document.getElementById("header-food-image-container").innerHTML = `<img
+    src="${dishData.image_url || " /static/assets/placeholder_food.jpg"}"
+    alt="dish image"
+    onerror="this.style.display='none'"
+    id="header-food-image"
+    />`;
+  // document.getElementById("header-food-image").crossOrigin = "";
   document.getElementById(
     "dishrating-container"
   ).innerHTML = `<span class="stars-container stars-${closestMultiple(
@@ -132,7 +135,7 @@ async function renderData() {
     `<a href="/user/restaurant/${restaurantData.restaurant_id}">${restaurantData.name}</a>` +
     "<p>:</p>";
 
-  let dishDomRGB = await getAverageRGB("/" + dishData.image_url);
+  let dishDomRGB = await getAverageRGB(dishData.image_url);
   var dr = dishDomRGB[0];
   var dg = dishDomRGB[1];
   var db = dishDomRGB[2];
@@ -169,7 +172,8 @@ async function renderReviews() {
       </div>
       <p id="review-content">
         ${
-          userRev.content || "This review does not have any description of the dish"
+          userRev.content ||
+          "This review does not have any description of the dish"
         }
       </p>
     </div>
@@ -251,7 +255,7 @@ async function renderDishes() {
     }>
     <img
       class="food-carousel-card-image"
-      src="/${dish.image_url || "static/assets/placeholder_food.jpg"}"
+      src="${dish.image_url || "static/assets/placeholder_food.jpg"}"
       alt="card-placeholder" onerror="this.style.display='none'"
     />
     </div>

@@ -168,7 +168,7 @@ async function loadFoodCarousel() {
     }>
     <img
       class="food-carousel-card-image"
-      src="/${dishData.image_url || "static/assets/placeholder_food.jpg"}"
+      src="${dishData.image_url || "static/assets/placeholder_food.jpg"}"
       alt="card-placeholder" onerror="this.style.display='none'"
     />
     </div>
@@ -204,7 +204,7 @@ async function loadBodyContent() {
         <img class="vegan-indicator" src=${
           "/static/assets/" + (dish.nonveg ? "nonveg.png" : "veg.png")
         }>
-        <img class="dish-thumbnail" src="/${dish.image_url}" alt="Dish Image" onerror="this.style.display='none'">
+        <img class="dish-thumbnail" src="${dish.image_url}" alt="Dish Image" onerror="this.style.display='none'">
       
         <h3>${shorten(dish.name, 28)}</h3>
         <h2>${new Intl.NumberFormat("en-IN", {
