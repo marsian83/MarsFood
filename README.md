@@ -25,20 +25,16 @@ Hosted Link: https://marsfood.herokuapp.com/
 
 <a name="ow"></a>
 ## Overview
-xyz
 
 <a name="how"></a>
 ## How does it work?
-xyz
 
 <a name="feature"></a>
 ## Features
 
 ### Backend-Features
-xyz
 
 ### Frontend-Features
-xyz
 
 <a name="techstack"></a>
 ## Tech-Stack Used
