@@ -117,8 +117,22 @@ async function fetchRestaurants() {
   return parsedData;
 }
 
+async function fetchRestaurantData(id) {
+  data = await fetch(`/api/restaurants/id/${id}/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
+async function fetchRestaurantDishes(id) {
+  data = await fetch(`/api/restaurants/id/${id}/dishes/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 async function fetchRestaurantThumbnail(rid) {
-  data = await fetch(`/api/restaurants/id/${rid}/dishes/top/?apiKey=${API_KEY}`);
+  data = await fetch(
+    `/api/restaurants/id/${rid}/dishes/top/?apiKey=${API_KEY}`
+  );
   parsedData = await data.json();
   return parsedData.image_url;
 }
@@ -128,6 +142,11 @@ async function fetchRestaurantRating(rid) {
   return parsedData.restaurant_rating;
 }
 
+async function fetchTopRestaurants(n = 3) {
+  data = await fetch(`/api/restaurants/ratings/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData.slice(0, n);
+}
 async function fetchDishes() {
   data = await fetch(`/api/dishes/?apiKey=${API_KEY}`);
   parsedData = await data.json();
@@ -146,7 +165,7 @@ async function fetchDishData(id) {
   return parsedData;
 }
 
-async function fetchDishRating(id){
+async function fetchDishRating(id) {
   data = await fetch(`/api/dishes/id/${id}/rating/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData;
@@ -164,6 +183,41 @@ async function loadData() {
   ratings = await fetchRatings();
   bodyData.dishes = await fetchDishes();
   bodyData.restaurants = await fetchRestaurants();
+}
+
+async function loadTopRestaurants() {
+  topRestaurantsData = await fetchTopRestaurants();
+  headerCarousel = document.getElementById("header-carousel");
+  headerCarousel.innerHTML = "";
+  topRestaurantsData.forEach(async (restro) => {
+    let restaurant = await fetchRestaurantData(restro.restaurant_id);
+    restaurant.image_url = await fetchRestaurantThumbnail(restro.restaurant_id);
+    let restaurantDishes = await fetchRestaurantDishes(restro.restaurant_id);
+    let restaurantDishesText = "";
+    restaurantDishes.forEach((dish) => {
+      if (restaurantDishesText.length < 25) {
+        restaurantDishesText += (dish.name + ",");
+      }
+    });
+    restaurantDishesText = restaurantDishesText.slice(0,-1)
+    restaurantDishesText+='...'
+    let newHeaderCard = `<div class="header-carousel-card" id="header-carousel-card${
+      i + 1
+    }">
+    <img
+      class="header-carousel-card-image"
+      src="${restaurant.image_url || "/static/assets/placeholder_food.jpg"}"
+      alt="top-restaurant-image"
+    />
+    <h4>${restaurant.name}</h4>
+    <p>${restaurantDishesText}</p>
+    <span class="stars-container stars-${closestMultiple(
+      (restro.restaurant_rating || 0) * (100 / 5),
+      5
+    )}">★★★★★</span>
+  </div>`;
+    headerCarousel.innerHTML += newHeaderCard;
+  });
 }
 
 async function loadFoodCarousel() {
@@ -215,8 +269,7 @@ async function loadBodyContent() {
       restaurantName = bodyData.restaurants.find((item) => {
         return item.restaurant_id == dish.restaurant_id;
       }).name;
-      dish.rating = await fetchDishRating(dish.dish_id)
-      console.log(dish.rating)
+      dish.rating = await fetchDishRating(dish.dish_id);
       newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
       <div>
@@ -237,7 +290,7 @@ async function loadBodyContent() {
         <p>${shorten(restaurantName || "", 100)}</p>
       </div>
         <span class="stars-container dish-card-stars stars-${closestMultiple(
-          (dish.rating.avg || 0)*(40/5),
+          (dish.rating.avg || 0) * (40 / 5),
           5
         )}"></span>
       </div>`;
@@ -249,7 +302,6 @@ async function loadBodyContent() {
         restaurant.restaurant_id
       );
       restaurant.rating = await fetchRestaurantRating(restaurant.restaurant_id);
-      console.log()
       newCard = `<div class="container body-card body-card-restaurant">
       ${
         restaurant.image_url
@@ -260,7 +312,7 @@ async function loadBodyContent() {
         <div>
           <h3>${restaurant.name}</h3>
           <span class="stars-container stars-${closestMultiple(
-            restaurant.rating? restaurant.rating*(69/5) : 0,
+            restaurant.rating ? restaurant.rating * (69 / 5) : 0,
             5
           )}"></span>
         </div>
@@ -273,9 +325,9 @@ async function loadBodyContent() {
 }
 
 async function renderData() {
+  loadTopRestaurants();
   await loadData();
-
-  await loadFoodCarousel();
-  await loadBodyContent();
+  loadFoodCarousel();
+  loadBodyContent();
 }
 renderData();
