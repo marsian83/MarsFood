@@ -16,7 +16,7 @@ const {
   sha256,
 } = require("../functions");
 
-const { app} = require("../firebaseconfig");
+const { app } = require("../firebaseconfig");
 
 const {
   getStorage,
@@ -25,7 +25,7 @@ const {
   getDownloadURL,
 } = require("firebase/storage");
 
-const storage = getStorage(app)
+const storage = getStorage(app);
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(fileupload());
@@ -211,7 +211,7 @@ router.post("/dish/new", async (req, res) => {
     (err, results) => {
       if (err) {
         console.log(err);
-      } else {
+      } else if (image) {
         let newId = results.rows[0].dish_id;
         const storageRef = ref(storage, `userdata/images/dishes/${newId}.jpg`);
         const metadata = {
@@ -222,17 +222,15 @@ router.post("/dish/new", async (req, res) => {
           image.data,
           metadata
         );
-
-        // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(
           "state_changed",
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done")
+            console.log("Upload is " + progress + "% done");
           },
           (err) => {
-            console.log(err)
+            console.log(err);
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
