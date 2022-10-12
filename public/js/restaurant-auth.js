@@ -27,9 +27,9 @@ async function updateStats() {
     parsedRestaurantsCount.count;
   
     dishesSoldCount = await fetch(`/api/orders/quantity/total/?apiKey=${API_KEY}`);
-    parsedDishesSoldCount = await restaurantsCount.json();
+    parsedDishesSoldCount = await dishesSoldCount.json();
     document.getElementById("totalDishesSold").innerText =
-      parsedDishesSoldCount.count;
+      parsedDishesSoldCount.sum;
 }
 
 updateStats();
