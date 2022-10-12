@@ -59,10 +59,12 @@ async function displayOrderHistory() {
                         }).format(new Date(order.order_time))}</p>
                     </div>
                     <div class="order-info-list-item-container">
-                        <h6>Delivered to : </h6>
-                        <p><u>${address.name}</u> at ${address.line1}, ${
-      address.line2
-    }</p>
+                        ${
+                          !order.completed
+                            ? `<h6 class="order-not-dispatched-text"><strong><u>Order has not yeet been dispatched</u></strong></h6>`
+                            : `<h6>Delivered to : </h6>
+                      <p><u>${address.name}</u> at ${address.line1}, ${address.line2}</p>`
+                        }
                     </div>
 
                 </div>

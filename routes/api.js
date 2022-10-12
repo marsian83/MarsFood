@@ -54,7 +54,7 @@ router.get("/users/id/:id", (req, res) => {
 
 router.get("/users/id/:id/orders", (req, res) => {
   pool.query(
-    "SELECT * FROM orders WHERE user_id=$1",
+    "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",
     [req.params.id],
     (err, results) => {
       if (err) {

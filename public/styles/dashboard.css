@@ -114,6 +114,10 @@ margin: 0;
     margin: 0;
 }
 
+.order-not-dispatched-text{
+    color: var(--primary)
+}
+
 .logout-button-div{
     display:flex;
     justify-content: space-between;
