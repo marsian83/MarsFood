@@ -76,3 +76,12 @@ imageInput.addEventListener("change", function () {
     updatePreview();
   });
 });
+
+var uploadField = document.getElementById("image-input");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 1024*1024*2.5){
+       alert("Please upload an image less than 2.5MB in size");
+       this.value = "";
+    };
+};

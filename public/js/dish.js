@@ -21,7 +21,6 @@ async function getAverageRGB(src) {
     let img = new Image();
     img.src = src;
     img.crossOrigin = "";
-    img.onerror = console.error
     img.onload = () => {
       context.drawImage(img, 0, 0, 1, 1);
       resolve(context.getImageData(0, 0, 1, 1).data.slice(0, 3));
