@@ -1,6 +1,6 @@
 # MarsFood
 
-Food Ordering and Restaurant Register
+MarsFood is a food ordering website, which contains a separate app for restaurant order retrieval as well as a meal ordering app for customers.
 
 Hosted Link: https://marsfood.herokuapp.com/
 
