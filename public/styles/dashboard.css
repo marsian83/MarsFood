@@ -56,6 +56,7 @@
 }
 
 .order-card {
+    color: var(--foreground);
     width: 91%;
     display: flex;
     flex-direction: row;
@@ -128,6 +129,7 @@ margin: 0;
     opacity: 90%;
     color:var(--text-secondary);
     background-color:var(--primary);
+    transition: 200ms ease;
 }
 
 .logout-button:hover{
