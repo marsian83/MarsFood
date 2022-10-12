@@ -116,7 +116,63 @@ router.get("/restaurants/id/:id/dishes", (req, res) => {
 
 router.get("/restaurants/id/:id/dishes/top", (req, res) => {
   pool.query(
-    "select avg(k.rating),s.dish_id from sells as s natural join reviewof as r natural join dishreviews as k where restaurant_id =$1 group by s.dish_id order by avg(k.rating) desc;",
+    "select s.dish_id from sells as s natural join reviewof as r natural join dishreviews as k where restaurant_id =$1 group by s.dish_id order by avg(k.rating) desc;",
+    [req.params.id],
+async    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length>0){pool.query(
+          "SELECT * FROM dishes WHERE dish_id=$1",
+          [results.rows[0].dish_id],
+          (err, results) => {
+            if (err) {
+              console.log(err);
+            } else {
+              res.send(results.rows[0]);
+            }
+          }
+        );
+        }else{
+          pool.query(
+            "SELECT * FROM (SELECT * FROM sells WHERE restaurant_id=$1) AS s NATURAL JOIN dishes",
+            [req.params.id],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                results.rows.forEach((d)=>{
+                  if(d.image_url){
+                    return d;
+                  }
+                })
+                res.send(results.rows[0]);
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
+router.get("/restaurants/ratings", (req, res) => {
+  pool.query(
+    "SELECT AVG(rating) AS restaurant_rating,restaurant_id FROM dishes NATURAL JOIN reviewof NATURAL JOIN dishreviews NATURAL JOIN sells GROUP BY restaurant_id ORDER BY restaurant_rating DESC;",
+    [],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
+router.get("/restaurants/id/:id/rating", (req, res) => {
+  pool.query(
+    "SELECT AVG(rating) AS restaurant_rating FROM dishes NATURAL JOIN reviewof NATURAL JOIN dishreviews NATURAL JOIN sells WHERE restaurant_id=$1;",
     [req.params.id],
     (err, results) => {
       if (err) {

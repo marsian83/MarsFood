@@ -3,7 +3,9 @@ const shorten = (str, len) => {
 };
 
 function closestMultiple(n, x) {
-  if (n==0) {return 0};
+  if (n == 0) {
+    return 0;
+  }
   if (x > n) return x;
   n = n + parseInt(x / 2, 10);
   n = n - (n % x);
@@ -115,6 +117,17 @@ async function fetchRestaurants() {
   return parsedData;
 }
 
+async function fetchRestaurantThumbnail(rid) {
+  data = await fetch(`/api/restaurants/id/${rid}/dishes/top/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData.image_url;
+}
+async function fetchRestaurantRating(rid) {
+  data = await fetch(`/api/restaurants/id/${rid}/rating/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData.restaurant_rating;
+}
+
 async function fetchDishes() {
   data = await fetch(`/api/dishes/?apiKey=${API_KEY}`);
   parsedData = await data.json();
@@ -157,10 +170,12 @@ async function loadFoodCarousel() {
   }
   var i = 0;
   topDishes.forEach(async (dish) => {
-    dish.mypos=i++
+    dish.mypos = i++;
     dishid = dish.dish_id;
     dishData = await fetchDishData(dish.dish_id);
-    newCard = `<div class="food-carousel-card" id="food-carousel-card${dish.mypos}"
+    newCard = `<div class="food-carousel-card" id="food-carousel-card${
+      dish.mypos
+    }"
     onclick="location.href='/user/dish/${dish.dish_id}'">
     <div class="vegan-and-image-holder">
     <img class="vegan-indicator" src=${
@@ -196,7 +211,7 @@ async function loadBodyContent() {
       }).name;
       ratingfound = ratings.find((item) => {
         return item.dish_id == dish.dish_id;
-      })
+      });
       newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
       <div>
@@ -204,7 +219,9 @@ async function loadBodyContent() {
         <img class="vegan-indicator" src=${
           "/static/assets/" + (dish.nonveg ? "nonveg.png" : "veg.png")
         }>
-        <img class="dish-thumbnail" src="${dish.image_url}" alt="Dish Image" onerror="this.style.display='none'">
+        <img class="dish-thumbnail" src="${
+          dish.image_url
+        }" alt="Dish Image" onerror="this.style.display='none'">
       
         <h3>${shorten(dish.name, 28)}</h3>
         <h2>${new Intl.NumberFormat("en-IN", {
@@ -216,7 +233,7 @@ async function loadBodyContent() {
       </div>
       <div class="rating-holder">
         <span class="stars-container stars-${closestMultiple(
-          ratingfound ? ratingfound.rating*(62/5) : 0,
+          ratingfound ? ratingfound.rating * (62 / 5) : 0,
           5
         )}"></span>
       </div>
@@ -224,7 +241,12 @@ async function loadBodyContent() {
       document.querySelector(".body-items").innerHTML += newCard;
     });
   } else if (bodyShowing == 2) {
-    bodyData.restaurants.forEach((restaurant) => {
+    bodyData.restaurants.forEach(async (restaurant) => {
+      restaurant.image_url = await fetchRestaurantThumbnail(
+        restaurant.restaurant_id
+      );
+      restaurant.rating = await fetchRestaurantRating(restaurant.restaurant_id);
+      console.log()
       newCard = `<div class="container body-card body-card-restaurant">
       ${
         restaurant.image_url
@@ -234,7 +256,10 @@ async function loadBodyContent() {
       <div>  
         <div>
           <h3>${restaurant.name}</h3>
-          <span class="stars-container stars-85"></span>
+          <span class="stars-container stars-${closestMultiple(
+            restaurant.rating? restaurant.rating*(69/5) : 0,
+            5
+          )}"></span>
         </div>
         <p>${restaurant.address}</>
       </div>
