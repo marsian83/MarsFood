@@ -45,8 +45,8 @@ async function fetchDishData() {
   return parsedData;
 }
 
-async function fetchDishRating() {
-  data = await fetch(`/api/dishes/id/${dishid}/rating/?apiKey=${API_KEY}`);
+async function fetchDishRating(did = dishid) {
+  data = await fetch(`/api/dishes/id/${did}/rating/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData;
 }
@@ -247,6 +247,7 @@ async function renderReviews() {
 async function renderDishes() {
   document.querySelector("#food-carousel").innerHTML = "";
   restaurantDishes.forEach(async (dish) => {
+    let dishItemRating = await fetchDishRating(dish.dish_id)
     newCard = `<div class="food-carousel-card""
     onclick="location.href='/user/dish/${dish.dish_id}'">
     <div class="vegan-and-image-holder">
@@ -266,7 +267,7 @@ async function renderDishes() {
       currency: "INR",
     }).format(dish.cost)}</h2>
     <span class="stars-container stars-${closestMultiple(
-      3 * (100 / 5),
+       (dishItemRating.avg || 0) * (100 / 5),
       5
     )}">★★★★★</span>
   </div>`;
