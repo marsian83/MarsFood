@@ -50,7 +50,7 @@ app.use(
     cookie: {
       maxAge: Number(process.env.SESSION_LIFETIME),
       sameSite: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,//process.env.NODE_ENV === "production",
     },
   })
 );
