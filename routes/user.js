@@ -208,7 +208,7 @@ router.post("/cart/buy", redirectLogin, (req, res) => {
                   console.log(err);
                 } else {
                   req.session.cart = [];
-                  res.redirect("/confirmation");
+                  res.redirect("/user/confirmation");
                 }
               }
             );
