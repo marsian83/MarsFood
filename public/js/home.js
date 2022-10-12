@@ -146,6 +146,12 @@ async function fetchDishData(id) {
   return parsedData;
 }
 
+async function fetchDishRating(id){
+  data = await fetch(`/api/dishes/id/${id}/rating/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 var topDishes = [];
 var ratings = [];
 var bodyData = {
@@ -205,13 +211,12 @@ async function loadFoodCarousel() {
 async function loadBodyContent() {
   document.querySelector(".body-items").innerHTML = "";
   if (bodyShowing == 1) {
-    bodyData.dishes.forEach((dish) => {
+    bodyData.dishes.forEach(async (dish) => {
       restaurantName = bodyData.restaurants.find((item) => {
         return item.restaurant_id == dish.restaurant_id;
       }).name;
-      ratingfound = ratings.find((item) => {
-        return item.dish_id == dish.dish_id;
-      });
+      dish.rating = await fetchDishRating(dish.dish_id)
+      console.log(dish.rating)
       newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
       <div>
@@ -231,12 +236,10 @@ async function loadBodyContent() {
         }).format(dish.cost)}</h2>
         <p>${shorten(restaurantName || "", 100)}</p>
       </div>
-      <div class="rating-holder">
-        <span class="stars-container stars-${closestMultiple(
-          ratingfound ? ratingfound.rating * (62 / 5) : 0,
+        <span class="stars-container dish-card-stars stars-${closestMultiple(
+          (dish.rating.avg || 0)*(40/5),
           5
         )}"></span>
-      </div>
       </div>`;
       document.querySelector(".body-items").innerHTML += newCard;
     });
