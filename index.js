@@ -46,6 +46,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    proxy: process.env.NODE_ENV === "production",
     cookie: {
       maxAge: Number(process.env.SESSION_LIFETIME),
       sameSite: true,
