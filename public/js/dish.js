@@ -158,7 +158,7 @@ async function renderData() {
 async function renderReviews() {
   let reviews = await fetchDishReviews();
   let reviewHolder = document.getElementById("reviews-holder");
-  if (reviews.length > 0) {
+  if (true) {
     reviewHolder.innerHTML = "<h2>Reviews : </h2>";
     userRev = reviews.find((item) => item.user_id == params.currentUserId);
     if (userRev) {
@@ -188,7 +188,6 @@ async function renderReviews() {
         `/api/dishes/id/${params.dish_id}/orders/user/${params.currentUserId}/?apiKey=${API_KEY}`
       );
       currusercheckData = await currusercheck.json();
-      // console.log(currusercheckData)
       if (currusercheckData.length > 0) {
         reviewHolder.innerHTML += `
         <div class="container" id="user-reviews-box">
@@ -256,7 +255,7 @@ async function renderDishes() {
     }>
     <img
       class="food-carousel-card-image"
-      src="${dish.image_url || "static/assets/placeholder_food.jpg"}"
+      src="${dish.image_url || "/static/assets/placeholder_food.jpg"}"
       alt="card-placeholder" onerror="this.style.display='none'"
     />
     </div>
@@ -284,10 +283,10 @@ async function renderPage() {
       currency: "INR",
     }).format(dishData.cost * qty.value);
   await renderDishes();
+  await renderReviews();
 }
 
 renderPage();
-renderReviews();
 
 // ORDER MODAL
 
