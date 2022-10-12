@@ -2,6 +2,10 @@
     font-family: "Montserrat", sans-serif;
   }
 
+#navbar-profile-item{
+    display: none;
+}
+
 .block{
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
