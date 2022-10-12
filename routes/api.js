@@ -23,12 +23,13 @@ router.use((req, res, next) => {
   apiKey = req.query.apiKey;
   pool.query("SELECT * FROM apikeys WHERE key=$1", [apiKey], (err, results) => {
     if (err) {
-      throw err;
-    }
-    if (results.rows.length > 0) {
-      next();
+      console.log(err);
     } else {
-      res.status(401).send({ error: "Invalid Api Key" });
+      if (results.rows.length > 0) {
+        next();
+      } else {
+        res.status(401).send({ error: "Invalid Api Key" });
+      }
     }
   });
 });
@@ -50,15 +51,26 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
+router.get("/orders/quantity/total", (req, res) => {
+  pool.query("SELECT SUM(quantity) FROM orders", (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(results.rows[0]);
+    }
+  });
+});
+
 // restaurants
 router.get("/restaurants", (req, res) => {
   pool.query(
     "SELECT restaurant_id,name,address FROM restaurants",
     (err, results) => {
       if (err) {
-        throw err;
+        console.log(err);
+      } else {
+        res.send(results.rows);
       }
-      res.send(results.rows);
     }
   );
 });
@@ -70,9 +82,10 @@ router.get("/restaurants/id/:id", (req, res) => {
     [id],
     (err, results) => {
       if (err) {
-        throw err;
+        console.log(err);
+      } else {
+        res.send(results.rows[0]);
       }
-      res.send(results.rows[0]);
     }
   );
 });
@@ -80,9 +93,10 @@ router.get("/restaurants/id/:id", (req, res) => {
 router.get("/restaurants/count", (req, res) => {
   pool.query("SELECT COUNT(*) FROM restaurants", (err, results) => {
     if (err) {
-      throw err;
+      console.log(err);
+    } else {
+      res.send(results.rows[0]);
     }
-    res.send(results.rows[0]);
   });
 });
 
@@ -118,9 +132,10 @@ router.get("/restaurants/id/:id/dishes/top", (req, res) => {
 router.get("/dishes", (req, res) => {
   pool.query("SELECT * FROM dishes natural join sells", (err, results) => {
     if (err) {
-      throw err;
+      console.log(err);
+    } else {
+      res.send(results.rows);
     }
-    res.send(results.rows);
   });
 });
 
