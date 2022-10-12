@@ -213,6 +213,20 @@ router.get("/restaurants/id/:id/rating", (req, res) => {
   );
 });
 
+router.get("/restaurants/id/:id/orders", (req, res) => {
+  pool.query(
+    "SELECT * FROM sells NATURAL JOIN orders WHERE restaurant_id=$1 ORDER BY order_time",
+    [req.params.id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
 // /dishes
 router.get("/dishes", (req, res) => {
   pool.query("SELECT * FROM dishes natural join sells", (err, results) => {

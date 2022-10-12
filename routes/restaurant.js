@@ -79,9 +79,11 @@ router.get("/dish/new", (req, res) => {
 });
 
 router.get("/orders", (req, res) => {
-  res
-    .status(200)
-    .send(renderHtml(path.join(__dirname, "../templates/orders.html")));
+  res.status(200).send(
+    renderHtml(path.join(__dirname, "../templates/orders.html"), {
+      restaurantId: req.app.locals.restaurant.restaurant_id,
+    })
+  );
 });
 
 // POST REQUESTS
