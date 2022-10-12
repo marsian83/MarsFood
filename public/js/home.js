@@ -289,10 +289,12 @@ async function loadBodyContent() {
         }).format(dish.cost)}</h2>
         <p>${shorten(restaurantName || "", 100)}</p>
       </div>
+      <div class="body-card-star-holder">
         <span class="stars-container dish-card-stars stars-${closestMultiple(
           (dish.rating.avg || 0) * (100 / 5),
           5
         )}">★★★★★</span>
+        </div>
       </div>`;
       document.querySelector(".body-items").innerHTML += newCard;
     });
@@ -311,10 +313,12 @@ async function loadBodyContent() {
       <div>  
         <div>
           <h3>${restaurant.name}</h3>
+          <div class="body-card-star-holder">
           <span class="stars-container stars-${closestMultiple(
             restaurant.rating ? restaurant.rating * (100 / 5) : 0,
             5
           )}">★★★★★</span>
+          </div>
         </div>
         <p>${restaurant.address}</>
       </div>
