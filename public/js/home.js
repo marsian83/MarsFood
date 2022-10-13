@@ -196,11 +196,11 @@ async function loadTopRestaurants() {
     let restaurantDishesText = "";
     restaurantDishes.forEach((dish) => {
       if (restaurantDishesText.length < 25) {
-        restaurantDishesText += (dish.name + ",");
+        restaurantDishesText += dish.name + ",";
       }
     });
-    restaurantDishesText = restaurantDishesText.slice(0,-1)
-    restaurantDishesText+='...'
+    restaurantDishesText = restaurantDishesText.slice(0, -1);
+    restaurantDishesText += "...";
     let newHeaderCard = `<div class="header-carousel-card" id="header-carousel-card${
       i + 1
     }">
@@ -265,8 +265,8 @@ async function loadFoodCarousel() {
 async function loadBodyContent() {
   document.querySelector(".body-items").innerHTML = "";
   if (bodyShowing == 1) {
-    bodyData.dishes.forEach(async (dish) => {
-      let restaurantName = (await fetchRestaurantData(dish.restaurant_id)).name
+    {bodyData.dishes.forEach(async (dish) => {
+      let restaurantName = (await fetchRestaurantData(dish.restaurant_id)).name;
       dish.rating = await fetchDishRating(dish.dish_id);
       newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
@@ -294,8 +294,11 @@ async function loadBodyContent() {
         )}">★★★★★</span>
         </div>
       </div>`;
-      document.querySelector(".body-items").innerHTML += newCard;
-    });
+      if(bodyShowing == 1){
+        (document.querySelector(".body-items").innerHTML += newCard);
+
+      } else {throw 'Break'}
+    })};
   } else if (bodyShowing == 2) {
     bodyData.restaurants.forEach(async (restaurant) => {
       restaurant.image_url = await fetchRestaurantThumbnail(
@@ -321,7 +324,8 @@ async function loadBodyContent() {
         <p>${restaurant.address}</>
       </div>
     </div>`;
-      document.querySelector(".body-items").innerHTML += newCard;
+      bodyShowing == 2 &&
+        (document.querySelector(".body-items").innerHTML += newCard);
     });
   }
 }
