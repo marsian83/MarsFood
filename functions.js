@@ -64,7 +64,8 @@ function renderHtml(filename, vars = {}) {
 
 function redirectLogin(req, res, next) {
   if (!req.session.userId && !req.session.restaurantId) {
-    res.redirect("/");
+    req.url.includes('user') &&   res.redirect("/user/login");
+    req.url.includes('restaurant') &&   res.redirect("/restaurant/auth");
   } else {
     next();
   }
