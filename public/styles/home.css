@@ -364,8 +364,12 @@
 }
 
 .dish-card-stars {
-  left: calc(50% - 3ch);
   font-size: 1.5rem;
+}
+
+.body-card-star-holder{
+  display: flex;
+  align-items: center;
 }
 
 .rating-holder {

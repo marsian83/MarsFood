@@ -68,12 +68,20 @@ router.get("/cart", redirectLogin, async (req, res) => {
 });
 
 router.get("/dashboard", redirectLogin, (req, res) => {
-  res
-    .status(200)
-    .send(renderHtml(path.join(__dirname, "../templates/dashboard.html"), {
+  res.status(200).send(
+    renderHtml(path.join(__dirname, "../templates/dashboard.html"), {
       username: req.app.locals.user.name || "Login",
       userid: req.session.userId,
-    }));
+    })
+  );
+});
+
+router.get("/confirmation", redirectLogin, (req, res) => {
+  res
+    .status(200)
+    .send(
+      renderHtml(path.join(__dirname, "../templates/confirmation.html"), {})
+    );
 });
 
 // POST REQUESTS
@@ -200,7 +208,7 @@ router.post("/cart/buy", redirectLogin, (req, res) => {
                   console.log(err);
                 } else {
                   req.session.cart = [];
-                  res.redirect("/user/home");
+                  res.redirect("/user/confirmation");
                 }
               }
             );

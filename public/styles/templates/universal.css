@@ -129,7 +129,7 @@ body{
   width: 95%;
 }
 .stars-100:after {
-  width: 100;
+  width: 100%;
 }
 
 /* STARS PROPERTY END */

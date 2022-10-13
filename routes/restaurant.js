@@ -16,7 +16,7 @@ const {
   sha256,
 } = require("../functions");
 
-const { app} = require("../firebaseconfig");
+const { app } = require("../firebaseconfig");
 
 const {
   getStorage,
@@ -25,7 +25,7 @@ const {
   getDownloadURL,
 } = require("firebase/storage");
 
-const storage = getStorage(app)
+const storage = getStorage(app);
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(fileupload());
@@ -79,9 +79,11 @@ router.get("/dish/new", (req, res) => {
 });
 
 router.get("/orders", (req, res) => {
-  res
-    .status(200)
-    .send(renderHtml(path.join(__dirname, "../templates/orders.html")));
+  res.status(200).send(
+    renderHtml(path.join(__dirname, "../templates/orders.html"), {
+      restaurantId: req.app.locals.restaurant.restaurant_id,
+    })
+  );
 });
 
 // POST REQUESTS
@@ -211,7 +213,7 @@ router.post("/dish/new", async (req, res) => {
     (err, results) => {
       if (err) {
         console.log(err);
-      } else {
+      } else if (image) {
         let newId = results.rows[0].dish_id;
         const storageRef = ref(storage, `userdata/images/dishes/${newId}.jpg`);
         const metadata = {
@@ -222,17 +224,15 @@ router.post("/dish/new", async (req, res) => {
           image.data,
           metadata
         );
-
-        // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(
           "state_changed",
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done")
+            console.log("Upload is " + progress + "% done");
           },
           (err) => {
-            console.log(err)
+            console.log(err);
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -264,6 +264,62 @@ router.post("/dish/new", async (req, res) => {
       }
     }
   );
+});
+
+router.post("/orders/mark", redirectLogin, (req, res) => {
+  console.log(req.body.order_id)
+  pool.query(
+    "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
+    [req.body.order_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(results)
+        if (results.rows.length > 0) {
+          pool.query(
+            "UPDATE orders SET completed=1 WHERE order_id=$1",
+            [results.rows[0].order_id],
+            (err, resuls) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.redirect("/restaurant/orders");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
+// PUT REQUESTS
+router.put("/orders/mark", redirectLogin, (req, res) => {
+  pool.query(
+    "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
+    [req.body.order_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length > 0) {
+          pool.query(
+            "UPDATE orders SET completed=1 WHERE order_id=$1",
+            [results.rows[0].order_id],
+            (err, resuls) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.redirect("/restaurant/orders");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+  res.redirect("/");
 });
 
 // OTHER REQUESTS

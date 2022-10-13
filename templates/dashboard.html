@@ -1,67 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/dashboard.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles/dashboard.css" />
     <title>Dashboard</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container holder">
-        <div class="container">
-            $%=Navbar
+      <div class="container">$%=Navbar</div>
+
+      <div class="container header">
+        <div class="logout-button-div">
+          <h3>#%=username</h3>
+          <button
+            class="logout-button"
+            onclick="window.location.href='/user/logout'"
+          >
+            LOGOUT <i class="fa fa-sign-out"></i>
+          </button>
         </div>
 
-        <div class="container header">
-            <div class="logout-button-div">
-            <h3>#%=username</h3>
-                <button class="logout-button" onclick="window.location.href='/user/logout'">LOGOUT <i class="fa fa-sign-out"></i></button>
-            </div>
-
-            <div>
-                <div class="header-list-item-container">
-                    <h6>Email : </h6>
-                    <p>sample@email.com</p>
-                </div>
-                <a href="/">Change password</a>
-            </div>
+        <div>
+          <div class="header-list-item-container">
+            <h6>Email :</h6>
+            <p id="user-email-display"></p>
+          </div>
+          <a href="/">Change password</a>
         </div>
-        <div class="container body-holder">
-            <h3>Your order history :</h3>
-            <div class="orders-container container">
-
-                <div class="order-card">
-                    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2022%2F03%2F29%2Fpasta-power-tout.jpg"
-                        alt="food-thumbnail">
-                    <div class="order-card-content">
-                        <h5>Dish Name</h5>
-                        <div class="container order-info">
-                            <div class="order-info-list-item-container">
-                                <h6>Quantity : </h6>
-                                <p>12</p>
-                            </div>
-                            <div class="order-info-list-item-container">
-                                <h6>Order Date : </h6>
-                                <p>11-11-2002</p>
-                            </div>
-                            <div class="order-info-list-item-container">
-                                <h6>Delivered to : </h6>
-                                <p>127, nazul layout colony, behind muslim qubrastan, bezonbagh, nagpur</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="container body-holder">
+        <h3>Your order history :</h3>
+        <div class="orders-container container" id="orders-holder">
+          Loading ...
         </div>
+      </div>
     </div>
 
-    $%=Footer
-    $%=Preloader
-</body>
-<script src="/static/js/dashboard.js"></script>
-
+    $%=Footer $%=Preloader
+  </body>
+  <script src="/static/js/dashboard.js"></script>
 </html>

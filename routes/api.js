@@ -51,6 +51,21 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
+
+router.get("/users/id/:id/orders", (req, res) => {
+  pool.query(
+    "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",
+    [req.params.id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
 router.get("/orders/quantity/total", (req, res) => {
   pool.query("SELECT SUM(quantity) FROM orders", (err, results) => {
     if (err) {
@@ -59,6 +74,20 @@ router.get("/orders/quantity/total", (req, res) => {
       res.send(results.rows[0]);
     }
   });
+});
+
+router.get("/addresses/id/:id", (req, res) => {
+  pool.query(
+    "SELECT * FROM addresses WHERE address_id=$1",
+    [req.params.id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows[0]);
+      }
+    }
+  );
 });
 
 // restaurants
@@ -179,6 +208,20 @@ router.get("/restaurants/id/:id/rating", (req, res) => {
         console.log(err);
       } else {
         res.status(200).send(results.rows[0]);
+      }
+    }
+  );
+});
+
+router.get("/restaurants/id/:id/orders", (req, res) => {
+  pool.query(
+    "SELECT * FROM sells NATURAL JOIN orders WHERE restaurant_id=$1 ORDER BY order_time",
+    [req.params.id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
       }
     }
   );
