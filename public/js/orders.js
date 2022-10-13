@@ -68,8 +68,8 @@ async function displayOrders() {
         <div class="orders-card-content">
           <div class="delivery-orders">
             <h5>${dish.name}</h5>
-            <form action="/restaurant/orders/mark" method="POST" hidden>
-              <input value="${order.order_id}" name="order_id" />
+            <form action="/restaurant/orders/mark" method="POST">
+              <input value="${order.order_id}" name="order_id" hidden/>
               <button class="delivery-orders-button" type="submit">Dispatch order</button>
             </form>
           </div>
