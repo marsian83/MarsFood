@@ -64,7 +64,7 @@ function renderHtml(filename, vars = {}) {
 
 function redirectLogin(req, res, next) {
   if (!req.session.userId) {
-    res.redirect("/user/login");
+    res.redirect("/");
   } else {
     next();
   }
@@ -73,6 +73,8 @@ function redirectLogin(req, res, next) {
 function redirectHome(req, res, next) {
   if (req.session.userId) {
     res.redirect("/user/home");
+  } else if(req.session.restaurantId){
+    res.redirect("/restaurant/home")
   } else {
     next();
   }

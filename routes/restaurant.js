@@ -54,7 +54,7 @@ router.get("/", (req, res) => {
   );
 });
 
-router.get("/auth", (req, res) => {
+router.get("/auth", redirectHome, (req, res) => {
   res
     .status(200)
     .send(
@@ -62,7 +62,7 @@ router.get("/auth", (req, res) => {
     );
 });
 
-router.get("/home", (req, res) => {
+router.get("/home", redirectLogin, (req, res) => {
   res.status(200).send(
     renderHtml(path.join(__dirname, "../templates/restaurant-home.html"), {
       restaurantId: req.app.locals.restaurant.restaurant_id,
@@ -70,7 +70,7 @@ router.get("/home", (req, res) => {
   );
 });
 
-router.get("/dish/new", (req, res) => {
+router.get("/dish/new", redirectLogin, (req, res) => {
   res.status(200).send(
     renderHtml(path.join(__dirname, "../templates/new-dish.html"), {
       restaurantId: req.app.locals.restaurant.restaurant_id,
@@ -78,7 +78,7 @@ router.get("/dish/new", (req, res) => {
   );
 });
 
-router.get("/orders", (req, res) => {
+router.get("/orders", redirectLogin, (req, res) => {
   res.status(200).send(
     renderHtml(path.join(__dirname, "../templates/orders.html"), {
       restaurantId: req.app.locals.restaurant.restaurant_id,
@@ -87,7 +87,7 @@ router.get("/orders", (req, res) => {
 });
 
 // POST REQUESTS
-router.post("/auth", async (req, res) => {
+router.post("/auth", redirectHome, async (req, res) => {
   let { name, email, address, password, passwordConfirm } = req.body;
   if (passwordConfirm) {
     let errors = []; //1-> Empty Fields 2-> Password Length 3-> Wrong Confirm 4-> Email exists
@@ -203,7 +203,7 @@ router.post("/auth", async (req, res) => {
   }
 });
 
-router.post("/dish/new", async (req, res) => {
+router.post("/dish/new", redirectLogin, async (req, res) => {
   let { name, description, cost, isnonveg } = req.body;
   let image = req.files.thumbnail || null;
 
@@ -236,7 +236,6 @@ router.post("/dish/new", async (req, res) => {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              console.log("File available at", downloadURL);
               pool.query(
                 "UPDATE dishes SET image_url=$1 WHERE dish_id=$2",
                 [downloadURL, newId],
@@ -266,7 +265,7 @@ router.post("/dish/new", async (req, res) => {
   );
 });
 
-router.post("/orders/mark", (req, res) => {
+router.post("/orders/mark", redirectLogin, (req, res) => {
   pool.query(
     "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
     [req.body.order_id, req.app.locals.restaurant.restaurant_id],
@@ -293,7 +292,7 @@ router.post("/orders/mark", (req, res) => {
 });
 
 // PUT REQUESTS
-router.put("/orders/mark", (req, res) => {
+router.put("/orders/mark", redirectLogin, (req, res) => {
   pool.query(
     "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
     [req.body.order_id, req.app.locals.restaurant.restaurant_id],

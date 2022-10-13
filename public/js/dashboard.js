@@ -25,6 +25,12 @@ async function fetchAddressData(aid) {
   return parsedData;
 }
 
+async function fetchRestaurantData(id) {
+  data = await fetch(`/api/restaurants/id/${id}/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 // DISPLAY
 async function displayUserData() {
   const userData = await fetchUserData(userid);
@@ -38,6 +44,7 @@ async function displayOrderHistory() {
   for (let order of ordersData) {
     let dish = await fetchDishData(order.dish_id);
     let address = await fetchAddressData(order.address_id);
+    let restaurant = (await fetchRestaurantData(dish.restaurant_id))
     let newCard = `
         <div class="order-card" onclick="window.location.href='/user/dish/${
           order.dish_id
@@ -50,6 +57,10 @@ async function displayOrderHistory() {
                     <div class="order-info-list-item-container">
                         <h6>Quantity : </h6>
                         <p>${order.quantity}</p>
+                    </div>
+                    <div class="order-info-list-item-container">
+                        <h6>Sold by : </h6>
+                        <a href="/user/restaurant/${restaurant.restaurant_id}"> ${restaurant.name}</a>
                     </div>
                     <div class="order-info-list-item-container">
                         <h6>Ordered on : </h6>

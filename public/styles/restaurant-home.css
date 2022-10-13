@@ -11,6 +11,10 @@
   padding-bottom: 4vh;
 }
 
+.restaurant-detail a{
+  color: var(--text-secondary);
+}
+
 .add-new-dish{
   display:flex;
   align-items: center;
@@ -83,6 +87,8 @@
   /* min-height: 4vh; */
   border-radius: 1rem;
   box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+  justify-content: center;
+  align-items: center;
 }
 
 

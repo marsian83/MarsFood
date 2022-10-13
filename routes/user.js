@@ -19,8 +19,14 @@ router.use("/static", express.static(path.join(__dirname, "../public")));
 
 // GET REQUESTS
 router.get("/", (req, res) => {
-  const { userId } = req.session;
-  res.redirect(userId ? "/user/home" : "/user/login");
+  const { userId, restaurantId } = req.session;
+  res.redirect(
+    userId
+      ? "/user/home"
+      : restaurantId
+      ? "/restaurant/home"
+      : "/restaurant/auth"
+  );
 });
 
 router.get("/signup", redirectHome, (req, res) => {
@@ -110,7 +116,7 @@ router.post("/signup", redirectHome, async (req, res) => {
     //Entries Validated
     pool.query(
       "SELECT * FROM users WHERE email=$1",
-      [email],
+      [email.toLowerCase()],
       (err, results) => {
         if (err) {
           console.log(err);
@@ -125,7 +131,7 @@ router.post("/signup", redirectHome, async (req, res) => {
           } else {
             pool.query(
               "INSERT INTO users (name,email,password) VALUES($1,$2,$3) RETURNING user_id",
-              [name, email, sha256(password)],
+              [name, email.toLowerCase(), sha256(password)],
               (err, results) => {
                 if (err) {
                   console.log(err);
@@ -159,7 +165,7 @@ router.post("/login", redirectHome, (req, res) => {
     //Entries Validated
     pool.query(
       "SELECT * FROM users WHERE email=$1",
-      [email],
+      [email.toLowerCase()],
       (err, results) => {
         if (err) {
           console.log(err);
@@ -263,7 +269,6 @@ router.post("/dish/review/new", redirectLogin, (req, res) => {
 
 // PUT REQUESTS
 router.put("/buy/:id", redirectLogin, (req, res) => {
-  // console.log(req.session.userId,req.session.cart,req.query.quantity)
   if (req.session.userId) {
     var foundIndex = req.session.cart.findIndex(
       (x) => x.dish_id == req.params.id

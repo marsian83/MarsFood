@@ -364,12 +364,11 @@
 }
 
 .dish-card-stars {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .body-card-star-holder{
   display: flex;
-  align-items: center;
 }
 
 .rating-holder {
@@ -448,7 +447,6 @@
 .body-card-restaurant div {
   display: flex;
   flex-direction: column;
-  height: 16vh;
   justify-content: flex-start;
 }
 

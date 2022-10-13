@@ -266,9 +266,7 @@ async function loadBodyContent() {
   document.querySelector(".body-items").innerHTML = "";
   if (bodyShowing == 1) {
     bodyData.dishes.forEach(async (dish) => {
-      restaurantName = bodyData.restaurants.find((item) => {
-        return item.restaurant_id == dish.restaurant_id;
-      }).name;
+      let restaurantName = (await fetchRestaurantData(dish.restaurant_id)).name
       dish.rating = await fetchDishRating(dish.dish_id);
       newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
