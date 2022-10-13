@@ -1,5 +1,5 @@
 const shorten = (str, len) => {
-  return str.length > len ? str.slice(0, len) + "..." : str;
+  return (str.length > len) ? str.slice(0, len) + "..." : str;
 };
 
 function closestMultiple(n, x) {
@@ -307,9 +307,7 @@ async function loadBodyContent() {
         restaurant.restaurant_id
       );
       restaurant.rating = await fetchRestaurantRating(restaurant.restaurant_id);
-      newCard = `<div class="container body-card body-card-restaurant" onclick="window.location='/user/restaurant/${
-        restaurant.restaurant_id
-      }'>
+      newCard = `<div class="container body-card body-card-restaurant" onclick="window.location='/user/restaurant/${restaurant.restaurant_id}'">
       ${
         restaurant.image_url
           ? `<img src="${restaurant.image_url}" alt="Restaurant Image">`
@@ -325,7 +323,7 @@ async function loadBodyContent() {
           )}">★★★★★</span>
           </div>
         </div>
-        <p>${restaurant.address}</>
+        <p>${restaurant.address}</p>
       </div>
     </div>`;
       bodyShowing == 2 &&

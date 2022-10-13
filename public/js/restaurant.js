@@ -105,7 +105,7 @@ async function displayDishes() {
             dish.image_url || "/static/assets/placeholder_food.jpg"
           } alt="food" />
           <div class="dish-info">
-            <h5>${dish.name}</h5>
+            <h5 class="dish-card-name">${dish.name}</h5>
           </div>
         </div>
         `;
