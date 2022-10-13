@@ -266,6 +266,62 @@ router.post("/dish/new", async (req, res) => {
   );
 });
 
+router.post("/orders/mark", redirectLogin, (req, res) => {
+  console.log(req.body.order_id)
+  pool.query(
+    "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
+    [req.body.order_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(results)
+        if (results.rows.length > 0) {
+          pool.query(
+            "UPDATE orders SET completed=1 WHERE order_id=$1",
+            [results.rows[0].order_id],
+            (err, resuls) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.redirect("/restaurant/orders");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
+// PUT REQUESTS
+router.put("/orders/mark", redirectLogin, (req, res) => {
+  pool.query(
+    "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
+    [req.body.order_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length > 0) {
+          pool.query(
+            "UPDATE orders SET completed=1 WHERE order_id=$1",
+            [results.rows[0].order_id],
+            (err, resuls) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.redirect("/restaurant/orders");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+  res.redirect("/");
+});
+
 // OTHER REQUESTS
 router.all("/logout", redirectLogin, (req, res) => {
   req.session.destroy((err) => {

@@ -16,6 +16,7 @@ async function fetchDishData(did) {
   return parsedData;
 }
 
+
 async function displayOrders() {
   let ordersData = await fetchOrders();
   const pendingHolder = document.getElementById("pending-orders-holder");
@@ -35,7 +36,7 @@ async function displayOrders() {
               <div class="orders-card-content">
                 <div class="delivery-orders">
                   <h5>${dish.name}</h5>
-                  <button class="past-orders-button">OUT FOR DELIVERY</button>
+                  <button class="past-orders-button">Order complete</button>
                 </div>
                 <div class="container orders-info">
                 <div class="orders-info-list-item-container">
@@ -53,10 +54,6 @@ async function displayOrders() {
                     <h6>Was delivered to : </h6>
                     <p>${address.name}</p>
                   </div>
-                  <div class="orders-info-list-item-container">
-                    <h6>Description:</h6>
-                    <p>Khaana aache se banana This thing sucks over big para</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -65,38 +62,33 @@ async function displayOrders() {
     } else {
       pendingCard = `<div class="orders-card pending">
         <img
-          src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F44%2F2022%2F03%2F29%2Fpasta-power-tout.jpg"
+          src="${dish.image_url || "/static/assets/placeholder_food.jpg"}"
           alt="food-thumbnail"
         />
         <div class="orders-card-content">
           <div class="delivery-orders">
-            <h5>Dish Name</h5>
-            <button class="delivery-orders-button">OUT FOR DELIVERY</button>
+            <h5>${dish.name}</h5>
+            <form action="/restaurant/orders/mark" method="POST">
+              <input value="${order.order_id}" name="order_id" />
+              <button class="delivery-orders-button" type="submit">Dispatch order</button>
+            </form>
           </div>
           <div class="container orders-info">
             <div class="orders-info-list-item-container">
-              <h6>Customer Name:</h6>
-              <p>Riu</p>
-            </div>
-            <div class="orders-info-list-item-container">
-              <h6>Customer Email:</h6>
-              <p>Riu@gmail.com</p>
-            </div>
-            <div class="orders-info-list-item-container">
-              <h6>Delivery-Address:</h6>
-              <p>145 GH ABV-IIITM</p>
-            </div>
-            <div class="orders-info-list-item-container">
-              <h6>Cost :</h6>
-              <p>100</p>
+              <h6>To be delivered to :</h6>
+              <p>${address.name}</p>
             </div>
             <div class="orders-info-list-item-container">
               <h6>Quantity:</h6>
-              <p>10</p>
+              <p>${order.quantity}</p>
             </div>
             <div class="orders-info-list-item-container">
-              <h6>Description:</h6>
-              <p>Khaana aache se banana This thing sucks over big para</p>
+              <h6>Customer contact number :</h6>
+              <p>${address.mobile}</p>
+            </div>
+            <div class="orders-info-list-item-container">
+              <h6>Delivery-Address:</h6>
+              <p>${address.line1}, ${address.line2}</p>
             </div>
           </div>
         </div>
