@@ -1,0 +1,116 @@
+@import "/constants.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+
+:root {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header {
+  padding-top: 3vh;
+  background-size: cover;
+  background-position: center;
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+  color: var(--text-secondary);
+  filter: blur(0.5) brightness(0.3);
+}
+
+/* #header-food-image {
+    border: 2px solid var(--background);
+    border-radius: 1rem;
+    object-fit: cover;
+    transition: 300ms all ease-in-out;
+    max-height: 35vh;
+  }
+  
+  #header-food-image:hover {
+    transform: scale(1.02) translateY(-0.1rem);
+  } */
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#header-restaurant-name {
+  font-size: 3rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  padding: 2vh 0;
+  margin: 0;
+}
+
+#header-restaurant-stars {
+  font-size: 2.34rem;
+  margin-bottom: 1.23vh;
+}
+
+#header-food-orders {
+  margin-top: 1vh;
+  margin-bottom: 4vh;
+}
+
+.body-content {
+  padding-left: var(--edge-border-left);
+  padding-right: var(--edge-border-right);
+}
+
+#body-content-holder{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;}
+
+.dish-card {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 1vw;
+  width: 22%;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 3px rgba(128, 128, 128, 1);
+  border-radius: 1rem;
+  transition: 234ms ease-out;
+}
+
+.dish-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.45);
+}
+
+.dish-card {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 1vw;
+  width: 22%;
+  align-items: center;
+  box-shadow: 0px 0px 2px rgba(128, 128, 128, 0.6);
+  border-radius: 1rem;
+  transition: 234ms ease-out;
+}
+
+.dish-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+
+.dish-card img {
+  margin-top: 2vh;
+  width: 80%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.dish-info {
+  display: flex;
+  align-items: center;
+}
+
+.dish-info h5 {
+  margin-top: 1.23vh;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}

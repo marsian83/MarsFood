@@ -59,6 +59,16 @@ router.get("/dish/:id", redirectLogin, (req, res) => {
   );
 });
 
+router.get("/restaurant/:id", redirectLogin, (req, res) => {
+  res.status(200).send(
+    renderHtml(path.join(__dirname, "../templates/restaurant.html"), {
+      username: req.app.locals.user.name || "Login",
+      restaurant_id: req.params.id,
+      currentUserId: req.session.userId,
+    })
+  );
+});
+
 router.get("/cart/data", redirectLogin, (req, res) => {
   cartData = req.session.cart;
   res.status(200).send(cartData);

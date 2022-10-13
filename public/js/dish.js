@@ -29,16 +29,6 @@ async function getAverageRGB(src) {
   });
 }
 
-function closestMultiple(n, x) {
-  if (n == 0) {
-    return 0;
-  }
-  if (x > n) return x;
-  n = n + parseInt(x / 2, 10);
-  n = n - (n % x);
-  return n;
-}
-
 async function fetchDishData() {
   data = await fetch(`/api/dishes/id/${dishid}/?apiKey=${API_KEY}`);
   parsedData = await data.json();

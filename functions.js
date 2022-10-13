@@ -63,7 +63,7 @@ function renderHtml(filename, vars = {}) {
 }
 
 function redirectLogin(req, res, next) {
-  if (!req.session.userId) {
+  if (!req.session.userId && !req.session.restaurantId) {
     res.redirect("/");
   } else {
     next();
