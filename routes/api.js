@@ -51,7 +51,6 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
-
 router.get("/users/id/:id/orders", (req, res) => {
   pool.query(
     "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",
@@ -147,22 +146,23 @@ router.get("/restaurants/id/:id/dishes/top", (req, res) => {
   pool.query(
     "select s.dish_id from sells as s natural join reviewof as r natural join dishreviews as k where restaurant_id =$1 group by s.dish_id order by avg(k.rating) desc;",
     [req.params.id],
-async    (err, results) => {
+    async (err, results) => {
       if (err) {
         console.log(err);
       } else {
-        if (results.rows.length>0){pool.query(
-          "SELECT * FROM dishes WHERE dish_id=$1",
-          [results.rows[0].dish_id],
-          (err, results) => {
-            if (err) {
-              console.log(err);
-            } else {
-              res.send(results.rows[0]);
+        if (results.rows.length > 0) {
+          pool.query(
+            "SELECT * FROM dishes WHERE dish_id=$1",
+            [results.rows[0].dish_id],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.send(results.rows[0]);
+              }
             }
-          }
-        );
-        }else{
+          );
+        } else {
           pool.query(
             "SELECT * FROM (SELECT * FROM sells WHERE restaurant_id=$1) AS s NATURAL JOIN dishes",
             [req.params.id],
@@ -170,11 +170,11 @@ async    (err, results) => {
               if (err) {
                 console.log(err);
               } else {
-                results.rows.forEach((d)=>{
-                  if(d.image_url){
+                results.rows.forEach((d) => {
+                  if (d.image_url) {
                     return d;
                   }
-                })
+                });
                 res.send(results.rows[0]);
               }
             }
@@ -222,6 +222,19 @@ router.get("/restaurants/id/:id/orders", (req, res) => {
         console.log(err);
       } else {
         res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+router.get("/restaurants/id/:id/orders/count", (req, res) => {
+  pool.query(
+    "SELECT COUNT(restaurant_id) FROM sells NATURAL JOIN orders WHERE restaurant_id=$1",
+    [req.params.id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows[0]);
       }
     }
   );

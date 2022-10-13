@@ -203,7 +203,7 @@ async function loadTopRestaurants() {
     restaurantDishesText += "...";
     let newHeaderCard = `<div class="header-carousel-card" id="header-carousel-card${
       i + 1
-    }">
+    }" onclick="window.location='/user/restaurant/${restro.restaurant_id}'">
     <img
       class="header-carousel-card-image"
       src="${restaurant.image_url || "/static/assets/placeholder_food.jpg"}"
@@ -265,10 +265,12 @@ async function loadFoodCarousel() {
 async function loadBodyContent() {
   document.querySelector(".body-items").innerHTML = "";
   if (bodyShowing == 1) {
-    {bodyData.dishes.forEach(async (dish) => {
-      let restaurantName = (await fetchRestaurantData(dish.restaurant_id)).name;
-      dish.rating = await fetchDishRating(dish.dish_id);
-      newCard = `<div class="container body-card body-card-dish" 
+    {
+      bodyData.dishes.forEach(async (dish) => {
+        let restaurantName = (await fetchRestaurantData(dish.restaurant_id))
+          .name;
+        dish.rating = await fetchDishRating(dish.dish_id);
+        newCard = `<div class="container body-card body-card-dish" 
       onclick="location.href='/user/dish/${dish.dish_id}'">
       <div>
       
@@ -294,18 +296,20 @@ async function loadBodyContent() {
         )}">★★★★★</span>
         </div>
       </div>`;
-      if(bodyShowing == 1){
-        (document.querySelector(".body-items").innerHTML += newCard);
-
-      } else {throw 'Break'}
-    })};
+        if (bodyShowing == 1) {
+          document.querySelector(".body-items").innerHTML += newCard;
+        }
+      });
+    }
   } else if (bodyShowing == 2) {
     bodyData.restaurants.forEach(async (restaurant) => {
       restaurant.image_url = await fetchRestaurantThumbnail(
         restaurant.restaurant_id
       );
       restaurant.rating = await fetchRestaurantRating(restaurant.restaurant_id);
-      newCard = `<div class="container body-card body-card-restaurant">
+      newCard = `<div class="container body-card body-card-restaurant" onclick="window.location='/user/restaurant/${
+        restaurant.restaurant_id
+      }'>
       ${
         restaurant.image_url
           ? `<img src="${restaurant.image_url}" alt="Restaurant Image">`

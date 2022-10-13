@@ -48,10 +48,19 @@ async function fetchRestaurantRating(rid = restaurantid) {
   parsedData = await data.json();
   return parsedData.restaurant_rating;
 }
+
 async function fetchRestaurantDishes(rid = restaurantid) {
   data = await fetch(`/api/restaurants/id/${rid}/dishes/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData;
+}
+
+async function fetchRestaurantOrders(rid = restaurantid) {
+  data = await fetch(
+    `/api/restaurants/id/${rid}/orders/count/?apiKey=${API_KEY}`
+  );
+  parsedData = await data.json();
+  return parsedData.count;
 }
 
 // DISPLAY
@@ -64,8 +73,9 @@ async function displayRestaurantThumbnail() {
 }
 
 async function displayHeaderInfo() {
-  restaurantData = await fetchRestaurantData();
-  restaurantRating = await fetchRestaurantRating();
+  let restaurantData = await fetchRestaurantData();
+  let restaurantRating = await fetchRestaurantRating();
+  let restaurantOrders = await fetchRestaurantOrders();
   document.getElementById("header-restaurant-name").innerText =
     restaurantData.name;
   document.getElementById(
@@ -73,7 +83,7 @@ async function displayHeaderInfo() {
   ).innerHTML = `<b>Address : </b> ${restaurantData.address}`;
   document.getElementById(
     "header-food-orders"
-  ).innerHTML = `<b>${8}</b> dishes sold so far`;
+  ).innerHTML = `<b>${restaurantOrders}</b> dishes sold so far`;
   document.getElementById("header-restaurant-name").innerText =
     restaurantData.name;
   document.getElementById(
