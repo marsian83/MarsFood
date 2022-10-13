@@ -83,6 +83,10 @@
   padding-bottom: 5vh;
 }
 
+.user-hint a:hover{
+  text-decoration: none;
+}
+
 .form-brand {
   display: flex;
   flex-direction: row;

@@ -266,8 +266,7 @@ router.post("/dish/new", async (req, res) => {
   );
 });
 
-router.post("/orders/mark", redirectLogin, (req, res) => {
-  console.log(req.body.order_id)
+router.post("/orders/mark", (req, res) => {
   pool.query(
     "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
     [req.body.order_id, req.app.locals.restaurant.restaurant_id],
@@ -275,7 +274,6 @@ router.post("/orders/mark", redirectLogin, (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(results)
         if (results.rows.length > 0) {
           pool.query(
             "UPDATE orders SET completed=1 WHERE order_id=$1",
@@ -295,7 +293,7 @@ router.post("/orders/mark", redirectLogin, (req, res) => {
 });
 
 // PUT REQUESTS
-router.put("/orders/mark", redirectLogin, (req, res) => {
+router.put("/orders/mark", (req, res) => {
   pool.query(
     "SELECT * FROM orders NATURAL JOIN sells WHERE order_id=$1 AND restaurant_id=$2",
     [req.body.order_id, req.app.locals.restaurant.restaurant_id],
