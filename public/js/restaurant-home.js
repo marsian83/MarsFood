@@ -60,7 +60,7 @@ async function displayDishes() {
               </div>
               <div class="dish-info-list-item-container">
                 <h6>Quantity sold till now :</h6>
-                <p>${dish.totalOrders}</p>
+                <p>${dish.totalOrders.count}</p>
               </div>
             </div>
           </div>
