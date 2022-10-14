@@ -134,7 +134,7 @@ async function updateCart() {
       style: "currency",
       currency: "INR",
     }).format(Math.ceil(subtotal * (108 / 100)))}</h5>
-    <button id="checkout-button" onclick="modal.style.display = 'block'">Checkout</button>
+    <button id="checkout-button" onclick="showCheckoutModal()">Checkout</button>
     `;
   } else {
     fo.innerHTML = "";
@@ -148,6 +148,24 @@ async function renderPage() {
 }
 
 renderPage();
+
+async function inputAutoLocation(position) {
+  const { latitude, longitude } = position.coords;
+  data = await fetch(`/api/location/?apiKey=${API_KEY}&longitude=${longitude}&latitude=${latitude}`);
+  parsedData = await data.json();
+  document.getElementById('address-line1').value=parsedData.line1
+  document.getElementById('address-line2').value=parsedData.line2
+}
+
+function showCheckoutModal() {
+  modal.style.display = "block";
+  if (window.navigator.geolocation) {
+    window.navigator.geolocation.getCurrentPosition(
+      inputAutoLocation,
+      console.log
+    );
+  }
+}
 
 var modal = document.getElementById("myModal");
 

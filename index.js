@@ -29,6 +29,7 @@ UNIVERSAL_CSS_LOCATION = "public/styles/templates/universal.css";
 UNIVERSAL_JS_LOCATION = "public/js/templates/universal.js";
 USERDATA_RELATIVE_LOCATION = "userdata";
 USERDATA_ABSOLUTE_LOCATION = path.join(__dirname, USERDATA_RELATIVE_LOCATION);
+OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY
 
 // MIDDLEWARE
 app.use("/static", express.static(path.join(__dirname, STATIC)));
@@ -106,6 +107,18 @@ app.get("/help", (req, res) => {
   res
     .status(200)
     .send(renderHtml(path.join(__dirname, "./templates/help.html")));
+});
+
+app.get("/password-recovery", (req, res) => {
+  res
+    .status(200)
+    .send(renderHtml(path.join(__dirname, "./templates/password-recovery.html")));
+});
+
+app.get("/forgot-password", (req, res) => {
+  res
+    .status(200)
+    .send(renderHtml(path.join(__dirname, "./templates/forgot-password.html")));
 });
 
 app.listen(PORT);

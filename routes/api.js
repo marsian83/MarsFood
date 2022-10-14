@@ -13,6 +13,7 @@ const {
   redirectHome,
   redirectLogin,
   sha256,
+  indexOfNth,
 } = require("../functions");
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
@@ -226,6 +227,7 @@ router.get("/restaurants/id/:id/orders", (req, res) => {
     }
   );
 });
+
 router.get("/restaurants/id/:id/orders/count", (req, res) => {
   pool.query(
     "SELECT COUNT(restaurant_id) FROM sells NATURAL JOIN orders WHERE restaurant_id=$1",
@@ -322,6 +324,26 @@ router.get("/dishes/id/:id/orders/user/:user", (req, res) => {
       }
     }
   );
+});
+
+//others
+router.get("/location", async (req, res) => {
+  const { latitude, longitude } = req.query;
+  let location = await fetch(
+    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`
+  );
+  let parsedLocation = await location.json();
+  address = parsedLocation.results[0].formatted;
+  let splitAt = indexOfNth(
+    address,
+    ",",
+    Math.ceil(("str1,str2,str3,str4".match(/,/g) || []).length / 2)
+  );
+  let results = {
+    line1: address.slice(0, splitAt),
+    line2: address.slice(splitAt + 1, -1) + address.charAt(address.length - 1),
+  };
+  res.status(200).send(results);
 });
 
 module.exports = router;

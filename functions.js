@@ -85,6 +85,17 @@ const shorten = (str, len) => {
   return str.length > len ? str.slice(0, len) + "..." : str;
 };
 
+const indexOfNth = (string, char, nth, fromIndex = 0) => {
+  const indexChar = string.indexOf(char, fromIndex);
+  if (indexChar === -1) {
+    return -1;
+  } else if (nth === 1) {
+    return indexChar;
+  } else {
+    return indexOfNth(string, char, nth - 1, indexChar + 1);
+  }
+}
+
 var sha256 = function a(b) {
   function c(a, b) {
     return (a >>> b) | (a << (32 - b));
@@ -157,4 +168,5 @@ module.exports = {
   redirectHome,
   redirectLogin,
   sha256,
+  indexOfNth
 };
