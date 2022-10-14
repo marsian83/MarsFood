@@ -13,7 +13,7 @@ async function fetchDishes(rid = restaurantid) {
 }
 
 async function fetchDishOrders(did) {
-  data = await fetch(`/api/dishes/id/${did}/orders/?apiKey=${API_KEY}`);
+  data = await fetch(`/api/dishes/id/${did}/sold/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData;
 }

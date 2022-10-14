@@ -313,10 +313,10 @@ router.get("/dishes/id/:id/rating", (req, res) => {
   );
 });
 
-router.get("/dishes/id/:id/orders", (req, res) => {
+router.get("/dishes/id/:id/sold", (req, res) => {
   const { id } = req.params;
   pool.query(
-    "SELECT COUNT(order_id) FROM orders WHERE dish_id = $1;",
+    "SELECT SUM(quantity) FROM orders WHERE dish_id = $1;",
     [id],
     (err, results) => {
       if (err) {
