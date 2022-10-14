@@ -332,12 +332,12 @@ router.get("/location", async (req, res) => {
   const { latitude, longitude } = req.query;
   const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
   https
-    .get(url, (res) => {
+    .get(url, (response) => {
       let data = "";
-      res.on("data", (chunk) => {
+      response.on("data", (chunk) => {
         data += chunk;
       });
-      res.on("end", () => {
+      response.on("end", () => {
         data = JSON.parse(data);
         address = data.results[0].formatted;
         let splitAt = indexOfNth(
