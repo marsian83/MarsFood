@@ -343,6 +343,7 @@ router.get("/location", async (req, res) => {
     line1: address.slice(0, splitAt),
     line2: address.slice(splitAt + 1, -1) + address.charAt(address.length - 1),
   };
+  console.log(results)
   res.status(200).send(results);
 });
 
