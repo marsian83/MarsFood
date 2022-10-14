@@ -48,7 +48,7 @@ async function getPreview() {
   }).format(costField.value)}</h2>
   <p>${shorten(descField.value, 100)}</p>
 </div>
-<span class="stars-container stars-80"></span>
+<span class="stars-container stars-80">★★★★★</span>
 </div>`;
   return display_card;
 }
