@@ -16,11 +16,10 @@ const {
 } = require("../functions");
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
-router.use(fileupload());
 //redirecting user
 router.use("", (req, res, next) => {
   if (req.session.restaurantId) {
-    res.redirect("/user/home");
+    res.redirect("/restaurant/home");
   } else {
     if (req.session.userId || req.path == "/login" || req.path == "/signup") {
       next();
