@@ -472,3 +472,60 @@
     height: calc(75vw * (9 / 16));
   }
 }
+
+
+.scrollToTopBtn{
+  position: fixed;
+  bottom: 5vh;
+  right: 2vw;
+  z-index: 8;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.5s ease;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--background);
+  box-shadow:var(--foreground) 0px 0px 4px;
+  color:(--primary);
+}
+
+.scrollToTopBtn .divBtn:after{
+  font-size: 2rem;
+  content:'▲';
+  color:(--primary);
+  cursor: pointer;
+}
+
+@keyframes scroll-to-top-hover {
+  0% {
+    content: "▲";
+  }
+  15%{
+    transform: rotate(-15deg);
+  }
+  50%{
+    content:"🍓"
+  }
+  85%{
+    transform: rotate(15deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+.scrollToTopBtn:hover .divbtn{
+  animation-name: scroll-top-top-hover;
+  animation-iteration-count: 1;
+  animation-duration: 123ms;
+  content:"🍓";
+}
+
+.showBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
