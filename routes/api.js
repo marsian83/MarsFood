@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const fs = require("fs");
+const https = require("https");
 
 const session = require("express-session");
 
@@ -329,24 +330,32 @@ router.get("/dishes/id/:id/orders/user/:user", (req, res) => {
 //others
 router.get("/location", async (req, res) => {
   const { latitude, longitude } = req.query;
-  let location = await fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`
-  );
-  console.log(location)
-  let parsedLocation = await location.json();
-  address = parsedLocation.results[0].formatted;
-  console.log(address)
-  let splitAt = indexOfNth(
-    address,
-    ",",
-    Math.ceil(("str1,str2,str3,str4".match(/,/g) || []).length / 2)
-  );
-  let results = {
-    line1: address.slice(0, splitAt),
-    line2: address.slice(splitAt + 1, -1) + address.charAt(address.length - 1),
-  };
-  console.log(results)
-  res.status(200).send(results);
+  const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
+  https
+    .get(url, (res) => {
+      let data = "";
+      res.on("data", (chunk) => {
+        data += chunk;
+      });
+      res.on("end", () => {
+        data = JSON.parse(data);
+        address = data.results[0].formatted;
+        let splitAt = indexOfNth(
+          address,
+          ",",
+          Math.ceil(("str1,str2,str3,str4".match(/,/g) || []).length / 2)
+        );
+        let results = {
+          line1: address.slice(0, splitAt),
+          line2:
+            address.slice(splitAt + 1, -1) + address.charAt(address.length - 1),
+        };
+        res.status(200).send(results);
+      });
+    })
+    .on("error", (err) => {
+      console.log(err.message);
+    });
 });
 
 module.exports = router;
