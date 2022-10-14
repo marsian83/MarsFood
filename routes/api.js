@@ -313,6 +313,21 @@ router.get("/dishes/id/:id/rating", (req, res) => {
   );
 });
 
+router.get("/dishes/id/:id/orders", (req, res) => {
+  const { id } = req.params;
+  pool.query(
+    "SELECT COUNT(order_id) FROM orders WHERE dish_id = $1;",
+    [id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(results.rows[0]);
+      }
+    }
+  );
+});
+
 router.get("/dishes/id/:id/orders/user/:user", (req, res) => {
   pool.query(
     "SELECT order_id FROM orders WHERE dish_id=$1 and user_id=$2",

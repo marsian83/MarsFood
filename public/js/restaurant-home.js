@@ -1,23 +1,27 @@
 restaurantid = params.restaurantId;
 
-async function fetchRestaurantData(rid=restaurantid) {
+async function fetchRestaurantData(rid = restaurantid) {
   data = await fetch(`/api/restaurants/id/${rid}/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData;
 }
 
-async function fetchDishes(rid=restaurantid) {
+async function fetchDishes(rid = restaurantid) {
   data = await fetch(`/api/restaurants/id/${rid}/dishes/?apiKey=${API_KEY}`);
   parsedData = await data.json();
   return parsedData.reverse();
 }
 
+async function fetchDishOrders(did) {
+  data = await fetch(`/api/dishes/id/${did}/orders/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 async function displayRestaurantData() {
   let data = await fetchRestaurantData();
   document.title = data.name;
-  document.getElementById(
-    "display-name"
-  ).innerHTML = `${data.name}`;
+  document.getElementById("display-name").innerHTML = `${data.name}`;
   document.getElementById(
     "display-address"
   ).innerHTML = `<b>Address : </b>${data.address}`;
@@ -26,15 +30,16 @@ async function displayRestaurantData() {
   ).innerHTML = `<b>Email : </b>${data.email}`;
 }
 
-async function displayDishes(){
-  dishes = await fetchDishes()
-  dishesHolder = document.getElementById('dishes-holder')
-  dishesHolder.innerHTML=""
-  dishes.forEach(async(dish)=>{
-    newCard=`
+async function displayDishes() {
+  dishes = await fetchDishes();
+  dishesHolder = document.getElementById("dishes-holder");
+  dishesHolder.innerHTML = "";
+  dishes.forEach(async (dish) => {
+    dish.totalOrders = await fetchDishOrders(dish.dish_id);
+    newCard = `
     <div class="dish-card">
           <img
-            src=${dish.image_url || '/static/assets/placeholder_food.png'}
+            src=${dish.image_url || "/static/assets/placeholder_food.png"}
             alt="food-thumbnail"
           />
           <div class="dish-card-content">
@@ -55,19 +60,19 @@ async function displayDishes(){
               </div>
               <div class="dish-info-list-item-container">
                 <h6>Quantity sold till now :</h6>
-                <p>EXAMPLE</p>
+                <p>${dish.totalOrders}</p>
               </div>
             </div>
           </div>
         </div>
-    `
-    dishesHolder.innerHTML+=newCard
-  })
+    `;
+    dishesHolder.innerHTML += newCard;
+  });
 }
 
 async function renderPage() {
   displayRestaurantData();
-  displayDishes()
+  displayDishes();
 }
 
 renderPage();
