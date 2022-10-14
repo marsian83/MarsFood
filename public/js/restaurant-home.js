@@ -50,7 +50,7 @@ async function displayDishes(){
                 <p>${dish.cost}</p>
               </div>
               <div class="dish-info-list-item-container">
-                <h6>Discription :</h6>
+                <h6>Description :</h6>
                 <p>${dish.description}</p>
               </div>
               <div class="dish-info-list-item-container">
