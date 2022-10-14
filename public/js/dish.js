@@ -25,7 +25,6 @@ async function getAverageRGB(src) {
       context.drawImage(img, 0, 0, 1, 1);
       resolve(context.getImageData(0, 0, 1, 1).data.slice(0, 3));
     };
-
   });
 }
 
@@ -149,8 +148,11 @@ async function renderReviews() {
   let reviews = await fetchDishReviews();
   let reviewHolder = document.getElementById("reviews-holder");
   userRev = reviews.find((item) => item.user_id == params.currentUserId);
+  currusercheck = await fetch(
+    `/api/dishes/id/${params.dish_id}/orders/user/${params.currentUserId}/?apiKey=${API_KEY}`
+  );
   currusercheckData = await currusercheck.json();
-  if (reviews.length>0 || userRev || currusercheckData.length>0) {
+  if (reviews.length > 0 || userRev || currusercheckData.length > 0) {
     reviewHolder.innerHTML = "<h2>Reviews : </h2>";
     if (userRev) {
       reviewHolder.innerHTML += `
@@ -175,9 +177,6 @@ async function renderReviews() {
         reviews.splice(cfindex, 1);
       }
     } else {
-      currusercheck = await fetch(
-        `/api/dishes/id/${params.dish_id}/orders/user/${params.currentUserId}/?apiKey=${API_KEY}`
-      );
       if (currusercheckData.length > 0) {
         reviewHolder.innerHTML += `
         <div class="container" id="user-reviews-box">
@@ -232,13 +231,12 @@ async function renderReviews() {
     `;
     });
   }
-
 }
 
 async function renderDishes() {
   document.querySelector("#food-carousel").innerHTML = "";
   restaurantDishes.forEach(async (dish) => {
-    let dishItemRating = await fetchDishRating(dish.dish_id)
+    let dishItemRating = await fetchDishRating(dish.dish_id);
     newCard = `<div class="food-carousel-card""
     onclick="location.href='/user/dish/${dish.dish_id}'">
     <div class="vegan-and-image-holder">
@@ -258,7 +256,7 @@ async function renderDishes() {
       currency: "INR",
     }).format(dish.cost)}</h2>
     <span class="stars-container stars-${closestMultiple(
-       (dishItemRating.avg || 0) * (100 / 5),
+      (dishItemRating.avg || 0) * (100 / 5),
       5
     )}">★★★★★</span>
   </div>`;
