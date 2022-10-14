@@ -148,7 +148,7 @@ async function renderData() {
 async function renderReviews() {
   let reviews = await fetchDishReviews();
   let reviewHolder = document.getElementById("reviews-holder");
-  if (true) {
+  if (reviews.length>0) {
     reviewHolder.innerHTML = "<h2>Reviews : </h2>";
     userRev = reviews.find((item) => item.user_id == params.currentUserId);
     if (userRev) {
