@@ -332,8 +332,10 @@ router.get("/location", async (req, res) => {
   let location = await fetch(
     `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`
   );
+  console.log(location)
   let parsedLocation = await location.json();
   address = parsedLocation.results[0].formatted;
+  console.log(address)
   let splitAt = indexOfNth(
     address,
     ",",
