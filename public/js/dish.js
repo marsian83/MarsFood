@@ -149,7 +149,8 @@ async function renderReviews() {
   let reviews = await fetchDishReviews();
   let reviewHolder = document.getElementById("reviews-holder");
   userRev = reviews.find((item) => item.user_id == params.currentUserId);
-  if (reviews.length>0 || userRev) {
+  currusercheckData = await currusercheck.json();
+  if (reviews.length>0 || userRev || currusercheckData.length>0) {
     reviewHolder.innerHTML = "<h2>Reviews : </h2>";
     if (userRev) {
       reviewHolder.innerHTML += `
@@ -177,7 +178,6 @@ async function renderReviews() {
       currusercheck = await fetch(
         `/api/dishes/id/${params.dish_id}/orders/user/${params.currentUserId}/?apiKey=${API_KEY}`
       );
-      currusercheckData = await currusercheck.json();
       if (currusercheckData.length > 0) {
         reviewHolder.innerHTML += `
         <div class="container" id="user-reviews-box">
