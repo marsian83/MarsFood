@@ -13,7 +13,7 @@ function getNonVegValue() {
       isitreallyveg = e.value;
     }
   });
-  return parseInt(isitreallyveg)
+  return parseInt(isitreallyveg);
 }
 
 const shorten = (str, len) => {
@@ -77,16 +77,25 @@ imageInput.addEventListener("change", function () {
   });
 });
 
-imageInput.onchange = function() {
-    if(this.files[0].size > 1024*1024*2.5){
-       alert("Please upload an image less than 2.5MB in size");
-       this.value = "";
-    };
+imageInput.onchange = function () {
+  if (this.files[0].size > 1024 * 1024 * 2.5) {
+    alert("Please upload an image less than 2.5MB in size");
+    this.value = "";
+  }
 };
 
-function showUploading(){
+function showUploading() {
   document.documentElement.scrollTo({
     top: 0,
   });
-  document.querySelector('.uploading-animation').style.display='flex'
+  if (stopScroll && window.scrollY > 1) {
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("scroll", () => {
+    if (stopScroll && window.scrollY > 1) {
+      window.scrollTo(0, 0);
+    }
+  });
+  document.querySelector(".uploading-animation").style.display = "flex";
 }
