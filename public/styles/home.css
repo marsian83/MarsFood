@@ -71,6 +71,10 @@
 
 .header-carousel-card p {
   margin: 0;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .header-carousel-card span {
