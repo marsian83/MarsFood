@@ -45,9 +45,12 @@ async function displayDishes() {
           <div class="dish-card-content">
             <div class="delete-dish">
               <h5>${dish.name}</h5>
-              <button class="delete-dish-button">
-                DELETE DISH <i class="fa fa-trash"></i>
-              </button>
+              <form action="/restaurant/dish/delete" method="POST">
+                <input value="${dish.dish_id}" name="dish_id" hidden/>
+                <button class="delete-dish-button" type="submit">
+                  DELETE DISH <i class="fa fa-trash"></i>
+                </button>
+              </form>
             </div>
             <div class="container dish-info">
               <div class="dish-info-list-item-container">

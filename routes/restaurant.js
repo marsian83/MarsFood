@@ -246,18 +246,17 @@ router.post("/dish/new", redirectLogin, async (req, res) => {
                 }
               );
             });
-          }
-        );
-
-        pool.query(
-          "INSERT INTO sells(dish_id,restaurant_id) VALUES($1,$2)",
-          [newId, req.app.locals.restaurant.restaurant_id],
-          (err, results) => {
-            if (err) {
-              console.log(err);
-            } else {
-              res.redirect("/restaurant/home");
-            }
+            pool.query(
+              "INSERT INTO sells(dish_id,restaurant_id) VALUES($1,$2)",
+              [newId, req.app.locals.restaurant.restaurant_id],
+              (err, results) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.redirect("/restaurant/home");
+                }
+              }
+            );
           }
         );
       }
@@ -282,6 +281,32 @@ router.post("/orders/mark", redirectLogin, (req, res) => {
                 console.log(err);
               } else {
                 return res.redirect("/restaurant/orders");
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
+router.post("/dish/delete", redirectLogin, (req, res) => {
+  pool.query(
+    "DELETE FROM sells WHERE dish_id=$1 AND restaurant_id=$2 RETURNING dish_id",
+    [req.body.dish_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length > 0) {
+          pool.query(
+            "DELTE FROM dishes WHERE dish_id=$1",
+            [results.rows[0].dish_id],
+            (err, resuls) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.redirect("/restaurant/home");
               }
             }
           );
