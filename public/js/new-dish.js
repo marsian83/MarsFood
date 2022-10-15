@@ -83,3 +83,7 @@ imageInput.onchange = function() {
        this.value = "";
     };
 };
+
+function showUploading(){
+  document.innerHTML=''
+}
