@@ -12,6 +12,10 @@
   width: 50%;
 }
 
+.form-container a{
+  padding-top: 2vh;
+}
+
 .body-branding {
   display: flex;
   flex-direction: column;
@@ -38,12 +42,23 @@
 }
 
 
+.forgot-pass{
+  padding-top: 0.3vh;
+}
 
+.forgot-pass a{
+  padding-top: 1vh;
+}
 
 .login-button {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  margin-bottom: 1vh;
+}
+
+.login-button input {
+  margin-bottom: 1.23vh;
 }
 
 .login-button .popuptext {
@@ -86,8 +101,4 @@
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
-}
-
-.forgot-pass{
-  padding-top: 1vh;
 }
