@@ -68,7 +68,7 @@ async function displayRestaurantThumbnail() {
   restaurantThumbnailUrl = await fetchRestaurantThumbnail();
   document.getElementById("header-holder").style.background = `
     linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
-    url("${restaurantThumbnailUrl || "/static/assets/placeholder_food.jpg"}") center center / cover
+    url("${restaurantThumbnailUrl || "/static/assets/placeholder_food.jpg"}") center center / cover fixed
     `;
 }
 
