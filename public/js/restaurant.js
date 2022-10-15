@@ -68,7 +68,7 @@ async function displayRestaurantThumbnail() {
   restaurantThumbnailUrl = await fetchRestaurantThumbnail();
   document.getElementById("header-holder").style.background = `
     linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
-    url("${restaurantThumbnailUrl || "/static/assets/placeholder_food.jpg"}")
+    url("${restaurantThumbnailUrl || "/static/assets/placeholder_food.jpg"}") center center / cover
     `;
 }
 
@@ -76,6 +76,7 @@ async function displayHeaderInfo() {
   let restaurantData = await fetchRestaurantData();
   let restaurantRating = await fetchRestaurantRating();
   let restaurantOrders = await fetchRestaurantOrders();
+  document.title = restaurantData.name;
   document.getElementById("header-restaurant-name").innerText =
     restaurantData.name;
   document.getElementById(

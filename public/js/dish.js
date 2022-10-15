@@ -129,10 +129,17 @@ async function renderData() {
   var dr = dishDomRGB[0];
   var dg = dishDomRGB[1];
   var db = dishDomRGB[2];
-  let f = 0.38;
-  dr *= f;
-  dg *= f;
-  db *= f;
+  var o = Math.round(((parseInt(dr) * 299) + (parseInt(dg) * 587) + (parseInt(db) * 114)) /1000);
+    
+    if(o > 125) {
+      document.getElementById('header-container').style.backgroundColor='var(--text--primary)'
+    }else{ 
+      document.getElementById('header-container').style.backgroundColor='var(--text--secondary)'
+    }
+  // let f = 0.38;
+  // dr *= f;
+  // dg *= f;
+  // db *= f;
   document.getElementById(
     "header-container"
   ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
