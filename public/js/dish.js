@@ -132,9 +132,15 @@ async function renderData() {
   var o = Math.round(((parseInt(dr) * 299) + (parseInt(dg) * 587) + (parseInt(db) * 114)) /1000);
     
     if(o > 125) {
-      document.getElementById('header-container').style.backgroundColor='var(--text--primary)'
+      document.getElementById('header-container').style.color='var(--text-primary)'
+      document.querySelector('#header-seller-text a').style.color='var(--text-primary)'
+      document.getElementById('header-food-image').style.borderColor='var(--text-primary)'
+      document.getElementById('buy-button').style.color='var(--text-primary)'
     }else{ 
-      document.getElementById('header-container').style.backgroundColor='var(--text--secondary)'
+      document.getElementById('header-container').style.color='var(--text-secondary)'
+      document.querySelector('#header-seller-text a').style.color='var(--text-secondary)'
+      document.getElementById('header-food-image').style.borderColor='var(--text-secondary)'
+      document.getElementById('buy-button').style.color='var(--text-secondary)'
     }
   // let f = 0.38;
   // dr *= f;

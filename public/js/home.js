@@ -1,5 +1,5 @@
 const shorten = (str, len) => {
-  return (str.length > len) ? str.slice(0, len) + "..." : str;
+  return str.length > len ? str.slice(0, len) + "..." : str;
 };
 
 function closestMultiple(n, x) {
@@ -299,6 +299,7 @@ async function loadBodyContent() {
         if (bodyShowing == 1) {
           document.querySelector(".body-items").innerHTML += newCard;
         }
+        handleScroll();
       });
     }
   } else if (bodyShowing == 2) {
@@ -307,7 +308,9 @@ async function loadBodyContent() {
         restaurant.restaurant_id
       );
       restaurant.rating = await fetchRestaurantRating(restaurant.restaurant_id);
-      newCard = `<div class="container body-card body-card-restaurant" onclick="window.location='/user/restaurant/${restaurant.restaurant_id}'">
+      newCard = `<div class="container body-card body-card-restaurant" onclick="window.location='/user/restaurant/${
+        restaurant.restaurant_id
+      }'">
       ${
         restaurant.image_url
           ? `<img src="${restaurant.image_url}" alt="Restaurant Image">`
@@ -328,6 +331,7 @@ async function loadBodyContent() {
     </div>`;
       bodyShowing == 2 &&
         (document.querySelector(".body-items").innerHTML += newCard);
+      handleScroll();
     });
   }
 }
@@ -339,8 +343,6 @@ async function renderData() {
   loadBodyContent();
 }
 renderData();
-
-
 
 var scrollToTopBtn = document.querySelector(".scrollToTopBtn");
 var rootElement = document.documentElement;
@@ -357,10 +359,10 @@ function handleScroll() {
 function scrollToTop() {
   rootElement.scrollTo({
     top: 0,
-    behavior: "smooth"
+    behavior: "smooth",
   });
 }
-scrollToTop()
+scrollToTop();
 
 scrollToTopBtn.addEventListener("click", scrollToTop);
 document.addEventListener("scroll", handleScroll);
