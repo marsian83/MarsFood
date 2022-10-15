@@ -303,6 +303,7 @@
   margin-top: 5vh;
   justify-content: space-between;
   flex-wrap: wrap;
+  min-height: 100vh;
 }
 
 .body-card-dish {

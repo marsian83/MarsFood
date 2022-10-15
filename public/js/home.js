@@ -362,7 +362,10 @@ function scrollToTop() {
     behavior: "smooth",
   });
 }
+
 scrollToTop();
 
 scrollToTopBtn.addEventListener("click", scrollToTop);
 document.addEventListener("scroll", handleScroll);
+
+handleScroll()
