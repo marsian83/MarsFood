@@ -12,7 +12,7 @@
   width: 50%;
 }
 
-.form-container a{
+.form-container a {
   padding-top: 2vh;
 }
 
@@ -38,15 +38,14 @@
 }
 
 #navbar-profile-item {
-    display: none;
+  display: none;
 }
 
-
-.forgot-pass{
+.forgot-pass {
   padding-top: 0.3vh;
 }
 
-.forgot-pass a{
+.forgot-pass a {
   padding-top: 1vh;
 }
 
@@ -90,32 +89,64 @@
 .login-button .show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+  animation: fadeIn 1s;
 }
 
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-
 @media only screen and (max-width: 800px) {
-  .body-branding{
+  .body-branding {
     display: none;
   }
-  .restaurant-hint{
+  .restaurant-hint {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-top: 3vh;
   }
-  .restaurant-hint a{
+  .restaurant-hint a {
     font-size: 0.9rem;
     text-align: center;
+  }
+  .form-container h1 {
+    padding: 0;
+  }
+  .form-container form {
+    margin-top: 1vh;
+  }
+  .login-button input {
+    padding: 2vh 25vw;
+  }
+  .form-container form input[type="email"],
+  .form-container form input[type="password"] {
+    padding: 2vh 3vw;
+    margin:0;
+    margin-bottom: 3vh;
+  }
+  .form-container form input:active {
+    transform: scale(0.9);
+  }
+  .form-container a {
+    font-size: 0.83rem;
+    padding-bottom: 5vh;
+  }
+  .forgot-pass a{
+    font-size: 1rem;
   }
 }
