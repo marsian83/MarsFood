@@ -18,7 +18,11 @@
     <div class="container body">
       <div class="container form-container">
         <h2 id="top-heading">Add New Dish</h2>
-        <form action="/restaurant/dish/new" enctype="multipart/form-data" method="POST">
+        <form
+          action="/restaurant/dish/new"
+          enctype="multipart/form-data"
+          method="POST"
+        >
           <div class="container namecost-container">
             <div class="container name-container">
               <h4>Dish Name</h4>
@@ -100,13 +104,24 @@
             </div>
           </div>
           <div class="container upload-button">
-            <button type="submit" id="upload-input-button" onclick="showUploading()">Upload Dish</button>
+            <button
+              type="submit"
+              id="upload-input-button"
+              onclick="showUploading()"
+            >
+              Upload Dish
+            </button>
           </div>
         </form>
       </div>
     </div>
-    $%=Footer
-    $%=Preloader
+
+    <div class="uploading-animation">
+      <span class="uploading">UPLOADING DISH TO MARSFOOD ⬆</span>
+      <span class="dnloading"> DOWNLOADING BUSINESS GROWTH</span>
+    </div>
+
+    $%=Footer $%=Preloader
   </body>
   <script src="/static/js/new-dish.js"></script>
 </html>

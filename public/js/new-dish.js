@@ -85,5 +85,8 @@ imageInput.onchange = function() {
 };
 
 function showUploading(){
-  document.innerHTML=''
+  document.documentElement.scrollTo({
+    top: 0,
+  });
+  document.querySelector('.uploading-animation').style.display='flex'
 }
