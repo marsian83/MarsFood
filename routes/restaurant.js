@@ -300,7 +300,7 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
       } else {
         if (results.rows.length > 0) {
           pool.query(
-            "DELTE FROM dishes WHERE dish_id=$1",
+            "DELETE FROM dishes WHERE dish_id=$1",
             [results.rows[0].dish_id],
             (err, resuls) => {
               if (err) {
