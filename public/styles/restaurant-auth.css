@@ -276,6 +276,10 @@ justify-content:flex-end;
     flex-direction: column;
   }
 
+  .header h2{
+font-size: 3rem;
+  }
+
   .header .container{
     width: 100%;
   }

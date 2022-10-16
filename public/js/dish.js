@@ -281,15 +281,15 @@ async function renderDishes() {
 }
 
 async function renderPage() {
-  await renderData();
+  renderData();
   document.getElementById("order-modal-subtotal").innerText =
     "Subtotal = " +
     new Intl.NumberFormat("en-IN", {
       style: "currency",
       currency: "INR",
     }).format(dishData.cost * qty.value);
-  await renderDishes();
-  await renderReviews();
+  renderDishes();
+  renderReviews();
 }
 
 renderPage();
