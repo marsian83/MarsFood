@@ -35,9 +35,19 @@ function insertComponents(html) {
   return html;
 }
 
+function insertMetadata(html){
+  html = html.replace(
+    "<head>",
+    `<head>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />`
+  );
+}
+
 function renderHtml(filename, vars = {}) {
   let html = fs.readFileSync(filename).toString();
   html = insertComponents(html) || html;
+  html = insertMetadata(html) || html;
   for (var key in vars) {
     // html = html.replaceAll(`#%=${key}`, vars[key]);
     html = html.replace('</body>',

@@ -127,7 +127,7 @@
 #food-carousel-card6 {
   margin: 0rem 0rem 1.5vh 0rem;
 }
-
+/* 
 @media only screen and (max-width: 1200px) {
   #food-carousel-card6 {
     display: none;
@@ -168,7 +168,7 @@
       (100vw - var(--edge-border-left) - var(--edge-border-right) - 16vw) / 3
     );
   }
-}
+} */
 
 .food-carousel-card-image {
   width: calc(
@@ -373,7 +373,7 @@
   font-size: 2rem;
 }
 
-.body-card-star-holder{
+.body-card-star-holder {
   display: flex;
 }
 
@@ -464,23 +464,7 @@
   font-size: 1.5rem;
 }
 
-@media only screen and (max-width: 750px) {
-  #header-carousel {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .header-carousel-card {
-    width: 80vw;
-  }
-  .header-carousel-card img {
-    width: 75vw;
-    height: calc(75vw * (9 / 16));
-  }
-}
-
-
-.scrollToTopBtn{
+.scrollToTopBtn {
   position: fixed;
   bottom: 5vh;
   right: 2vw;
@@ -493,14 +477,14 @@
   border-radius: 50%;
   border: none;
   background-color: var(--background);
-  box-shadow:var(--foreground) 0px 0px 4px;
-  color:(--primary);
+  box-shadow: var(--foreground) 0px 0px 4px;
+  color: (--primary);
 }
 
-.scrollToTopBtn .divBtn:after{
+.scrollToTopBtn .divBtn:after {
   font-size: 2rem;
-  content:'▲';
-  color:(--primary);
+  content: "▲";
+  color: (--primary);
   cursor: pointer;
 }
 
@@ -508,25 +492,25 @@
   0% {
     content: "▲";
   }
-  15%{
+  15% {
     transform: rotate(-15deg);
   }
-  50%{
-    content:"🍓"
+  50% {
+    content: "🍓";
   }
-  85%{
+  85% {
     transform: rotate(15deg);
   }
-  100%{
+  100% {
     transform: rotate(0deg);
   }
 }
 
-.scrollToTopBtn:hover .divbtn{
+.scrollToTopBtn:hover .divbtn {
   animation-name: scroll-top-top-hover;
   animation-iteration-count: 1;
   animation-duration: 123ms;
-  content:"🍓";
+  content: "🍓";
 }
 
 .showBtn {
@@ -534,4 +518,107 @@
   transform: translateY(0);
 }
 
+/* MOBILE  */
+@media only screen and (max-width: 750px) {
+  #header-carousel {
+    flex-direction: row;
+    justify-content: center;
+    overflow: scroll;
+  }
 
+  .header-carousel-card {
+    width: 80vw;
+    margin: 1rem;
+  }
+
+  .header-carousel-card img {
+    width: 90%;
+    height: 22vh;
+  }
+
+  .header-carousel-card p {
+    width: 90%;
+    overflow: hidden;
+    text-align: end;
+  }
+
+  #food-carousel {
+    overflow: scroll;
+  }
+
+  .food-carousel-card {
+    width: 40%;
+    margin-right: 1rem;
+  }
+
+  .food-carousel-card-image {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  #body-showing-dropdown-items {
+    left: 5vw;
+    width: 90vw;
+  }
+
+  .switch-body-showing-button {
+    height: 6vh;
+    font-size: 1rem;
+  }
+
+  .body-card-dish {
+    width: 45%;
+    margin: 0;
+    margin-bottom: 3vh;
+    padding: 0.6vh 2vw;
+  }
+
+  .body-card-dish div h3 {
+    font-size: 1rem;
+    padding-bottom: 0.7vh;
+  }
+
+  .body-card-dish div h2 {
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .body-card-dish div p {
+    padding: 0.7vh 0;
+  }
+
+  .body-card-dish span {
+    font-size: 1.5rem;
+  }
+
+  .dish-thumbnail {
+    width: 98%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .body-card-restaurant {
+    width: 100vw;
+    padding: 2vh 2vw;
+    height: 13vh;
+    margin: 0;
+    margin-bottom: 1.23vh;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--text-primary);
+  }
+
+  .body-card-restaurant img {
+    width: auto;
+    height: 95%;
+    aspect-ratio: 1;
+  }
+
+  .body-card-restaurant div p {
+    overflow: hidden;
+    height: 7vh;
+    margin-top: 2px;
+  }
+}
