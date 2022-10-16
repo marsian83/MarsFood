@@ -145,6 +145,11 @@
   transition: 0.3s;
 }
 
+.overlay a img {
+  width: 2rem;
+  padding-right: 1.23ch;
+}
+
 .overlay a:hover, .overlay a:focus {
   color: var(--primary);
 }
