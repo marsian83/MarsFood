@@ -635,4 +635,9 @@
     display: none;
   }
 
+  #snackbar {
+    width: 90%;
+    left: 0.7%;
+  }
+
 }

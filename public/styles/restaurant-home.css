@@ -1,5 +1,5 @@
 @import "/constants.css";
-@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Great+Vibes&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Great+Vibes&display=swap");
 
 :root {
   font-family: "Montserrat", sans-serif;
@@ -56,19 +56,19 @@
   align-items: baseline;
 }
 
-#display-address{
+#display-address {
   position: relative;
   z-index: 20;
 }
-#display-email{
+#display-email {
   position: relative;
   z-index: 20;
 }
-a{
+a {
   position: relative;
   z-index: 20;
 }
-#display-name{
+#display-name {
   position: relative;
   z-index: 20;
 }
@@ -180,20 +180,38 @@ a{
   align-items: baseline;
 }
 
-.restaurant-bg{
-  width:100%;
+.restaurant-container{
+  overflow: hidden;
+}
+
+
+.restaurant-bg {
+  width: 100%;
   /* font-family: 'Brush Script MT', 'Brush Script Std', 'cursive'; */
-  font-family: 'Comforter Brush', cursive;
-  opacity: 3%;
-  color: rgb(222, 220, 220);
+  font-family: "Comforter Brush", cursive;
+  opacity: 5%;
+  color: rgb(220, 220, 220);
   font-size: 16rem;
-  position:absolute;
-  top:0;
-  left:0;
-  display:flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
   justify-content: center;
   align-items: center;
-  overflow:hidden;
+  overflow: hidden;
   white-space: nowrap;
   text-shadow: 4px 4px 2px rgb(255, 255, 255);
+  animation-name: bg-scroll;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0,0.4,1,0.4);
+}
+
+@keyframes bg-scroll {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }

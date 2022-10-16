@@ -22,7 +22,7 @@ async function displayRestaurantData() {
   let data = await fetchRestaurantData();
   document.title = data.name;
   document.getElementById("display-name").innerHTML = `${data.name}`;
-  
+  document.getElementById("restaurant-name-background").innerHTML = `${data.name}`
   document.getElementById(
     "display-address"
   ).innerHTML = `<b>Address : </b>${data.address}`;
