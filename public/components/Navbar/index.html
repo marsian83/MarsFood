@@ -1,4 +1,11 @@
 <nav class="navbar">
+  <span
+    style="font-size: 30px; cursor: pointer"
+    onclick="openNav()"
+    id="mobile-hamburger-button"
+    >&#9776;</span
+  >
+
   <a href="/" id="navbar-logo-link">
     <img class="navbar-logo" src="/static/assets/logo.png" alt="logo" />
     <p>MarsFood</p></a
@@ -6,21 +13,42 @@
   <div class="container" id="navbar-items-container">
     <ul>
       <li class="navbar-item" id="navbar-search-item">
-        <img src="/static/assets/search-icon.png" onclick="location.href = '/user/search'"/>
+        <img
+          src="/static/assets/search-icon.png"
+          onclick="location.href = '/user/search'"
+        />
         <a href="/user/search">Search</a>
       </li>
       <li class="navbar-item" id="navbar-help-item">
-        <img src="/static/assets/help-icon.png" onclick="location.href = '/help'"/>
+        <img
+          src="/static/assets/help-icon.png"
+          onclick="location.href = '/help'"
+        />
         <a href="/help">Help</a>
       </li>
       <li class="navbar-item" id="navbar-profile-item">
-        <img src="/static/assets/profile-icon.png" onclick="location.href = '/user/dashboard'"/>
+        <img
+          src="/static/assets/profile-icon.png"
+          onclick="location.href = '/user/dashboard'"
+        />
         <a href="/user/dashboard">#%=username</a>
       </li>
       <li class="navbar-item" itemref="navbar-cart-item">
-        <img src="/static/assets/cart-icon.png" onclick="location.href = '/user/cart'"/>
+        <img
+          src="/static/assets/cart-icon.png"
+          onclick="location.href = '/user/cart'"
+        />
         <a href="/user/cart">Cart</a>
       </li>
     </ul>
   </div>
 </nav>
+
+<div id="mobileNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">Cart</a>
+    <a href="#">My Profile</a>
+    <a href="#">Help</a>
+  </div>
+</div>

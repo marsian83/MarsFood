@@ -357,3 +357,12 @@ document.addEventListener("scroll", () => {
       ? "position:fixed;box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);"
       : "position:static;box-shadow:none;";
 });
+
+
+function openNav() {
+  document.getElementById("mobileNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("mobileNav").style.width = "0%";
+}

@@ -80,6 +80,10 @@
     brightness(93%) contrast(93%);
 }
 
+#mobile-hamburger-button{
+  display: none;
+}
+
 @media only screen and (max-width: 750px) {
   .navbar {
     justify-content: center;
@@ -99,7 +103,64 @@
     margin-left : 3.3vw;
   }
 
-  .mobile-searchbar a {
-    display: flex;
+  #mobile-hamburger-button {
+    display: block;
+    position: absolute;
+    top: 2vh;
+    left: 5vw;
+    color: var(--primary);
+    transform: scale(1.3);
+  }
+}
+
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 19191919;
+  top: 0;
+  left: 0;
+  background-color: var(--background);
+  background-color: var(--background);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  padding-left: 20vw;
+  text-align: start;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 3vh;
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--text-primary);
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: var(--primary);
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
   }
 }
