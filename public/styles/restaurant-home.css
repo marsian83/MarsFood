@@ -202,7 +202,7 @@ a {
   white-space: nowrap;
   text-shadow: 4px 4px 2px rgb(255, 255, 255);
   animation-name: bg-scroll;
-  animation-duration: 20s;
+  animation-duration: 38s;
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(0,0.4,1,0.4);
 }
