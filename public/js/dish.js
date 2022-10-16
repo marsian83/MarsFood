@@ -158,6 +158,19 @@ async function renderData() {
   document.getElementById(
     "order-modal-header"
   ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
+
+  document.getElementById(
+    "moredishes-scroller-left"
+  ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
+
+  document.getElementById(
+    "moredishes-scroller-right"
+  ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
+
+  // document.querySelector(
+  //   "review-container"
+  // ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
+  
 }
 
 async function renderReviews() {
