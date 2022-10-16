@@ -46,6 +46,12 @@ async function fetchDishReviews() {
   return parsedData;
 }
 
+async function fetchDishesSold() {
+  data = await fetch(`/api/dishes/id/${dishid}/sold/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 async function fetchUserInfo(uid) {
   data = await fetch(`/api/users/id/${uid}/?apiKey=${API_KEY}`);
   parsedData = await data.json();
@@ -95,8 +101,9 @@ async function renderData() {
 
   document.getElementById("header-food-ratings").innerText =
     (dishRating ? dishRating.count : 0) + " Customer reviews";
+  dishSold = await fetchDishesSold();
   document.getElementById("header-food-orders").innerText =
-    "3" + " total orders";
+    (dishSold.sum || 0) + " total orders";
   document.getElementById("header-seller-text").innerHTML =
     "<p>Sold by </p>" +
     `<a href="/user/restaurant/${restaurantData.restaurant_id}">${restaurantData.name}</a>`;

@@ -96,7 +96,7 @@
   }
 
   #navbar-logo-link p {
-    display: none;
+    margin-left : 3.3vw;
   }
 
   .mobile-searchbar a {

@@ -127,3 +127,12 @@
   }
   
   /* RIYA COMMIT END */
+
+/* MOBILE */
+
+@media only screen and (max-width: 800px) {
+  
+  #footer-branding {
+    flex-direction: column;
+  }
+}

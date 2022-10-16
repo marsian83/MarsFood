@@ -200,7 +200,7 @@ async function loadTopRestaurants() {
       }
     });
     restaurantDishesText = restaurantDishesText.slice(0, -1);
-    restaurantDishesText += "...";
+    restaurantDishesText = shorten(restaurantDishesText,36)
     let newHeaderCard = `<div class="header-carousel-card" id="header-carousel-card${
       i + 1
     }" onclick="window.location='/user/restaurant/${restro.restaurant_id}'">

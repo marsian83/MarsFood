@@ -221,6 +221,7 @@
   border: none;
   cursor: pointer;
   transition: 200ms ease;
+  z-index: 5;
 }
 
 .moredishes-scroller:hover {
@@ -581,4 +582,57 @@
     bottom: 0;
     opacity: 0;
   }
+}
+
+@media only screen and (max-width: 750px) {
+  .header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #header-food-image-container{
+    display: flex;
+    justify-content: center;
+  }
+
+  .header img{
+    width: 95%;
+  }
+
+  .header-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .header-right h1{
+    font-size: 0.8rem;
+  }
+
+  #food-carousel {
+    min-height: 18vh;
+    grid-auto-columns: 47%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 1vh 0;
+    padding-left: 3vw;
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 3rem;
+  }
+
+  .food-carousel-card{
+    width: 35vw;
+  }
+
+  .food-carousel-card-image{
+    width: 95%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .moredishes-scroller{
+    display: none;
+  }
+
 }

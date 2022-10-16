@@ -9,3 +9,11 @@
   --edge-border-left: 8vw;
   --edge-border-right: 8vw;
 }
+
+
+@media only screen and (max-width: 750px) {
+  :root{
+    --edge-border-left:2.34vw;
+    --edge-border-right:2.34vw;
+  }
+}
