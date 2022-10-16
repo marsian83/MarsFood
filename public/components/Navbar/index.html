@@ -45,19 +45,45 @@
 </nav>
 
 <div id="mobileNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
-    <a href="#"><img
-      src="/static/assets/cart-icon.png"
-      onclick="location.href = '/user/cart'"
-    />Cart</a>
-    <a href="#"><img
-      src="/static/assets/profile-icon.png"
-      onclick="location.href = '/user/dashboard'"
-    />My Profile</a>
-    <a href="#"><img
-      src="/static/assets/help-icon.png"
-      onclick="location.href = '/user/help'"
-    />Help</a>
+    <div class="container mobile-navbar-header">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <h1>#%=username</h1>
+      <a href="/user/dashboard">view profile</a>
+    </div>
+    <div class="container">
+      <ul class="mobile-navbar-items">
+        <li class="navbar-item mobile-navbar-item" id="navbar-home-item">
+          <img
+            src="/static/assets/home-icon.png"
+            onclick="location.href = '/user/home'"
+          />
+          <a href="/user/home">Home</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" id="navbar-help-item">
+          <img
+            src="/static/assets/help-icon.png"
+            onclick="location.href = '/help'"
+          />
+          <a href="/help">Help</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" itemref="navbar-cart-item">
+          <img
+            src="/static/assets/cart-icon.png"
+            onclick="location.href = '/user/cart'"
+          />
+          <a href="/user/cart">Cart</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" id="navbar-logout-item">
+          <img
+            src="/static/assets/logout-icon.png"
+            onclick="location.href = '/user/logout'"
+          />
+          <a href="/user/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

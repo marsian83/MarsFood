@@ -336,6 +336,13 @@ function getFilter(hexColor) {
 
 // NAVBAR
 
+if (!params.username) {
+  document.querySelector(".mobile-navbar-header h1").innerText = "Login";
+  document.querySelectorAll(".mobile-navbar-header a")[1].innerText =
+    "Login to view your profile";
+  document.getElementById("navbar-logout-item").style.display = "none";
+}
+
 let navbarItems = document.querySelectorAll(".navbar-item");
 
 navbarItems.forEach((element) => {
@@ -358,9 +365,8 @@ document.addEventListener("scroll", () => {
       : "position:static;box-shadow:none;";
 });
 
-
 function openNav() {
-  document.getElementById("mobileNav").style.width = "100%";
+  document.getElementById("mobileNav").style.width = "85%";
 }
 
 function closeNav() {
