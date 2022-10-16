@@ -1,10 +1,12 @@
 @import "/constants.css";
+@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Great+Vibes&display=swap');
 
 :root {
   font-family: "Montserrat", sans-serif;
 }
 
 .restaurant-container {
+  position: relative;
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
   background-color: var(--foreground);
@@ -12,16 +14,20 @@
 }
 
 .restaurant-detail a {
+  z-index: 10;
   color: var(--text-secondary);
 }
 
 .add-new-dish {
+  position: relative;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .add-dish-button {
+  z-index: 10;
   background-color: var(--primary);
   color: var(--text-secondary);
   border: none;
@@ -38,17 +44,37 @@
 }
 
 .restaurant-detail {
+  z-index: 10;
   padding-top: 4vh;
   color: var(--text-secondary);
 }
 
 .logout-button-div {
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 
+#display-address{
+  position: relative;
+  z-index: 20;
+}
+#display-email{
+  position: relative;
+  z-index: 20;
+}
+a{
+  position: relative;
+  z-index: 20;
+}
+#display-name{
+  position: relative;
+  z-index: 20;
+}
 .logout-button {
+  position: relative;
+  z-index: 10;
   border: none;
   border-radius: 4rem;
   width: 8.5rem;
@@ -152,4 +178,22 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.restaurant-bg{
+  width:100%;
+  /* font-family: 'Brush Script MT', 'Brush Script Std', 'cursive'; */
+  font-family: 'Comforter Brush', cursive;
+  opacity: 3%;
+  color: rgb(222, 220, 220);
+  font-size: 16rem;
+  position:absolute;
+  top:0;
+  left:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+  white-space: nowrap;
+  text-shadow: 4px 4px 2px rgb(255, 255, 255);
 }
