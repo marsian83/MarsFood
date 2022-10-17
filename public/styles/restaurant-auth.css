@@ -83,7 +83,7 @@
   padding-bottom: 5vh;
 }
 
-.user-hint a:hover{
+.user-hint a:hover {
   text-decoration: none;
 }
 
@@ -253,10 +253,10 @@
   opacity: 0%;
 }
 
-.forgot-pass{
-display:flex;
-align-items:flex-end;
-justify-content:flex-end;
+.forgot-pass {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .forgot-pass a {
@@ -265,31 +265,73 @@ justify-content:flex-end;
   font-size: 2.2vh;
 }
 
-.forgot-pass a:hover{
+.forgot-pass a:hover {
   text-decoration: none;
 }
 
-
 @media only screen and (max-width: 750px) {
-  .header{
+  .header {
     display: flex;
     flex-direction: column;
   }
 
-  .header h2{
-font-size: 3rem;
+  .header .container h2 {
+    padding: 0;
+    margin: 1vh 0;
+    font-size: 1.38rem;
+  }
+  .header .container h3 {
+    padding: 0;
+    font-size: 1.23rem;
+  }
+  .header .container h4 {
+    padding: 0;
+    font-size: 1.11rem;
   }
 
-  .header .container{
+  .header .container {
     width: 100%;
   }
 
-  .header img{
-    display:none
+  .header img {
+    display: none;
   }
 
-  .form-brand{
+  .user-hint {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .user-hint a {
+    padding-bottom: 1vh;
+  }
+
+  .site-stats h3 {
+    font-size: 1rem;
+  }
+
+  .form-brand {
     display: flex;
     flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .form-holder {
+    width: 100%;
+    padding: 0;
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  .switch-buttons {
+    width: 80%;
+  }
+
+  .form-holder-right {
+    width: 100%;
   }
 }

@@ -47,7 +47,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .cart-card-img {
   margin-left: 3%;
-  height: 95%;
+  width: 22%;
   aspect-ratio: 1;
   border-radius: 1rem;
   object-fit: cover;
