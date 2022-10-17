@@ -334,7 +334,15 @@ function getFilter(hexColor) {
   }
 }
 
+async function fetchRestaurantName(rid) {
+  data = await fetch(`/api/restaurants/id/${rid}/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData.name;
+}
+
 // NAVBAR
+
+document.querySelector(".navbar-logo").style = getFilter(colorPrimary);
 
 let navbarItems = document.querySelectorAll(".navbar-item");
 
@@ -357,3 +365,21 @@ document.addEventListener("scroll", () => {
       ? "position:fixed;box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);"
       : "position:static;box-shadow:none;";
 });
+
+if (!params.restaurantId) {
+  document.querySelector(".mobile-navbar-header h1").innerText = "Login";
+  document.querySelectorAll(".mobile-navbar-header a")[1].innerText =
+    "Login to view your profile";
+  document.getElementById("navbar-logout-item").style.display = "none";
+} else {
+  (async ()=>{let restaurantName = await fetchRestaurantName(params.restaurantId);})()
+  document.querySelector(".mobile-navbar-header h1").innerText = restaurantName;
+}
+
+function openNav() {
+  document.getElementById("mobileNav").style.width = "85%";
+}
+
+function closeNav() {
+  document.getElementById("mobileNav").style.width = "0%";
+}

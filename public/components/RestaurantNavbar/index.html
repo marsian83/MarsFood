@@ -1,4 +1,10 @@
 <nav class="navbar">
+  <span
+    style="font-size: 30px; cursor: pointer"
+    onclick="openNav()"
+    id="mobile-hamburger-button"
+    >&#9776;</span
+  >
   <a href="/" id="navbar-logo-link">
     <img class="navbar-logo" src="/static/assets/logo.png" alt="logo" />
     <p>MarsFood</p></a
@@ -20,3 +26,48 @@
     </ul>
   </div>
 </nav>
+
+
+<div id="mobileNav" class="overlay">
+  <div class="overlay-content">
+    <div class="container mobile-navbar-header">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <h1>Loading</h1>
+      <a href="/user/dashboard">view profile</a>
+    </div>
+    <div class="container">
+      <ul class="mobile-navbar-items">
+        <li class="navbar-item mobile-navbar-item" id="navbar-home-item">
+          <img
+            src="/static/assets/home-icon.png"
+            onclick="location.href = '/user/home'"
+          />
+          <a href="/user/home">Home</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" id="navbar-help-item">
+          <img
+            src="/static/assets/help-icon.png"
+            onclick="location.href = '/help'"
+          />
+          <a href="/help">Help</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" itemref="navbar-cart-item">
+          <img
+            src="/static/assets/cart-icon.png"
+            onclick="location.href = '/user/cart'"
+          />
+          <a href="/user/cart">Cart</a>
+        </li>
+        <li class="navbar-item mobile-navbar-item" id="navbar-logout-item">
+          <img
+            src="/static/assets/logout-icon.png"
+            onclick="location.href = '/user/logout'"
+          />
+          <a href="/user/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

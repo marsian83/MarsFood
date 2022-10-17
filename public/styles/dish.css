@@ -211,8 +211,10 @@
 }
 
 .moredishes-scroller {
+  display: none;
   position: absolute;
   height: 16%;
+  aspect-ratio: 1;
   top: 40%;
   /* background-color:var(--primary); */
   opacity: 0.5;
@@ -232,11 +234,11 @@
 }
 
 #moredishes-scroller-left {
-  left: 0%;
+  left: -2%;
 }
 
 #moredishes-scroller-right {
-  right: 0%;
+  right: -2%;
 }
 
 #food-carousel {

@@ -58,7 +58,7 @@ async function displayDishes() {
                 <h6>Cost :</h6>
                 <p>${dish.cost}</p>
               </div>
-              <div class="dish-info-list-item-container">
+              <div class="dish-info-list-item-container" id="description-holder">
                 <h6>Description :</h6>
                 <p>${dish.description}</p>
               </div>

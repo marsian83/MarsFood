@@ -180,10 +180,9 @@ a {
   align-items: baseline;
 }
 
-.restaurant-container{
+.restaurant-container {
   overflow: hidden;
 }
-
 
 .restaurant-bg {
   width: 100%;
@@ -204,7 +203,7 @@ a {
   animation-name: bg-scroll;
   animation-duration: 38s;
   animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0,0.4,1,0.4);
+  animation-timing-function: cubic-bezier(0, 0.4, 1, 0.4);
 }
 
 /* @keyframes bg-scroll {
@@ -215,3 +214,39 @@ a {
     left: 100%;
   }
 } */
+
+@media only screen and (max-width: 750px) {
+  .restaurant-bg {
+    display: none;
+  }
+
+  .logout-button-div {
+    flex-direction: column;
+  }
+
+  .dish-card {
+    flex-direction: column;
+    overflow: hidden;
+    padding-top: 0;
+  }
+
+  .dish-card img {
+    width: 111%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .delete-dish{
+    flex-direction: column;
+  }
+
+  .delete-dish-button{
+    margin-top: 1vh;
+  }
+
+  #description-holder{
+    display: none;
+  }
+}

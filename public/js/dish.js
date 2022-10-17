@@ -14,6 +14,13 @@ const shorten = (str, len) => {
   return str.length > len ? str.slice(0, len) + "..." : str;
 };
 
+function isOverflown(element) {
+  return (
+    element.scrollHeight > element.clientHeight ||
+    element.scrollWidth > element.clientWidth
+  );
+}
+
 async function getAverageRGB(src) {
   return new Promise((resolve) => {
     let context = document.createElement("canvas").getContext("2d");
@@ -268,7 +275,8 @@ async function renderReviews() {
 }
 
 async function renderDishes() {
-  document.querySelector("#food-carousel").innerHTML = "";
+  dishesCarousel = document.getElementById("food-carousel");
+  dishesCarousel.innerHTML = "";
   restaurantDishes.forEach(async (dish) => {
     let dishItemRating = await fetchDishRating(dish.dish_id);
     newCard = `<div class="food-carousel-card""
@@ -294,7 +302,12 @@ async function renderDishes() {
       5
     )}">★★★★★</span>
   </div>`;
-    document.querySelector("#food-carousel").innerHTML += newCard;
+    dishesCarousel.innerHTML += newCard;
+    if (isOverflown(dishesCarousel)) {
+      document.getElementById("moredishes-scroller-left").style.display = `block`;
+  
+      document.getElementById("moredishes-scroller-right").style.display = `block`;
+    }
   });
 }
 

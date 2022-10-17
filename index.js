@@ -121,4 +121,6 @@ app.get("/forgot-password", (req, res) => {
     .send(renderHtml(path.join(__dirname, "./templates/forgot-password.html")));
 });
 
-app.listen(PORT);
+app.listen(PORT,()=>{
+  console.log(`Server up and listening on port ${PORT}`)
+});

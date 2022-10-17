@@ -336,33 +336,36 @@ function getFilter(hexColor) {
 
 // NAVBAR
 
+
 if (!params.username) {
   document.querySelector(".mobile-navbar-header h1").innerText = "Login";
   document.querySelectorAll(".mobile-navbar-header a")[1].innerText =
-    "Login to view your profile";
+  "Login to view your profile";
   document.getElementById("navbar-logout-item").style.display = "none";
 }
 
 let navbarItems = document.querySelectorAll(".navbar-item");
+document.querySelector(".navbar-logo").style = getFilter(colorPrimary);
+
 
 navbarItems.forEach((element) => {
   element.addEventListener("mouseover", () => {
     element.querySelector("a").style = "color:" + colorPrimary;
-    element.querySelector("img").style = getFilter(colorPrimary);
+    element.querySelector(".navbar-item img").style = getFilter(colorPrimary);
   });
-
+  
   element.addEventListener("mouseout", () => {
     element.querySelector("a").style = "color:" + colorTextPrimary;
-    element.querySelector("img").style = getFilter(colorForeground);
+    element.querySelector(".navbar-item img").style = getFilter(colorForeground);
   });
 });
 
 document.addEventListener("scroll", () => {
   //Making the navbar sticky
   document.querySelector(".navbar").style =
-    window.scrollY > 16 * 8
-      ? "position:fixed;box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);"
-      : "position:static;box-shadow:none;";
+  window.scrollY > 16 * 8
+  ? "position:fixed;box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);"
+  : "position:static;box-shadow:none;";
 });
 
 function openNav() {
