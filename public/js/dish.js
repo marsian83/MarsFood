@@ -132,6 +132,13 @@ async function renderData() {
     `<a href="/user/restaurant/${restaurantData.restaurant_id}">${restaurantData.name}</a>` +
     "<p>:</p>";
 
+  document.getElementById("order-modal-subtotal").innerText =
+    "Subtotal = " +
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(dishData.cost * qty.value);
+
   let dishDomRGB = await getAverageRGB(dishData.image_url);
   var dr = dishDomRGB[0];
   var dg = dishDomRGB[1];
@@ -170,7 +177,6 @@ async function renderData() {
   // document.querySelector(
   //   "review-container"
   // ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
-  
 }
 
 async function renderReviews() {
@@ -295,12 +301,6 @@ async function renderDishes() {
 
 async function renderPage() {
   renderData();
-  document.getElementById("order-modal-subtotal").innerText =
-    "Subtotal = " +
-    new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-    }).format(dishData.cost * qty.value);
   renderDishes();
   renderReviews();
 }
