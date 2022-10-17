@@ -82,7 +82,6 @@ async function loadData() {
 }
 
 async function renderData() {
-  await loadData();
   document.title = document.getElementById("header-food-name").innerText =
     dishData.name;
   document.getElementById("header-food-image-container").innerHTML = `<img
@@ -300,6 +299,7 @@ async function renderDishes() {
 }
 
 async function renderPage() {
+  await loadData();
   renderData();
   renderDishes();
   renderReviews();
