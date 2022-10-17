@@ -482,14 +482,18 @@ input[type="radio"] {
   .body-card-dish{
     margin: 2vh 0;
     width: 50%;
+    align-items: center;
+    justify-content: center;
   }
 
-  .stars-container{
+  .body-card-dish span{
+    text-align: center;
     font-size: 1rem;
   }
 
   .vegan-indicator{
-    left: 40%;
+    position: relative;
+    right:  5%;
   }
 
 }

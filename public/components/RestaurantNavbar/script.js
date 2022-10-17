@@ -372,8 +372,11 @@ if (!params.restaurantId) {
     "Login to view your profile";
   document.getElementById("navbar-logout-item").style.display = "none";
 } else {
-  (async ()=>{let restaurantName = await fetchRestaurantName(params.restaurantId);})()
-  document.querySelector(".mobile-navbar-header h1").innerText = restaurantName;
+  (async () => {
+    let restaurantName = await fetchRestaurantName(params.restaurantId);
+    document.querySelector(".mobile-navbar-header h1").innerText =
+      restaurantName;
+  })();
 }
 
 function openNav() {
