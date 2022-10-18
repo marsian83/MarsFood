@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles/search.css" />
+    <title>Search - Marsfood</title>
+  </head>
+  <body>
+    $%=Navbar
+    <div class="body-holder">
+      <div class="searchbar-holder container">
+        <input type="text" id="searchbar" name="searchquery" placeholder="Start typing to search..." onchange="handleSearch(this)"/>
+      </div>
+      <div class="results-holder container">
+
+      </div>
+    </div>
+    $%=Footer $%=Preloader
+    <div id="app"></div>
+  </body>
+  <script src="/static/js/search.js"></script>
+</html>

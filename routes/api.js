@@ -373,4 +373,19 @@ router.get("/location", async (req, res) => {
     });
 });
 
+
+router.get("/search/dishes", (req, res) => {
+  pool.query(
+    "SELECT * FROM orders WHERE dish_id=$1 and user_id=$2",
+    [req.query.query],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
 module.exports = router;

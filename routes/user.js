@@ -61,6 +61,15 @@ router.get("/home", redirectLogin, (req, res) => {
   );
 });
 
+router.get("/search", redirectLogin, (req, res) => {
+  res.status(200).send(
+    renderHtml(path.join(__dirname, "../templates/search.html"), {
+      username: req.app.locals.user.name || "Login",
+      currentUserId: req.session.userId,
+    })
+  );
+});
+
 router.get("/dish/:id", redirectLogin, (req, res) => {
   res.status(200).send(
     renderHtml(path.join(__dirname, "../templates/dish.html"), {

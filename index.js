@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const session = require("express-session");
+var favicon = require('serve-favicon')
 
 const { pool } = require("./dbconfig");
 
@@ -38,6 +39,7 @@ app.use(
   express.static(path.join(__dirname, USERDATA_RELATIVE_LOCATION))
 );
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

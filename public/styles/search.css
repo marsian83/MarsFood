@@ -1,0 +1,38 @@
+:root {
+  /* font-family: "Nunito", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+}
+
+.body-holder{
+    padding-left: var(--edge-border-left);
+    padding-right: var(--edge-border-right);
+}
+
+.searchbar-holder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--text-primary)
+}
+
+#searchbar {
+  width: 83%;
+  margin: 3vh 0;
+  height: 6vh;
+  font-size: 1.69rem;
+  border: none;
+  border-bottom: 1px solid var(--foreground);
+  outline: none;
+  color: var(--text-primary)
+}
+
+#searchbar:focus{
+    outline:none;
+    border: none;
+    border-bottom: 1px solid var(--foreground);
+}
+
+.results-holder{
+    min-height: 100vh;
+}
