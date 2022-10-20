@@ -282,11 +282,11 @@
   text-align: center;
   width: 100%;
   cursor: pointer;
-  border-bottom: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--text-primary);
 }
 
 #body-title-showing span {
-  border-bottom: 2px solid var(--foreground);
+  border-bottom: 2px solid var(--text-primary);
 }
 
 .body-showing-dropdown-content button:hover {
@@ -316,13 +316,14 @@
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
-  padding: 3vh 1.3vw 8vh 1.3vw;
+  padding: 3vh 1.3vw 3vh 1.3vw;
   margin-bottom: 4vh;
   width: 20%;
   border-radius: 12px;
   cursor: pointer;
   transition: 200ms linear;
   background-color: var(--background);
+  color: var(--text-primary);
 }
 
 @media only screen and (max-width: 1000px) {
@@ -344,7 +345,7 @@
 }
 
 .body-card-dish div h3 {
-  color: var(--foreground);
+  color: var(--text-primary);
   margin: 0;
   padding: 1vh 0vw;
 }
@@ -358,7 +359,7 @@
 }
 
 .body-card-dish div h2 {
-  color: var(--foreground);
+  color: var(--text-primary);
   margin: 0;
   padding: 1vh 0vw;
 }
@@ -605,6 +606,7 @@
     height: 13vh;
     margin: 0;
     margin-bottom: 1.23vh;
+    color: var(--text-primary);
     box-shadow: none;
     border-radius: 0;
     border-bottom: 1px solid var(--text-primary);

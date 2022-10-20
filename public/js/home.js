@@ -12,6 +12,7 @@ function closestMultiple(n, x) {
   return n;
 }
 
+document.querySelector('#body-title-showing img').style = getFilter(colorTextPrimary)
 // FIlling Header Carousel
 document.querySelector("#header-carousel-tag h3").innerText =
   "Most Popular Restaurants";
@@ -69,7 +70,7 @@ function showBodyShowingDropdown() {
       "transform:rotateZ(0deg)";
   } else {
     document.querySelector(".body-showing-dropdown-button img").style =
-      "transform:rotateZ(-90deg)";
+      "transform:rotateZ(-90deg);"+getFilter(colorTextPrimary);
   }
   document
     .getElementById("body-showing-dropdown-items")
@@ -89,7 +90,7 @@ window.onclick = function (event) {
       if (openDropdown.classList.contains("show")) {
         openDropdown.classList.remove("show");
         document.querySelector(".body-showing-dropdown-button img").style =
-          "transform:rotateZ(0deg)";
+          "transform:rotateZ(0deg);"+getFilter(colorTextPrimary);
       }
     }
   }

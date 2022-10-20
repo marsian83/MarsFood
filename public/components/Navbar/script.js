@@ -347,7 +347,6 @@ if (!params.username) {
 let navbarItems = document.querySelectorAll(".navbar-item");
 document.querySelector(".navbar-logo").style = getFilter(colorPrimary);
 
-
 navbarItems.forEach((element) => {
   element.addEventListener("mouseover", () => {
     element.querySelector("a").style = "color:" + colorPrimary;
