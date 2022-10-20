@@ -52,6 +52,7 @@
 }
 
 .body-content {
+  color: var(--text-primary);
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
 }
@@ -64,6 +65,7 @@
 .dish-card {
   display: flex;
   flex-direction: column;
+  color: var(--text-primary);
   margin: 2vh 1vw;
   width: 22%;
   align-items: center;

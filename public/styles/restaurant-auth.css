@@ -76,7 +76,7 @@
 }
 
 .user-hint a {
-  color: var(--foreground);
+  color: var(--text-primary);
   font-weight: 800;
   font-size: 2.2vh;
   padding-top: 2vh;
@@ -127,6 +127,7 @@
   font-size: 2.34vh;
   padding: 1.23vh 0;
   transition: 200ms ease;
+  color: var(--text-primary);
 }
 
 .switch-selected {
@@ -174,6 +175,7 @@
   font-size: 1.11rem;
   transform-origin: 50% 0%;
   text-align: center;
+  color: var(--text-primary);
 }
 
 .login-button input,
@@ -199,7 +201,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--foreground);
+  color: var(--text-primary);
 }
 
 .site-stat {
@@ -260,7 +262,7 @@
 }
 
 .forgot-pass a {
-  color: var(--foreground);
+  color: var(--text-primary);
   font-weight: 800;
   font-size: 2.2vh;
 }

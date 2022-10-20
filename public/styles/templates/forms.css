@@ -6,6 +6,7 @@ form {
   justify-content: center;
   align-items: center;
   margin-top: 6vh;
+  color: var(--text-primary);
 }
 
 form a {

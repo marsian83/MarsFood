@@ -354,9 +354,13 @@ navbarItems.forEach((element) => {
 
   element.addEventListener("mouseout", () => {
     element.querySelector("a").style = "color:" + colorTextPrimary;
-    element.querySelector("img").style = getFilter(colorForeground);
+    element.querySelector("img").style = getFilter(colorTextPrimary);
   });
 });
+
+document.querySelectorAll('.navbar-item img').forEach((e)=>{
+  e.style = getFilter(colorTextPrimary)
+})
 
 document.addEventListener("scroll", () => {
   //Making the navbar sticky

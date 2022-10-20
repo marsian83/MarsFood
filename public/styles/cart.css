@@ -273,10 +273,6 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: 600;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 47451b60823cc5c12905defa3cf18948151c1f3c
 /* MOBILE */
 @media only screen and (max-width: 750px) {
   .cart-card {

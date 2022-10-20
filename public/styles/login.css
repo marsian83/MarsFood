@@ -4,12 +4,17 @@
   font-family: "Montserrat", sans-serif;
 }
 
+input {
+  color: var(--text-primary);
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 50%;
+  color: var(--text-primary);
 }
 
 .form-container a {
@@ -136,7 +141,7 @@
   .form-container form input[type="email"],
   .form-container form input[type="password"] {
     padding: 2vh 3vw;
-    margin:0;
+    margin: 0;
     margin-bottom: 3vh;
   }
   .form-container form input:active {
@@ -146,7 +151,7 @@
     font-size: 0.83rem;
     padding-bottom: 5vh;
   }
-  .forgot-pass a{
+  .forgot-pass a {
     font-size: 1rem;
   }
 }

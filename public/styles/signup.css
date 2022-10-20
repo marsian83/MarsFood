@@ -16,6 +16,7 @@ input {
   color: var(--foreground);
   font-size: 2ch;
   border-radius: 12px;
+  color: var(--text-primary);
 }
 
 .form-container {
@@ -24,6 +25,7 @@ input {
   justify-content: center;
   align-items: center;
   width: 50%;
+  color: var(--text-primary);
 }
 
 .body-branding {

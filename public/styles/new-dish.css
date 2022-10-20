@@ -56,6 +56,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-evenly;
+  color: var(--text-primary);
 }
 
 .namecost-container div {
@@ -79,10 +80,12 @@
 
 .name-container input {
   width: 100%;
+  color: var(--text-primary);
 }
 
 .cost-container input {
   width: 100%;
+  color: var(--text-primary);
 }
 
 /* .form-container form{
@@ -128,6 +131,7 @@
 
 .preview-container {
   padding: 5% 0;
+  color: var(--text-primary);
 }
 
 #preview-hint {
@@ -142,6 +146,7 @@
 }
 
 #description-field {
+  color: var(--text-primary);
   height: 20vh;
 }
 
@@ -176,6 +181,7 @@ input[type="number"] {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: var(--text-primary);
 }
 
 .radios-container .radio-container label {
@@ -293,6 +299,7 @@ input[type="radio"] {
   box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
   margin-left: calc(50% - 10% - 1.3vw);
   text-align: center;
+  color: var(--text-primary);
 }
 
 .body-card-dish:hover {
@@ -306,7 +313,7 @@ input[type="radio"] {
 }
 
 .body-card-dish div h3 {
-  color: var(--foreground);
+  color: var(--text-primary);
   margin: 0;
   padding: 1vh 0vw;
 }
@@ -320,7 +327,7 @@ input[type="radio"] {
 }
 
 .body-card-dish div h2 {
-  color: var(--foreground);
+  color: var(--text-primary);
   margin: 0;
   padding: 1vh 0vw;
 }
