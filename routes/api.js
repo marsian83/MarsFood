@@ -189,7 +189,7 @@ router.get("/restaurants/id/:id/dishes/top", (req, res) => {
 
 router.get("/restaurants/ratings", (req, res) => {
   pool.query(
-    "SELECT AVG(rating) AS restaurant_rating,restaurant_id FROM dishes NATURAL JOIN reviewof NATURAL JOIN dishreviews NATURAL JOIN sells GROUP BY restaurant_id ORDER BY restaurant_rating DESC;",
+    "SELECT restaurant_id, AVG(rating) AS restaurant_rating,count(rating), ((0.5*AVG(rating))+5*(1-POWER(2.718,((-count(rating))::decimal/10)))) AS score  FROM dishes NATURAL JOIN reviewof NATURAL JOIN dishreviews NATURAL JOIN sells GROUP BY restaurant_id ORDER BY score DESC;",
     [],
     (err, results) => {
       if (err) {
@@ -286,7 +286,7 @@ router.get("/dishes/id/:id/reviews", (req, res) => {
 
 router.get("/dishes/ratings", (req, res) => {
   pool.query(
-    "SELECT d.dish_id,COUNT(r.rating) AS ratings,AVG(r.rating) AS rating FROM dishreviews AS r NATURAL JOIN reviewof NATURAL JOIN dishes as d group by dish_id",
+    "SELECT d.dish_id,COUNT(r.rating) AS ratings,AVG(r.rating) AS rating, ((0.5*AVG(rating))+5*(1-POWER(2.718,((-count(rating))::decimal/10)))) AS score FROM dishreviews AS r NATURAL JOIN reviewof NATURAL JOIN dishes as d group by dish_id ORDER BY score DESC",
     [],
     (err, results) => {
       if (err) {

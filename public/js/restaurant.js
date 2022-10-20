@@ -55,6 +55,12 @@ async function fetchRestaurantDishes(rid = restaurantid) {
   return parsedData;
 }
 
+async function fetchDishRating(did){
+  data = await fetch(`/api/dishes/id/${did}/rating/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData;
+}
+
 async function fetchRestaurantOrders(rid = restaurantid) {
   data = await fetch(
     `/api/restaurants/id/${rid}/orders/count/?apiKey=${API_KEY}`
@@ -100,12 +106,14 @@ async function displayDishes() {
   bodyContentHolder = document.getElementById("body-content-holder");
   bodyContentHolder.innerHTML = "";
   restaurantDishes.forEach(async (dish) => {
+    dish.rating = (await fetchDishRating(dish.dish_id)).avg
     newCard = `
-        <div class="dish-card">
+        <div class="dish-card" onclick="location.href='/user/dish/${dish.dish_id}'">
           <img src=${
             dish.image_url || "/static/assets/placeholder_food.jpg"
           } alt="food" />
           <div class="dish-info">
+          <div class="dish-rating">${dish.rating ? `★ ${Math.round(dish.rating*10)/10}` : "no ratings"}</div>
             <h5 class="dish-card-name">${dish.name}</h5>
           </div>
         </div>

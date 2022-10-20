@@ -224,7 +224,7 @@ async function loadTopRestaurants() {
 async function loadFoodCarousel() {
   document.querySelector("#food-carousel").innerHTML = "";
   topDishes.sort(function (a, b) {
-    return b.rating - a.rating;
+    return b.score - a.score;
   });
   if (topDishes.length > 6) {
     topDishes = topDishes.slice(0, 6);
