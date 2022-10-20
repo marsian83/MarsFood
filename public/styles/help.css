@@ -201,20 +201,21 @@ padding:0;
 
 .top-block button{
 background-color: rgb(232, 232, 232);
-border-top:2px solid rgb(197, 196, 196);
-border-bottom:2px solid rgb(197, 196, 196);
+border:none;
+/* border-top:2px solid rgb(232, 232, 232);
+border-bottom:2px solid rgb(232, 232, 232); */
 padding: 3vw 3vh;
 }
 
-#button2{
-    border-left:2px solid rgb(197, 196, 196);  
+/* #button2{
+    border-left:2px solid rgb(232, 232, 232);  
     border-right: none; 
-}
+} */
 
-#button1{
-    border-right:2px solid rgb(197, 196, 196);  
+/* #button1{
+    border-right:2px solid rgb(232, 232, 232);  
     border-left: none; 
-}
+} */
 
 
 
