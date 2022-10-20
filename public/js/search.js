@@ -23,27 +23,33 @@ async function renderResults() {
     <div class="sk-circle12 sk-child"></div>
   </div>`;
     let results = await fetchDishes(searchInput);
-    resultsHolder.innerHTML=""
-    results.forEach((result) => {
-      resultsHolder.innerHTML += `<div class="container card" onclick="location.href='/user/dish/${result.dish_id}'">
+    resultsHolder.innerHTML = "";
+    if (results.length > 0) {
+      results.forEach((result) => {
+        resultsHolder.innerHTML += `<div class="container card" onclick="location.href='/user/dish/${result.dish_id}'">
       <img src="${result.image_url}" alt="dish-thumbnail" loading="lazy"></img> 
       <h5>${result.name}</h5>
       </div>`;
-    });
-  }
-  else{
-    resultsHolder.innerHTML=""
+      });
+    } else {
+      resultsHolder.innerHTML =
+        "Sorry, we could not find what you're searching for";
+    }
+  } else {
+    resultsHolder.innerHTML = "";
   }
 }
 
-var prevState=""
+var prevState = "";
 
-var searchbar  = document.getElementById('searchbar');
-var timer  = setTimeout(function(){renderResults()}, 0);
+var searchbar = document.getElementById("searchbar");
+var timer = setTimeout(function () {
+  renderResults();
+}, 0);
 
-searchbar.addEventListener('keypress', function(){
-  clearTimeout(timer); 
-  timer = setTimeout(function() 
-    { renderResults() }, 800 
-)}
-)
+searchbar.addEventListener("keypress", function () {
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    renderResults();
+  }, 800);
+});
