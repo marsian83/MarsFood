@@ -191,7 +191,7 @@
     top: 2vh;
     right: 5vw;
     color: var(--primary);
-    transform: scale(1.3) rotate(45deg);
+    transform: scale(1.6) rotate(45deg);
   }
 
   .mobile-navbar-items {
