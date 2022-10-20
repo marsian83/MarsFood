@@ -47,9 +47,18 @@ var timer = setTimeout(function () {
   renderResults();
 }, 0);
 
-searchbar.addEventListener("keypress", function () {
-  clearTimeout(timer);
-  timer = setTimeout(function () {
-    renderResults();
-  }, 800);
-});
+if (screen.width < 750) {
+  searchbar.addEventListener("input", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      renderResults();
+    }, 800);
+  });
+} else {
+  searchbar.addEventListener("keypress", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      renderResults();
+    }, 800);
+  });
+}
