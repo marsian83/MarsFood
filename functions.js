@@ -42,7 +42,7 @@ function insertProps(html){
     <meta name="HandheldFriendly" content="true" />
     <meta name="MobileOptimized" content="320" />`
   );
-  html = html.replaceAll('<img',`<img loading="lazy"`)
+  html = html.replaceAll('<img',`<img loading="lazy" `)
   return html;
 }
 
