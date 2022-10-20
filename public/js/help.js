@@ -35,6 +35,10 @@ function helpShowRestaurents() {
     "var(--background)";
   document.getElementById("list-item2").style.backgroundColor =
     "rgb(232, 232, 232)";
+  document.getElementById("button1").style.backgroundColor =
+    "var(--background)";
+  document.getElementById("button2").style.backgroundColor =
+    "rgb(232, 232, 232)";
 }
 
 function helpShowCustomers() {
@@ -43,6 +47,10 @@ function helpShowCustomers() {
   document.getElementById("list-item2").style.backgroundColor =
     "var(--background)";
   document.getElementById("list-item1").style.backgroundColor =
+    "rgb(232, 232, 232)";
+    document.getElementById("button2").style.backgroundColor =
+    "var(--background)";
+  document.getElementById("button1").style.backgroundColor =
     "rgb(232, 232, 232)";
 }
 

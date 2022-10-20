@@ -193,3 +193,57 @@ padding:0;
     display:none;
     margin: 0px;
 }
+
+.top-block{
+    display: none;
+    font-size: 0px;
+}
+
+.top-block button{
+background-color: rgb(232, 232, 232);
+border:none;
+/* border-top:2px solid rgb(232, 232, 232);
+border-bottom:2px solid rgb(232, 232, 232); */
+padding: 3vw 3vh;
+}
+
+/* #button2{
+    border-left:2px solid rgb(232, 232, 232);  
+    border-right: none; 
+} */
+
+/* #button1{
+    border-right:2px solid rgb(232, 232, 232);  
+    border-left: none; 
+} */
+
+
+
+/* MOBILE */
+
+@media only screen and (max-width: 750px) {
+.inner-block{
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+}
+.left-block{
+    display: none;
+}
+.right-block{
+    width: 100%;
+}
+.right-block ul{
+    padding:0px;
+}
+.top-block{
+    display: inline;
+}
+
+#help-for-customer h1{
+    padding: 0px;
+}
+#help-for-restaurents h1{
+    padding: 0px;
+}
+
+}
