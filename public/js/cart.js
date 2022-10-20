@@ -29,7 +29,7 @@ async function renderCart(cart) {
     );
     cartItem.newCard = `<div class="cart-card" id="cart-card${
       cartItem.dish.dish_id
-    }" onclick="location.href='/user/dish/${cartItem.dish.dish_id}'">
+    }" >
     <img
       src="${cartItem.dish.image_url}"
       class="cart-card-img"

@@ -103,7 +103,7 @@ router.post("/auth", redirectHome, async (req, res) => {
     }
 
     if (errors.length > 0) {
-      res.send(
+      res.status(400).send(
         renderHtml(path.join(__dirname, "../templates/restaurant-auth.html"), {
           errors: errors,
           switchState: 1,
@@ -120,7 +120,7 @@ router.post("/auth", redirectHome, async (req, res) => {
           } else {
             if (results.rows.length > 0) {
               errors.push(4);
-              res.send(
+              res.status(400).send(
                 renderHtml(
                   path.join(__dirname, "../templates/restaurant-auth.html"),
                   {
@@ -137,7 +137,7 @@ router.post("/auth", redirectHome, async (req, res) => {
                   if (err) {
                     console.log(err);
                   } else {
-                    res.send(
+                    res.status(400).send(
                       renderHtml(
                         path.join(
                           __dirname,
@@ -165,7 +165,7 @@ router.post("/auth", redirectHome, async (req, res) => {
     }
 
     if (errors.length > 0) {
-      res.send(
+      res.status(400).send(
         renderHtml(path.join(__dirname, "../templates/restaurant-auth.html"), {
           errors: errors,
           switchState: 0,
@@ -187,7 +187,7 @@ router.post("/auth", redirectHome, async (req, res) => {
                 return res.redirect("/restaurant/home");
               }
             }
-            res.send(
+            res.status(400).send(
               renderHtml(
                 path.join(__dirname, "../templates/restaurant-auth.html"),
                 {

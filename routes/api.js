@@ -72,7 +72,7 @@ router.get("/orders/quantity/total", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.send(results.rows[0]);
+      res.status(400).send(results.rows[0]);
     }
   });
 });
@@ -99,7 +99,7 @@ router.get("/restaurants", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows);
+        res.status(400).send(results.rows);
       }
     }
   );
@@ -114,7 +114,7 @@ router.get("/restaurants/id/:id", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows[0]);
+        res.status(400).send(results.rows[0]);
       }
     }
   );
@@ -125,7 +125,7 @@ router.get("/restaurants/count", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.send(results.rows[0]);
+      res.status(400).send(results.rows[0]);
     }
   });
 });
@@ -138,7 +138,7 @@ router.get("/restaurants/id/:id/dishes", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows);
+        res.status(400).send(results.rows);
       }
     }
   );
@@ -160,7 +160,7 @@ router.get("/restaurants/id/:id/dishes/top", (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                res.send(results.rows[0]);
+                res.status(400).send(results.rows[0]);
               }
             }
           );
@@ -177,7 +177,7 @@ router.get("/restaurants/id/:id/dishes/top", (req, res) => {
                     return d;
                   }
                 });
-                res.send(results.rows[0]);
+                res.status(400).send(results.rows[0]);
               }
             }
           );
@@ -249,7 +249,7 @@ router.get("/dishes", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.send(results.rows);
+      res.status(400).send(results.rows);
     }
   });
 });
@@ -263,7 +263,7 @@ router.get("/dishes/id/:id", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows[0]);
+        res.status(400).send(results.rows[0]);
       }
     }
   );
@@ -278,7 +278,7 @@ router.get("/dishes/id/:id/reviews", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows);
+        res.status(400).send(results.rows);
       }
     }
   );
@@ -292,7 +292,7 @@ router.get("/dishes/ratings", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows);
+        res.status(400).send(results.rows);
       }
     }
   );
@@ -307,7 +307,7 @@ router.get("/dishes/id/:id/rating", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows[0]);
+        res.status(400).send(results.rows[0]);
       }
     }
   );
@@ -322,7 +322,7 @@ router.get("/dishes/id/:id/sold", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(results.rows[0]);
+        res.status(400).send(results.rows[0]);
       }
     }
   );

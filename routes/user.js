@@ -138,7 +138,7 @@ router.post("/signup", redirectHome, async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.send(
+    res.status(400).send(
       renderHtml(path.join(__dirname, "../templates/signup.html"), {
         errors: errors,
       })
@@ -154,7 +154,7 @@ router.post("/signup", redirectHome, async (req, res) => {
         } else {
           if (results.rows.length > 0) {
             errors.push(4);
-            res.send(
+            res.status(400).send(
               renderHtml(path.join(__dirname, "../templates/signup.html"), {
                 errors: errors,
               })
@@ -187,7 +187,7 @@ router.post("/login", redirectHome, (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.send(
+    res.status(400).send(
       renderHtml(path.join(__dirname, "../templates/login.html"), {
         errors: errors,
       })
@@ -209,7 +209,7 @@ router.post("/login", redirectHome, (req, res) => {
               return res.redirect("/user/home");
             }
           }
-          res.send(
+          res.status(400).send(
             renderHtml(path.join(__dirname, "../templates/login.html"), {
               errors: 2,
             })
