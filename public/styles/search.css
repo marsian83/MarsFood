@@ -75,6 +75,24 @@
   color: var(--text-primary);
 }
 
+
+@media only screen and (max-width: 750px) {
+  #results-holder{
+    flex-direction: column;
+    min-height: 40vh;
+    align-items: center;
+    justify-content: start;
+  }
+  .card{
+    width: 95%;
+  }
+  .card:hover{
+    transform: scale(1.02);
+  }
+}
+
+
+
 .sk-circle {
   margin: 100px auto;
   /* color: var(--primary); */
