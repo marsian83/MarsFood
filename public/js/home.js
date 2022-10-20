@@ -205,6 +205,7 @@ async function loadTopRestaurants() {
       i + 1
     }" onclick="window.location='/user/restaurant/${restro.restaurant_id}'">
     <img
+      loading="lazy"
       class="header-carousel-card-image"
       src="${restaurant.image_url || "/static/assets/placeholder_food.jpg"}"
       alt="top-restaurant-image"
@@ -242,6 +243,7 @@ async function loadFoodCarousel() {
       "/static/assets/" + (dishData.nonveg ? "nonveg.png" : "veg.png")
     }>
     <img
+      loading="lazy"
       class="food-carousel-card-image"
       src="${dishData.image_url || "static/assets/placeholder_food.jpg"}"
       alt="card-placeholder" onerror="this.style.display='none'"
@@ -277,7 +279,9 @@ async function loadBodyContent() {
         <img class="vegan-indicator" src=${
           "/static/assets/" + (dish.nonveg ? "nonveg.png" : "veg.png")
         }>
-        <img class="dish-thumbnail" src="${
+        <img
+          loading="lazy" 
+          class="dish-thumbnail" src="${
           dish.image_url
         }" alt="Dish Image" onerror="this.style.display='none'">
       
@@ -313,7 +317,10 @@ async function loadBodyContent() {
       }'">
       ${
         restaurant.image_url
-          ? `<img src="${restaurant.image_url}" alt="Restaurant Image">`
+          ? `<img
+              loading="lazy" 
+              src="${restaurant.image_url}" 
+              alt="Restaurant Image">`
           : ""
       }
       <div>  

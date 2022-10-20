@@ -354,7 +354,7 @@ router.get("/location", async (req, res) => {
       });
       response.on("end", () => {
         data = JSON.parse(data);
-        address = data.results[0].formatted;
+        address = data ? (data.results[0] ? data.results[0].formatted : "") : "";
         let splitAt = indexOfNth(
           address,
           ",",
