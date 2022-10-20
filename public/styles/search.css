@@ -33,6 +33,16 @@
     border-bottom: 1px solid var(--foreground);
 }
 
-.results-holder{
-    min-height: 100vh;
+#results-holder{
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card{
+  width: 20%;
+  margin: 0.38rem;
+  padding: 0.38rem;
+  box-shadow: 0px 0px 3px rgba(128,128,128,0.5);
 }

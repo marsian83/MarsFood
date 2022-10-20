@@ -374,10 +374,11 @@ router.get("/location", async (req, res) => {
 });
 
 
-router.get("/search/dishes", (req, res) => {
+router.get("/search/dishes/", (req, res) => {
+  const queryRegex = req.query.keyword.replace(/.{1}/g, '$&%');
   pool.query(
-    "SELECT * FROM orders WHERE dish_id=$1 and user_id=$2",
-    [req.query.query],
+    "SELECT name,image_url FROM dishes WHERE LOWER(name) LIKE LOWER($1)",
+    ['%'+queryRegex],
     (err, results) => {
       if (err) {
         console.log(err);
