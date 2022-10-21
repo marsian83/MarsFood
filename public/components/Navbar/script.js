@@ -335,8 +335,6 @@ function getFilter(hexColor) {
 }
 
 // NAVBAR
-
-
 if (!params.username) {
   document.querySelector(".mobile-navbar-header h1").innerText = "Login";
   document.querySelectorAll(".mobile-navbar-header a")[1].innerText =
