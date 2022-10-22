@@ -53,6 +53,20 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
+router.get("/users/email/:email", (req, res) => {
+  pool.query(
+    "SELECT user_id,name,email FROM users WHERE email=$1",
+    [req.params.email],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
 router.get("/users/id/:id/orders", (req, res) => {
   pool.query(
     "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",

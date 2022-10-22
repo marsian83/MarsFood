@@ -5,6 +5,12 @@ function ValidateEmail(mail) {
   return false;
 }
 
+async function fetchUserByMail(mail) {
+  data = await fetch(`/api/users/email/${mail}/?apiKey=${API_KEY}`);
+  parsedData = await data.json();
+  return parsedData.reverse();
+}
+
 // CATCH AND DISPLAY ERRRORS
 errors = document.querySelector(".error-catcher").textContent;
 
@@ -30,15 +36,20 @@ if (errors.includes("#%=")) {
 const registerButton = document.getElementById("register-button");
 const registerForm = document.getElementById("register-form");
 
-registerButton.addEventListener("click", function (event) {
+registerButton.addEventListener("click", async function (event) {
   event.preventDefault();
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let passwordConfirm = document.getElementById("passwordConfirm").value;
 
+  userCheck = await fetchUserByMail(mail);
+
   popup.classList.add("show");
-  if (!(name && email && password && passwordConfirm)) {
+  if (userCheck.length) {
+    popup.textContent =
+      "This email is already registered, consider trying to login";
+  } else if (!(name && email && password && passwordConfirm)) {
     popup.textContent = "Please fill out all the fields";
   } else if (name.length < 3) {
     popup.textContent = "Name should be atleast 3 characters in length";
@@ -54,11 +65,11 @@ registerButton.addEventListener("click", function (event) {
   }
 });
 
-window.addEventListener('click',(event)=>{
-  if (!(event.target === registerButton)){
-    popup.classList.remove('show')
+window.addEventListener("click", (event) => {
+  if (!(event.target === registerButton)) {
+    popup.classList.remove("show");
   }
-})
+});
 
 // ANIMATIONS
 document.querySelector("#deliveryman").classList.add("deliveryman-popup");
