@@ -190,7 +190,7 @@
     display: block;
     position: absolute;
     top: 2vh;
-    right: 5vw;
+    right: 6.123vw;
     color: var(--primary);
     transform: scale(1.6) rotate(45deg);
   }
