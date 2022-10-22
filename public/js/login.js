@@ -16,4 +16,3 @@ if (errors.includes("#%=")) {
 }
 
 window.onclick=()=>{popup.classList.remove("show")}
-

@@ -411,6 +411,6 @@ async function submitReview() {
     });
     setTimeout(() => {
       location.reload();
-    }, 1234);
+    }, 321); //DEFAULT VALUE 123
   }
 }

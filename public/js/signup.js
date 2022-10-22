@@ -1,3 +1,10 @@
+function ValidateEmail(mail) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+    return true;
+  }
+  return false;
+}
+
 // CATCH AND DISPLAY ERRRORS
 errors = document.querySelector(".error-catcher").textContent;
 
@@ -20,9 +27,38 @@ if (errors.includes("#%=")) {
   }
 }
 
-window.onclick = () => {
-  popup.classList.remove("show");
-};
+const registerButton = document.getElementById("register-button");
+const registerForm = document.getElementById("register-form");
+
+registerButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let passwordConfirm = document.getElementById("passwordConfirm").value;
+
+  popup.classList.add("show");
+  if (!(name && email && password && passwordConfirm)) {
+    popup.textContent = "Please fill out all the fields";
+  } else if (name.length < 3) {
+    popup.textContent = "Name should be atleast 3 characters in length";
+  } else if (password.length < 6) {
+    popup.textContent = "Pick a password greater than 6 characters in length";
+  } else if (password != passwordConfirm) {
+    popup.textContent = "Confirmation password does not match";
+  } else if (!ValidateEmail(email)) {
+    popup.textContent = "Please enter a valid email address";
+  } else {
+    popup.classList.remove("show");
+    registerForm.submit();
+  }
+});
+
+window.addEventListener('click',(event)=>{
+  if (!(event.target === registerButton)){
+    popup.classList.remove('show')
+  }
+})
 
 // ANIMATIONS
 document.querySelector("#deliveryman").classList.add("deliveryman-popup");

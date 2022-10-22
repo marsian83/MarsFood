@@ -26,7 +26,7 @@
       <div class="container body">
         <div class="container form-container">
           <h1>Register</h1>
-          <form action="/user/signup" method="POST">
+          <form action="/user/signup" method="POST" id="register-form">
             <div class="container">
               <input
                 type="text"
@@ -65,7 +65,7 @@
             </div>
             <div class="container register-button">
               <span class="popuptext" id="errorPopup"></span
-              ><input type="submit" value="Register" />
+              ><input type="button" value="Register" id="register-button"/>
             </div>
             <a href="/user/login"
               >Already have an account? click here to login</a

@@ -1,5 +1,5 @@
 .footer {
-  border-top: 1px solid var(--high-contrast-fg);
+  /* border-top: 1px solid var(--high-contrast-fg); */
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
   background-color: var(--high-contrast-bg);
