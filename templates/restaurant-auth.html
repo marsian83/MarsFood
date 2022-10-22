@@ -32,9 +32,7 @@
       </div>
       <div class="container form-brand">
         <div class="container form-holder">
-          <div class="display-errors">
-            
-          </div>
+          <div class="display-errors"></div>
           <div class="container switch-buttons">
             <button onclick="handleLoginSwitch()" id="switch-login">
               Login
@@ -51,6 +49,7 @@
                   id="email"
                   name="email"
                   placeholder="Enter email"
+                  autocomplete="email"
                   required
                 />
               </div>
@@ -60,6 +59,7 @@
                   id="password"
                   name="password"
                   placeholder="Enter password"
+                  autocomplete="current-password"
                   required
                 />
               </div>
@@ -67,8 +67,8 @@
                 <input type="submit" value="Login" />
               </div>
               <div class="forgot-pass">
-              <a href="/">Forgot password</a>
-            </div>
+                <a href="/">Forgot password</a>
+              </div>
             </form>
           </div>
           <div class="container form-container hidden-forn" id="signup-form">
@@ -79,6 +79,7 @@
                   id="name"
                   name="name"
                   placeholder="Enter restaurant's name"
+                  autocomplete="name"
                   required
                 />
               </div>
@@ -88,6 +89,7 @@
                   id="email"
                   name="email"
                   placeholder="Enter email"
+                  autocomplete="email"
                   required
                 />
               </div>
@@ -97,6 +99,7 @@
                   id="address"
                   name="address"
                   placeholder="Enter restaurant's address"
+                  autocomplete="street-address"
                   required
                 />
               </div>
@@ -106,6 +109,7 @@
                   id="password"
                   name="password"
                   placeholder="Enter your password"
+                  autocomplete="new-password"
                   required
                 />
               </div>
@@ -115,6 +119,7 @@
                   id="passwordConfirm"
                   name="passwordConfirm"
                   placeholder="Confirm password"
+                  autocomplete="new-password"
                   required
                 />
               </div>
@@ -140,9 +145,7 @@
       </div>
     </div>
     $%=Footer
-    <div class="error-catcher">
-      #%=errors
-    </div>
+    <div class="error-catcher">#%=errors</div>
     <div class="switch-state">#%=switchState</div>
     $%=Preloader
   </body>
