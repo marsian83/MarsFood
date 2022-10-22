@@ -53,10 +53,10 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
-router.get("/users/email/:email", (req, res) => {
+router.get("/users/email", (req, res) => {
   pool.query(
     "SELECT user_id,name,email FROM users WHERE email=$1",
-    [req.params.email],
+    [req.query.email],
     (err, results) => {
       if (err) {
         console.log(err);

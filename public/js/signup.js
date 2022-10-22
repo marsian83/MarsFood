@@ -6,7 +6,7 @@ function ValidateEmail(mail) {
 }
 
 async function fetchUserByMail(mail) {
-  data = await fetch(`/api/users/email/${mail}/?apiKey=${API_KEY}`);
+  data = await fetch(`/api/users/email/?apiKey=${API_KEY}&email=${mail}`);
   parsedData = await data.json();
   return parsedData.reverse();
 }
