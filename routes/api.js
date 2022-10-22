@@ -67,6 +67,48 @@ router.get("/users/email/:email", (req, res) => {
   );
 });
 
+router.post("/users/validate", (req, res) => {
+  let { email, password } = req.body;
+  let errors = [];
+
+  if (!(email && password)) {
+    errors.push(1);
+  }
+
+  if (errors.length > 0) {
+    res.status(400).send(
+      renderHtml(path.join(__dirname, "../templates/login.html"), {
+        errors: errors,
+      })
+    );
+  } else {
+    //Entries Validated
+    pool.query(
+      "SELECT * FROM users WHERE email=$1",
+      [email.toLowerCase()],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+        } else {
+          if (results.rows.length > 0) {
+            let user = results.rows[0];
+            if (sha256(password) === user.password) {
+              req.session.userId = user.user_id;
+              req.session.cart = [];
+              return res.redirect("/user/home");
+            }
+          }
+          res.status(400).send(
+            renderHtml(path.join(__dirname, "../templates/login.html"), {
+              errors: 2,
+            })
+          );
+        }
+      }
+    );
+  }
+});
+
 router.get("/users/id/:id/orders", (req, res) => {
   pool.query(
     "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",

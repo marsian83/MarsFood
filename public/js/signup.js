@@ -43,7 +43,7 @@ registerButton.addEventListener("click", async function (event) {
   let password = document.getElementById("password").value;
   let passwordConfirm = document.getElementById("passwordConfirm").value;
 
-  userCheck = await fetchUserByMail(mail);
+  userCheck = await fetchUserByMail(email);
 
   popup.classList.add("show");
   if (userCheck.length) {
