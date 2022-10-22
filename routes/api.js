@@ -67,46 +67,18 @@ router.get("/users/email", (req, res) => {
   );
 });
 
-router.post("/users/validate", (req, res) => {
-  let { email, password } = req.body;
-  let errors = [];
-
-  if (!(email && password)) {
-    errors.push(1);
-  }
-
-  if (errors.length > 0) {
-    res.status(400).send(
-      renderHtml(path.join(__dirname, "../templates/login.html"), {
-        errors: errors,
-      })
-    );
-  } else {
-    //Entries Validated
-    pool.query(
-      "SELECT * FROM users WHERE email=$1",
-      [email.toLowerCase()],
-      (err, results) => {
-        if (err) {
-          console.log(err);
-        } else {
-          if (results.rows.length > 0) {
-            let user = results.rows[0];
-            if (sha256(password) === user.password) {
-              req.session.userId = user.user_id;
-              req.session.cart = [];
-              return res.redirect("/user/home");
-            }
-          }
-          res.status(400).send(
-            renderHtml(path.join(__dirname, "../templates/login.html"), {
-              errors: 2,
-            })
-          );
-        }
+router.get("/users/validate", (req, res) => {
+  pool.query(
+    "SELECT * FROM users WHERE email=$1 AND password=$2",
+    [req.query.email, sha256(req.query.password || "")],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
       }
-    );
-  }
+    }
+  );
 });
 
 router.get("/users/id/:id/orders", (req, res) => {
@@ -410,7 +382,11 @@ router.get("/location", async (req, res) => {
       });
       response.on("end", () => {
         data = JSON.parse(data);
-        address = data ? (data.results[0] ? data.results[0].formatted : "") : "";
+        address = data
+          ? data.results[0]
+            ? data.results[0].formatted
+            : ""
+          : "";
         let splitAt = indexOfNth(
           address,
           ",",
@@ -429,12 +405,11 @@ router.get("/location", async (req, res) => {
     });
 });
 
-
 router.get("/search/dishes/", (req, res) => {
-  const queryRegex = req.query.keyword.replace(/.{1}/g, '$&%');
+  const queryRegex = req.query.keyword.replace(/.{1}/g, "$&%");
   pool.query(
     "SELECT dish_id,name,image_url FROM dishes WHERE LOWER(name) LIKE LOWER($1)",
-    ['%'+queryRegex],
+    ["%" + queryRegex],
     (err, results) => {
       if (err) {
         console.log(err);

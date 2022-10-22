@@ -8,7 +8,7 @@ function ValidateEmail(mail) {
 async function fetchUserByMail(mail) {
   data = await fetch(`/api/users/email/?apiKey=${API_KEY}&email=${mail}`);
   parsedData = await data.json();
-  return parsedData.reverse();
+  return parsedData;
 }
 
 // CATCH AND DISPLAY ERRRORS
@@ -43,7 +43,7 @@ registerButton.addEventListener("click", async function (event) {
   let password = document.getElementById("password").value;
   let passwordConfirm = document.getElementById("passwordConfirm").value;
 
-  userCheck = await fetchUserByMail(email);
+  let userCheck = await fetchUserByMail(email);
 
   popup.classList.add("show");
   if (userCheck.length) {

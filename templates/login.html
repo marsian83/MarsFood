@@ -26,7 +26,7 @@
       <div class="container body">
         <div class="container form-container">
           <h1>Login</h1>
-          <form action="/user/login" method="POST">
+          <form action="/user/login" method="POST" id="login-form">
             <div class="container">
               <input
                 type="email"
@@ -48,7 +48,7 @@
             </div>
             <div class="container login-button">
               <span class="popuptext" id="errorPopup"></span
-              ><input type="submit" value="Login" />
+              ><input type="button" id="login-button" value="Login" />
             </div>
             <div class="forgot-pass">
               <a href="/forgot-password">
