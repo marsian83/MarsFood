@@ -57,10 +57,11 @@
   padding-right: var(--edge-border-right);
 }
 
-#body-content-holder{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;}
+#body-content-holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 .dish-card {
   display: flex;
@@ -82,9 +83,9 @@
   box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.45);
 }
 
-.dish-card-name{
-    text-align: center;
-    padding: 1vh 2vw;
+.dish-card-name {
+  text-align: center;
+  padding: 1vh 2vw;
 }
 
 .dish-card img {
@@ -114,7 +115,7 @@
   font-size: 1.5rem;
 }
 
-.dish-rating{
+.dish-rating {
   align-self: flex-start;
   color: var(--text-secondary);
   padding: 4px 1ch;
@@ -123,5 +124,14 @@
   background-color: #47b881;
   font-weight: 600;
   clip-path: polygon(0% 0%, 100% 0%, calc(100% - 10px) 50%, 100% 100%, 0% 100%);
+}
 
+@media only screen and (max-width: 750px) {
+  #body-content-holder {
+    justify-content: space-evenly;
+  }
+
+  .dish-card {
+    width: 44%;
+  }
 }
