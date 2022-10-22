@@ -23,7 +23,7 @@
 .navbar-logo {
   margin-left: var(--edge-border-left);
   height: 4rem;
-  transition: 420ms ease;
+  transition: transform 420ms ease;
 }
 
 .navbar-logo:hover {

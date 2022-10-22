@@ -101,13 +101,10 @@ async function updateCart() {
         document.getElementById(
           `cart-card${cartItem.dish.dish_id}`
         ).style.display = "none";
-      }, 400);
+      }, 380);
       await fetch(`/user/cart/remove/${cartItem.dish_id}`, {
         method: "DELETE",
       });
-      setTimeout(() => {
-        location.reload();
-      }, 420);
     } else {
       await fetch(
         `/user/cart/set/${cartItem.dish_id}/?quantity=${cartItem.quantity}`,

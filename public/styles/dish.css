@@ -192,6 +192,14 @@
   transform: scale(1.1);
 }
 
+.review-edit-button {
+  width: 1rem;
+  transform: translate(0.5rem, 1rem) scale(1.23);
+  margin-right: -1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
 #moreby-heading {
   font-size: 1.69rem;
   font-weight: 800;
@@ -230,7 +238,7 @@
 
 .moredishes-scroller:hover {
   /* font-size: 4rem; */
- opacity:1;
+  opacity: 1;
 }
 
 #moredishes-scroller-left {
@@ -630,7 +638,7 @@
     display: none;
   }
 
-  .user-reviews-button{
+  .user-reviews-button {
     padding: 1vh 6vw;
     font-size: 1.23rem;
   }
@@ -665,7 +673,7 @@
     left: 0.7%;
   }
 
-  #order-modal-form{
+  #order-modal-form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -675,7 +683,7 @@
     color: var(--primary);
   } */
 
-  #order-modal-confirm-button{
+  #order-modal-confirm-button {
     margin-top: 3vh;
     width: 100%;
     font-size: 1.23rem;

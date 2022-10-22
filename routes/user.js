@@ -298,6 +298,35 @@ router.post("/dish/review/new", redirectLogin, (req, res) => {
   }
 });
 
+router.post("/dish/review/edit", redirectLogin, (req, res) => {
+  if (req.session.userId) {
+    let { rating, content, dish_id } = req.body;
+    pool.query(
+      "SELECT review_id FROM reviews NATURAL JOIN reviewof WHERE user_id=$1 AND dish_id=$2",
+      [req.session.userId, dish_id],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+        } else {
+          pool.query(
+            "UPDATE dishreviews SET rating=$1,content=$2 WHERE review_id=$3",
+            [rating, content, results.rows[0].review_id || 0],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                res.status(200).send({ message: "Success" });
+              }
+            }
+          );
+        }
+      }
+    );
+  } else {
+    res.status(401).send({ error: "Authentication Error" });
+  }
+});
+
 // PUT REQUESTS
 router.put("/buy/:id", redirectLogin, (req, res) => {
   if (req.session.userId) {

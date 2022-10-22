@@ -80,6 +80,8 @@ async function fetchRestaurantDishes(restaurantid) {
 }
 
 var dishData, dishRating, restaurantData, restaurantDishes;
+var userReviewRating = null,
+  userReviewContent = null;
 
 async function loadData() {
   dishData = await fetchDishData();
@@ -196,8 +198,11 @@ async function renderReviews() {
   if (reviews.length > 0 || userRev || currusercheckData.length > 0) {
     reviewHolder.innerHTML = "<h2>Reviews : </h2>";
     if (userRev) {
+      userReviewRating = userRev.rating;
+      userReviewContent = userRev.content;
       reviewHolder.innerHTML += `
       <div class="container review-container user-review">
+      <div class="review-edit-button" onclick="triggerEdit()">&#9998;</div>
       <div class="review-left">
         <h3>You</h3>
         <span class="stars-container stars-${closestMultiple(
@@ -304,9 +309,13 @@ async function renderDishes() {
   </div>`;
     dishesCarousel.innerHTML += newCard;
     if (isOverflown(dishesCarousel)) {
-      document.getElementById("moredishes-scroller-left").style.display = `block`;
-  
-      document.getElementById("moredishes-scroller-right").style.display = `block`;
+      document.getElementById(
+        "moredishes-scroller-left"
+      ).style.display = `block`;
+
+      document.getElementById(
+        "moredishes-scroller-right"
+      ).style.display = `block`;
     }
   });
 }
@@ -315,10 +324,10 @@ async function renderPage() {
   await loadData();
   renderData();
   renderDishes();
-  renderReviews();
 }
 
 renderPage();
+renderReviews();
 
 // ORDER MODAL
 
@@ -410,7 +419,69 @@ async function submitReview() {
       body: JSON.stringify(b),
     });
     setTimeout(() => {
-      location.reload();
-    }, 321); //DEFAULT VALUE 123
+      renderReviews();
+    }, 64); //DEFAULT VALUE 1234
   }
 }
+
+async function editReview() {
+  if (userRates) {
+    document.getElementById("user-reviews-box").style.display = "none";
+    let b = {
+      rating: userRates,
+      dish_id: dishid,
+      content: document.getElementById("user-review-textarea").value,
+    };
+    await fetch("/user/dish/review/edit", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(b),
+    });
+    setTimeout(() => {
+      renderReviews();
+    }, 64); //DEFAULT VALUE 1234
+  }
+}
+
+const triggerEdit = async () => {
+  let reviewHolder = document.getElementById("reviews-holder");
+  document.querySelector(".user-review").style.display = "none";
+  reviewHolder.innerHTML =
+    "<h2>Reviews : </h2>" +
+    `
+        <div class="container" id="user-reviews-box">
+        <div class="container review-container" id="user-reviews">
+          <div class="review-left">
+            <h3>Leave a review of this dish</h3>
+            <div class="user-rating-star" id="user-rates1" onclick="starClick(this)">
+              ★
+              <div class="user-rating-star" id="user-rates2" onclick="starClick(this)">
+                ★
+                <div class="user-rating-star" id="user-rates3" onclick="starClick(this)">
+                  ★
+                  <div class="user-rating-star" id="user-rates4" onclick="starClick(this)">
+                    ★
+                    <div class="user-rating-star" id="user-rates5" onclick="starClick(this)">
+                      ★
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <textarea
+            name="user-review-content"
+            id="user-review-textarea"
+            cols="25"
+            rows="8"
+            placeholder="Describe your experience (optional)"
+            maxlength="512"
+          >${userReviewContent || ""}</textarea>
+        </div>
+        <button class="user-reviews-button" id="user-review-submit-button" onclick="editReview()">Submit Review</button>
+      </div>
+        ` +
+    reviewHolder.innerHTML.replace("<h2>Reviews : </h2>", "");
+  starClick(document.getElementById(`user-rates${userReviewRating}`));
+};

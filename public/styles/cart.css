@@ -43,7 +43,6 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 2rem;
   min-height: 22vh;
   transition: 200ms ease-out;
-  cursor: pointer;
   overflow: hidden;
 }
 
@@ -68,33 +67,29 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .quantity-control {
+  height: 100%;
   width: 100%;
 }
 
-.quantity-increase{
+.quantity-increase,
+.quantity-decrease {
   background-color: var(--background);
-  border:1px solid var(--foreground);
+
+  cursor: pointer;
   padding: 0.4vh 0.45vw;
-  border-radius:20%;
-
+  border-radius: 20%;
+  border: none;
+  font-weight: 400;
+  font-size: 1.69rem;
 }
 
-.quantity-decrease{
-  background-color: var(--background);
-  border:1px solid var(--foreground);
-  padding: 0.4vh 0.45vw;
-  border-radius:20%;
+.quantity-decrease:active {
+  color: red;
 }
 
-.quantity-decrease:active{
-  border:1px solid var(--primary);
+.quantity-increase:active {
+  color: limegreen;
 }
-
-.quantity-increase:active{
-  border:1px solid green;
-}
-
-
 
 .cart-remove {
   animation-name: cart-disappear;
@@ -325,11 +320,11 @@ input[type="number"]::-webkit-outer-spin-button {
     justify-content: space-evenly;
   }
 
-  .modal-content form div{
+  .modal-content form div {
     margin: 1vh 0;
   }
 
-  .modal-content form div p{
+  .modal-content form div p {
     font-size: 1.38rem;
     margin-bottom: 1.23vh;
   }
