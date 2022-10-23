@@ -45,7 +45,7 @@ Hosted Link: https://marsfood.herokuapp.com/
 
 
 <a name="setup"></a>
-## How to set-up?
+## How to setup?
 
 <a name="visitor"></a>
 ## Visitors-Credentials
