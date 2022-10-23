@@ -15,6 +15,9 @@ body {
 
 .symbol-success{
   align-items: center;
+  color: var(--text-secondary);
+  font-size: 3rem;
+  font-weight: 1000;
 }
 
 .fa-check{

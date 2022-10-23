@@ -421,6 +421,8 @@ async function submitReview() {
     setTimeout(() => {
       renderReviews();
     }, 64); //DEFAULT VALUE 1234
+    dishData = await fetchDishData();
+    renderData();
   }
 }
 
@@ -441,6 +443,8 @@ async function editReview() {
     setTimeout(() => {
       renderReviews();
     }, 64); //DEFAULT VALUE 1234
+    dishData = await fetchDishData();
+    renderData();
   }
 }
 
