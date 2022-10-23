@@ -26,6 +26,7 @@ var transporter = nodemailer.createTransport({
     ciphers: "SSLv3",
   },
   auth: {
+    type:"login",
     user: process.env.MAILADDRESS,
     pass: process.env.MAILPASS,
   },

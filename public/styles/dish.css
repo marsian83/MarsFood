@@ -530,13 +530,12 @@
   overflow: hidden;
 }
 
-
-.restaurantCheckModalContent p{
+.restaurantCheckModalContent p {
   margin: 1vh 0;
   padding: 0;
 }
 
-#restaurantExclamation{
+#restaurantExclamation {
   background-color: var(--foreground);
   color: var(--text-secondary);
   font-weight: 600;
@@ -546,14 +545,14 @@
   padding: 1vh 0;
 }
 
-.modalOptions{
+.modalOptions {
   margin-top: 2vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.modalOptions button{
+.modalOptions button {
   width: 100%;
   border: none;
   border-top: 1px solid var(--text-primary);
@@ -564,7 +563,7 @@
   transition: 200ms ease;
 }
 
-.modalOptions button:hover{
+.modalOptions button:hover {
   background-color: var(--primary);
   opacity: 83%;
   color: var(--background);
@@ -731,12 +730,19 @@
     margin: 0;
   }
 
-  .review-left h3 {
-    display: none;
+  .review-left {
+    overflow: visible;
+    margin: 0 1rem;
+    /* width: auto; */
   }
 
+  #user-reviews-box .review-left{
+    overflow: visible;
+  }
 
-  
+  .review-left h3 {
+    margin: 1vh 0;
+  }
 
   .user-reviews-button {
     padding: 1vh 6vw;
