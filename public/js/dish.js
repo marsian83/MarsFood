@@ -255,7 +255,7 @@ async function renderReviews() {
             cols="25"
             rows="8"
             placeholder="Describe your experience (optional)"
-            maxlength="512"
+            maxlength="500"
           ></textarea>
         </div>
         <button class="user-reviews-button" id="user-review-submit-button" onclick="submitReview()">Submit Review</button>

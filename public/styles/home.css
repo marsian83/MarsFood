@@ -477,21 +477,22 @@
   width: 3rem;
   border-radius: 50%;
   border: none;
-  background-color: var(--background);
-  box-shadow: var(--foreground) 0px 0px 4px;
-  color: (--primary);
+  background-color: var(--primary);
+  /* box-shadow: var(--foreground) 0px 0px 4px; */
+  color: var(--text-secondary);
+  font-size: 2rem;
 }
 
 .scrollToTopBtn .divBtn:after {
   font-size: 2rem;
-  content: "▲";
+  /* content: "▲"; */
   color: (--primary);
   cursor: pointer;
 }
 
 @keyframes scroll-to-top-hover {
   0% {
-    content: "▲";
+    /* content: "▲"; */
   }
   15% {
     transform: rotate(-15deg);
