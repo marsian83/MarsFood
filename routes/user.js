@@ -392,7 +392,7 @@ router.put("/cart/set/:id", redirectLogin, (req, res) => {
   }
 });
 
-req.put("/cart/restaurant/set/:id", redirectLogin, (req, res) => {
+router.put("/cart/restaurant/set/:id", redirectLogin, (req, res) => {
   req.session.currentUserId = req.params.id;
   res.status(200).send({ message: "Success" });
 });
