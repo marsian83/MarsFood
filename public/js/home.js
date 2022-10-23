@@ -334,7 +334,7 @@ async function loadBodyContent() {
           )}">★★★★★</span>
           </div>
         </div>
-        <p>${restaurant.address}</p>
+        <p>${shorten(restaurant.address,83)}</p>
       </div>
     </div>`;
       bodyShowing == 2 &&

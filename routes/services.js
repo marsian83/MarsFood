@@ -18,24 +18,39 @@ const {
   indexOfNth,
 } = require("../functions");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
+var transporter = nodemailer.createTransport({
+  host: "smtp.rediffmailpro.com", // hostname
+  secureConnection: false,
+  secure: false,
+  tls: {
+    ciphers: "SSLv3",
+  },
   auth: {
     user: process.env.MAILADDRESS,
     pass: process.env.MAILPASS,
   },
 });
 
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Email sent: " + info.response);
-  }
-});
-
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(express.json());
+
+//GET REQUESTS
+
+router.get("/password-recovery", (req, res) => {
+  res
+    .status(200)
+    .send(
+      renderHtml(path.join(__dirname, "../templates/password-recovery.html"))
+    );
+});
+
+router.get("/forgot-password", (req, res) => {
+  res
+    .status(200)
+    .send(
+      renderHtml(path.join(__dirname, "../templates/forgot-password.html"))
+    );
+});
 
 router.get("/forgot-pass/url", (req, res) => {
   let { email } = req.query;
@@ -43,7 +58,7 @@ router.get("/forgot-pass/url", (req, res) => {
     from: process.env.MAILADDRESS,
     to: email,
     subject: "Sending using Node.js",
-    text: "That was eafefesy!",
+    html: "<h1>hoohaa</h1>That was eafefesy!",
   };
 
   pool.query(
@@ -54,13 +69,45 @@ router.get("/forgot-pass/url", (req, res) => {
         console.log(err);
       } else {
         if (results.rows[0].user_id) {
+          transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+              console.log(err);
+            } else {
+              `Password recovery Email sent to ${email} : ${info.response}`;
+            }
+          });
+        } else {
+          pool.query(
+            "SELECT restaurant_id FROM restaurants WHERE email=$1",
+            [email],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                if (results.rows[0].restaurant_id) {
+                  transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      console.log(
+                        `Password recovery Email sent to ${email} : ${info.response}`
+                      );
+                    }
+                  });
+                }
+              }
+            }
+          );
         }
       }
     }
   );
+
   res
     .status(200)
-    .send(renderHtml(path.join(__dirname, "./templates/forgot-password.html")));
+    .send(
+      renderHtml(path.join(__dirname, "../templates/forgot-password.html"))
+    );
 });
 
 module.exports = router;

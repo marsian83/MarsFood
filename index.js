@@ -17,6 +17,7 @@ const {
 
 const restaurantRouter = require(path.join(__dirname, "/routes/restaurant.js"));
 const userRouter = require(path.join(__dirname, "/routes/user.js"));
+const servicesRouter = require(path.join(__dirname, "/routes/services.js"));
 const apiRouter = require(path.join(__dirname, "/routes/api.js"));
 
 const app = express();
@@ -98,6 +99,7 @@ app.use((req, res, next) => {
 app.use("/restaurant", restaurantRouter);
 app.use("/user", userRouter);
 app.use("/api", apiRouter);
+app.use("/services", servicesRouter);
 
 // GET FUNCTIONS
 app.get("/", (req, res) => {
@@ -109,20 +111,6 @@ app.get("/help", (req, res) => {
   res
     .status(200)
     .send(renderHtml(path.join(__dirname, "./templates/help.html")));
-});
-
-app.get("/password-recovery", (req, res) => {
-  res
-    .status(200)
-    .send(
-      renderHtml(path.join(__dirname, "./templates/password-recovery.html"))
-    );
-});
-
-app.get("/forgot-password", (req, res) => {
-  res
-    .status(200)
-    .send(renderHtml(path.join(__dirname, "./templates/forgot-password.html")));
 });
 
 //Boot server
