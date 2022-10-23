@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 const session = require("express-session");
-var favicon = require('serve-favicon')
+var favicon = require("serve-favicon");
 
 const { pool } = require("./dbconfig");
 
@@ -19,8 +19,8 @@ const restaurantRouter = require(path.join(__dirname, "/routes/restaurant.js"));
 const userRouter = require(path.join(__dirname, "/routes/user.js"));
 const apiRouter = require(path.join(__dirname, "/routes/api.js"));
 
-const app = express()
-app.enable('trust proxy');
+const app = express();
+app.enable("trust proxy");
 
 PORT = process.env.PORT || 8000;
 HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
@@ -30,7 +30,7 @@ UNIVERSAL_CSS_LOCATION = "public/styles/templates/universal.css";
 UNIVERSAL_JS_LOCATION = "public/js/templates/universal.js";
 USERDATA_RELATIVE_LOCATION = "userdata";
 USERDATA_ABSOLUTE_LOCATION = path.join(__dirname, USERDATA_RELATIVE_LOCATION);
-OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY
+OPENCAGE_API_KEY = process.env.OPENCAGE_API_KEY;
 
 // MIDDLEWARE
 app.use("/static", express.static(path.join(__dirname, STATIC)));
@@ -39,7 +39,7 @@ app.use(
   express.static(path.join(__dirname, USERDATA_RELATIVE_LOCATION))
 );
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -53,7 +53,7 @@ app.use(
     cookie: {
       maxAge: Number(process.env.SESSION_LIFETIME),
       sameSite: true,
-      secure: false,//process.env.NODE_ENV === "production",
+      secure: false, //process.env.NODE_ENV === "production",
     },
   })
 );
@@ -114,7 +114,9 @@ app.get("/help", (req, res) => {
 app.get("/password-recovery", (req, res) => {
   res
     .status(200)
-    .send(renderHtml(path.join(__dirname, "./templates/password-recovery.html")));
+    .send(
+      renderHtml(path.join(__dirname, "./templates/password-recovery.html"))
+    );
 });
 
 app.get("/forgot-password", (req, res) => {
@@ -123,6 +125,7 @@ app.get("/forgot-password", (req, res) => {
     .send(renderHtml(path.join(__dirname, "./templates/forgot-password.html")));
 });
 
-app.listen(PORT,()=>{
-  console.log(`Server up and listening on port ${PORT}`)
+//Boot server
+app.listen(PORT, () => {
+  console.log(`Server up and listening on port ${PORT}`);
 });
