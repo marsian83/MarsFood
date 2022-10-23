@@ -373,7 +373,9 @@ qty.addEventListener("input", () => {
 
 async function addToCart() {
   currentCartRestaurant = await fetch("/user/cart/restaurant");
-  currentCartRestaurantId = currentCartRestaurant.restaurant_id;
+  currentCartRestaurantData = await currentCartRestaurant.json();
+  currentCartRestaurantId = currentCartRestaurantData.restaurant_id;
+
   if (
     restaurantData.restaurant_id == currentCartRestaurantId ||
     currentCartRestaurantId == -1 ||
@@ -390,38 +392,23 @@ async function addToCart() {
       x.className = x.className.replace("show", "");
     }, 3000);
   } else {
-    document.querySelector(".restaurantCheckModal").display = "flex";
+    document.querySelector(".restaurantCheckModal").style.display = "flex";
+    document.querySelector(".modal").style.display = "none";
   }
 }
 
 async function clearCartAndBuy() {
   await fetch(`/user/cart/clear`, { method: "DELETE" });
 
-  await fetch(`/user/buy/${dishid}/?quantity=${qty.value}`, {
-    method: "PUT",
-  });
-  ordermodal.style.display = "none";
-  var x = document.getElementById("snackbar");
-  x.innerText = `${dishData.name} x ${qty.value} successfuly added to cart`;
-  x.className = "show";
-  setTimeout(function () {
-    x.className = x.className.replace("show", "");
-  }, 3000);
+  addToCart();
 }
 
 async function getMultipleDeliveries() {
-  await fetch(`/user/cart/restaurant/set/-1`, { method: "PUT" });
-
-  await fetch(`/user/buy/${dishid}/?quantity=${qty.value}`, {
+  await fetch(`/user/cart/restaurant/set/?id=${-1}`, {
     method: "PUT",
   });
-  ordermodal.style.display = "none";
-  var x = document.getElementById("snackbar");
-  x.innerText = `${dishData.name} x ${qty.value} successfuly added to cart`;
-  x.className = "show";
-  setTimeout(function () {
-    x.className = x.className.replace("show", "");
-  }, 3000);
+
+  addToCart();
 }
 
 var userRates = 0;
