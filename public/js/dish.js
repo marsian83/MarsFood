@@ -372,7 +372,8 @@ qty.addEventListener("input", () => {
 });
 
 async function addToCart() {
-  currentCartRestaurantId = await fetch("/user/cart/restaurant");
+  currentCartRestaurant = await fetch("/user/cart/restaurant");
+  currentCartRestaurantId = currentCartRestaurant.restaurant_id;
   if (
     restaurantData.restaurant_id == currentCartRestaurantId ||
     currentCartRestaurantId == -1 ||
