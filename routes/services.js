@@ -17,23 +17,41 @@ const {
   sha256,
   indexOfNth,
 } = require("../functions");
-
-var transporter = nodemailer.createTransport({
-  host: "smtp.rediffmailpro.com", // hostname
-  secureConnection: false,
-  secure: false,
-  tls: {
-    ciphers: "SSLv3",
-  },
-  auth: {
-    type:"login",
-    user: process.env.MAILADDRESS,
-    pass: process.env.MAILPASS,
-  },
-});
+const { env } = require("process");
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(express.json());
+
+const sendMail = async (mail) => {
+  //   let testAccount = await nodemailer.createTestAccount();
+  transporter = nodemailer.createTransport({
+    host: "smtp.rediffmail.com",
+    port: 25,
+    secureConnection: false,
+    secure: false,
+    tls: {
+        rejectUnauthorized: false,
+        ciphers: "SSLv3",
+    },
+    auth: {
+      user: process.env.MAILADDRESS,
+      pass: process.env.MAILPASS,
+    },
+  });
+  var mailOptions = {
+    from: process.env.MAILADDRESS,
+    to: mail,
+    subject: "Kisi na kisi din ye mail jaega",
+    html: "<h1>yayayayayayayayayy</h1> <p>Achha Acchaa</p>",
+  };
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+    } else {
+      `Password recovery Email sent to ${mail} : ${info.response}`;
+    }
+  });
+};
 
 //GET REQUESTS
 
@@ -55,46 +73,26 @@ router.get("/forgot-password", (req, res) => {
 
 router.get("/forgot-pass/url", (req, res) => {
   let { email } = req.query;
-  var mailOptions = {
-    from: process.env.MAILADDRESS,
-    to: email,
-    subject: "Sending using Node.js",
-    html: "<h1>hoohaa</h1>That was eafefesy!",
-  };
 
   pool.query(
     "SELECT user_id FROM users WHERE email=$1",
     [email],
-    (err, results) => {
+    async (err, results) => {
       if (err) {
         console.log(err);
       } else {
-        if (results.rows[0].user_id) {
-          transporter.sendMail(mailOptions, (err, info) => {
-            if (err) {
-              console.log(err);
-            } else {
-              `Password recovery Email sent to ${email} : ${info.response}`;
-            }
-          });
+        if (results.rows[0] && results.rows[0].user_id) {
+          sendMail(email);
         } else {
           pool.query(
             "SELECT restaurant_id FROM restaurants WHERE email=$1",
             [email],
-            (err, results) => {
+            async (err, results) => {
               if (err) {
                 console.log(err);
               } else {
-                if (results.rows[0].restaurant_id) {
-                  transporter.sendMail(mailOptions, (err, info) => {
-                    if (err) {
-                      console.log(err);
-                    } else {
-                      console.log(
-                        `Password recovery Email sent to ${email} : ${info.response}`
-                      );
-                    }
-                  });
+                if (results.rows[0] && results.rows[0].restaurant_id) {
+                  sendMail();
                 }
               }
             }
