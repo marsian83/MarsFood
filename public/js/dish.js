@@ -421,7 +421,7 @@ async function submitReview() {
     setTimeout(() => {
       renderReviews();
     }, 64); //DEFAULT VALUE 1234
-    dishData = await fetchDishData();
+    dishRating = await fetchDishRating();
     renderData();
   }
 }
@@ -443,7 +443,7 @@ async function editReview() {
     setTimeout(() => {
       renderReviews();
     }, 64); //DEFAULT VALUE 1234
-    dishData = await fetchDishData();
+    dishRating = await fetchDishRating();
     renderData();
   }
 }
