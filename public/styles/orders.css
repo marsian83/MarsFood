@@ -115,3 +115,28 @@
 .past-orders-button:hover {
   cursor: not-allowed;
 }
+
+@media only screen and (max-width: 800px) {
+  .orders-container,
+  .orders-pending,
+  .past-orders,
+  .orders-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .orders-card {
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .orders-card img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 18vh;
+    border-radius: 0;
+  }
+}
