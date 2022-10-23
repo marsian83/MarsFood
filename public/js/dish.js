@@ -355,8 +355,8 @@ window.onclick = function (event) {
   if (event.target == ordermodal) {
     ordermodal.style.display = "none";
   }
-  if ((event.target = document.getElementById("restaurantCheckModal"))) {
-    document.getElementById("restaurantCheckModal").style.display = "none";
+  if ((event.target = document.querySelector(".restaurantCheckModal"))) {
+    document.querySelector(".restaurantCheckModal").style.display = "none";
   }
 };
 
@@ -389,7 +389,7 @@ async function addToCart() {
       x.className = x.className.replace("show", "");
     }, 3000);
   } else {
-    document.getElementById("restaurantCheckModal").display = "flex";
+    document.querySelector(".restaurantCheckModal").display = "flex";
   }
 }
 
