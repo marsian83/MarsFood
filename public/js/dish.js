@@ -182,6 +182,10 @@ async function renderData() {
     "moredishes-scroller-right"
   ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
 
+  document.getElementById(
+    "restaurantExclamation"
+  ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
+
   // document.querySelector(
   //   "review-container"
   // ).style.backgroundColor = `rgb(${dr},${dg},${db})`;
@@ -365,6 +369,44 @@ qty.addEventListener("input", () => {
 });
 
 async function addToCart() {
+  currentCartRestaurantId = await fetch("/user/cart/restaurant");
+  if (
+    restaurantData.restaurant_id == currentCartRestaurantId ||
+    currentCartRestaurantId == -1 ||
+    !currentCartRestaurantId
+  ) {
+    await fetch(`/user/buy/${dishid}/?quantity=${qty.value}`, {
+      method: "PUT",
+    });
+    ordermodal.style.display = "none";
+    var x = document.getElementById("snackbar");
+    x.innerText = `${dishData.name} x ${qty.value} successfuly added to cart`;
+    x.className = "show";
+    setTimeout(function () {
+      x.className = x.className.replace("show", "");
+    }, 3000);
+  } else {
+  }
+}
+
+async function clearCartAndBuy() {
+  await fetch(`/user/cart/clear`, { method: "DELETE" });
+
+  await fetch(`/user/buy/${dishid}/?quantity=${qty.value}`, {
+    method: "PUT",
+  });
+  ordermodal.style.display = "none";
+  var x = document.getElementById("snackbar");
+  x.innerText = `${dishData.name} x ${qty.value} successfuly added to cart`;
+  x.className = "show";
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}
+
+async function getMultipleDeliveries() {
+  await fetch(`/user/cart/restaurant/set/-1`, { method: "PUT" });
+
   await fetch(`/user/buy/${dishid}/?quantity=${qty.value}`, {
     method: "PUT",
   });

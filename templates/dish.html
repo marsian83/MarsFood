@@ -35,7 +35,6 @@
       <div class="container reviews-container" id="reviews-holder">
         <h2>Reviews :</h2>
         <p>No reviews yet</p>
-
       </div>
       <div class="container moredishes-container">
         <div id="moreby-heading">More by this restaurant</div>
@@ -46,7 +45,7 @@
           id="moredishes-scroller-left"
           onclick="document.getElementById('food-carousel').scrollBy({left:-500, behavior: 'smooth'})"
         >
-        ⋘
+          ⋘
         </button>
         <div class="container" id="food-carousel"></div>
         <button
@@ -54,7 +53,7 @@
           id="moredishes-scroller-right"
           onclick="document.getElementById('food-carousel').scrollBy({left:500, behavior: 'smooth'})"
         >
-        ⋙
+          ⋙
         </button>
       </div>
     </div>
@@ -96,7 +95,24 @@
         </div> -->
       </div>
     </div>
-
+    <div class="container restaurantCheckModal">
+      <div class="restaurantCheckModalContent">
+        <p id="restaurantExclamation">
+          Your cart already has contents from a different restaurant!
+        </p>
+        <p>
+          Remove the previous items to be able to add this dish to your cart.
+        </p>
+        <p>
+          If you wish to place orders at multiple restaurants, you may recieve
+          multiple deliveries
+        </p>
+        <div class="modalOptions">
+          <button onclick="clearCartAndBuy()">Clear the cart and add this dish</button>
+          <button onclick="getMultipleDeliveries()">I'm fine with recieving multiple deliveries</button>
+        </div>
+      </div>
+    </div>
     <div id="snackbar">Dish has been added to your cart</div>
     $%=Footer $%=Preloader
   </body>

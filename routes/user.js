@@ -121,6 +121,10 @@ router.get("/confirmation", redirectLogin, (req, res) => {
     );
 });
 
+router.get("/cart/restaurant", redirectLogin, (req, res) => {
+  res.status(200).send({ restaurant_id: req.session.cartRestaurant });
+});
+
 // POST REQUESTS
 router.post("/signup", redirectHome, async (req, res) => {
   let { name, email, password, passwordConfirm } = req.body;
@@ -349,21 +353,48 @@ router.put("/buy/:id", redirectLogin, (req, res) => {
 
 router.put("/cart/set/:id", redirectLogin, (req, res) => {
   if (req.session.userId) {
-    var foundIndex = req.session.cart.findIndex(
-      (x) => x.dish_id == req.params.id
+    var dishRestaurantId = -1;
+    pool.query(
+      "SELECT restaurant_id FROM sells WHERE dish_id=$1",
+      [req.params.id],
+      (err, results) => {
+        if (err) {
+          console.log(err);
+        } else {
+          dishRestaurantId = results.rows[0].restaurant_id;
+          if (!req.session.cartRestaurant) {
+            req.session.cartRestaurant = dishRestaurantId;
+          }
+          if (
+            req.session.cartRestaurant == -1 ||
+            req.session.cartRestaurant == dishRestaurantId
+          ) {
+            var foundIndex = req.session.cart.findIndex(
+              (x) => x.dish_id == req.params.id
+            );
+            if (foundIndex == -1) {
+              req.session.cart.push({
+                dish_id: req.params.id,
+                quantity: Number(req.query.quantity),
+              });
+            } else {
+              req.session.cart[foundIndex].quantity = Number(
+                req.query.quantity
+              );
+            }
+            res.status(200).send(req.session.cart);
+          }
+        }
+      }
     );
-    if (foundIndex == -1) {
-      req.session.cart.push({
-        dish_id: req.params.id,
-        quantity: Number(req.query.quantity),
-      });
-    } else {
-      req.session.cart[foundIndex].quantity = Number(req.query.quantity);
-    }
-    res.status(200).send(req.session.cart);
   } else {
     res.status(401).send({ error: "Authentication Error" });
   }
+});
+
+req.put("/cart/restaurant/set/:id", redirectLogin, (req, res) => {
+  req.session.currentUserId = req.params.id;
+  res.status(200).send({ message: "Success" });
 });
 
 // DELETE REQUESTS
@@ -377,6 +408,15 @@ router.delete("/cart/remove/:id", redirectLogin, (req, res) => {
     } else {
       req.session.cart.splice(foundIndex, 1);
     }
+    res.status(200).send(req.session.cart);
+  } else {
+    res.status(401).send({ error: "Authentication Error" });
+  }
+});
+
+router.delete("/cart/clear", redirectLogin, (req, res) => {
+  if (req.session.userId) {
+    req.session.cart = [];
     res.status(200).send(req.session.cart);
   } else {
     res.status(401).send({ error: "Authentication Error" });
