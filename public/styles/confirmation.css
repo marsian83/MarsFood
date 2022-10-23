@@ -7,20 +7,21 @@ body {
 }
 body {
   overflow: hidden;
+  background-color: transparent;
 }
 
-.vsc-initialized{
+.vsc-initialized {
   z-index: -5;
 }
 
-.symbol-success{
+.symbol-success {
   align-items: center;
   color: var(--text-secondary);
   font-size: 3rem;
   font-weight: 1000;
 }
 
-.fa-check{
+.fa-check {
   color: --var(--text-secondary);
 }
 .background {
@@ -29,7 +30,8 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.5)), url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5)),
+    url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
   z-index: -10;
   background-size: cover;
   background-position: center;
@@ -37,7 +39,7 @@ body {
 .modalbox.success,
 .modalbox.error {
   border-radius: 10%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   /* -webkit-border-radius: 2px;
   -moz-border-radius: 2px; */
@@ -51,20 +53,20 @@ body {
   align-items: center;
   display: flex;
   align-content: baseline;
-  
+
   -webkit-animation: fall-in 0.75s;
   -moz-animation: fall-in 0.75s;
   -o-animation: fall-in 0.75s;
   animation: fall-in 0.75s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .modalbox.success h1,
 .modalbox.error h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .modalbox.success p,
 .modalbox.error p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 .modalbox.success button,
 .modalbox.error button,
@@ -82,6 +84,7 @@ body {
   background: transparent;
   color: #4caf50;
   border-color: #4caf50;
+  cursor: pointer;
   outline: none;
 }
 .modalbox.success button:hover,
@@ -93,6 +96,7 @@ body {
   color: #fff;
   background: #4caf50;
   border-color: transparent;
+  cursor: pointer;
 }
 .modalbox.success .icon,
 .modalbox.error .icon {
@@ -134,7 +138,7 @@ body {
   float: none;
   margin-left: auto;
   margin-right: auto;
-/* stupid browser compat. smh */
+  /* stupid browser compat. smh */
 }
 .center .change {
   clear: both;
