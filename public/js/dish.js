@@ -355,6 +355,9 @@ window.onclick = function (event) {
   if (event.target == ordermodal) {
     ordermodal.style.display = "none";
   }
+  if( event.target = document.getElementById('restaurantCheckModal')){
+    document.getElementById('restaurantCheckModal').style.display = 'none'
+  }
 };
 
 var qty = document.getElementById("qty-input");
@@ -386,6 +389,7 @@ async function addToCart() {
       x.className = x.className.replace("show", "");
     }, 3000);
   } else {
+    document.getElementById('restaurantCheckModal').display='flex'
   }
 }
 

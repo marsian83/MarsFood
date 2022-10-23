@@ -497,7 +497,7 @@
 
 .restaurantCheckModalContent {
   font-family: "Nunito", sans-serif;
-  display: flex;
+  display: none;
   background-color: var(--background);
   flex-direction: column;
   width: 50vw;
