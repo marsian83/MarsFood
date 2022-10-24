@@ -206,14 +206,14 @@ router.post("/auth", redirectHome, async (req, res) => {
 router.post("/dish/new", redirectLogin, async (req, res) => {
   let { name, description, cost, isnonveg } = req.body;
   let image = req.files.thumbnail || null;
-
+  console.log(image);
   pool.query(
     "INSERT INTO dishes(name,description,cost,nonveg) VALUES($1,$2,$3,$4) RETURNING dish_id",
     [name, description, cost, isnonveg],
     (err, results) => {
       if (err) {
         console.log(err);
-      } else if (image) {
+      } else if (image && image.data) {
         let newId = results.rows[0].dish_id;
         const storageRef = ref(storage, `userdata/images/dishes/${newId}.jpg`);
         const metadata = {
