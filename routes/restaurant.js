@@ -206,7 +206,7 @@ router.post("/auth", redirectHome, async (req, res) => {
 router.post("/dish/new", redirectLogin, async (req, res) => {
   let { name, description, cost, isnonveg } = req.body;
   let image = req.files.thumbnail || null;
-  console.log(image);
+
   pool.query(
     "INSERT INTO dishes(name,description,cost,nonveg) VALUES($1,$2,$3,$4) RETURNING dish_id",
     [name, description, cost, isnonveg],
@@ -257,6 +257,19 @@ router.post("/dish/new", redirectLogin, async (req, res) => {
                 }
               }
             );
+          }
+        );
+      } else {
+        let newId = results.rows[0].dish_id;
+        pool.query(
+          "INSERT INTO sells(dish_id,restaurant_id) VALUES($1,$2)",
+          [newId, req.app.locals.restaurant.restaurant_id],
+          (err, results) => {
+            if (err) {
+              console.log(err);
+            } else {
+              res.redirect("/restaurant/home");
+            }
           }
         );
       }
