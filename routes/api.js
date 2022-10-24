@@ -20,17 +20,20 @@ const {
 router.use("/static", express.static(path.join(__dirname, "../public")));
 router.use(express.json());
 
-// AUTHENTICATE API KEY
+// AUTHENTICATE API KEY or AUTHENTICATED USER
 router.use((req, res, next) => {
   apiKey = req.query.apiKey;
+  if (req.session.userId) {
+    return next();
+  }
   pool.query("SELECT * FROM apikeys WHERE key=$1", [apiKey], (err, results) => {
     if (err) {
       console.log(err);
     } else {
       if (results.rows.length > 0) {
-        next();
+        return next();
       } else {
-        res.status(401).send({ error: "Invalid Api Key" });
+        return res.status(401).send({ error: "Invalid Api Key" });
       }
     }
   });

@@ -28,7 +28,9 @@
             <h6>Email :</h6>
             <p id="user-email-display"></p>
           </div>
-          <a href="/">Change password</a>
+          <a id="change-password-link" href="javascript:void(0)"
+            >Change password</a
+          >
         </div>
       </div>
       <div class="container body-holder">
@@ -36,6 +38,40 @@
         <div class="orders-container container" id="orders-holder">
           Loading ...
         </div>
+      </div>
+    </div>
+
+    <div id="passwordModal" class="modal">
+      <div class="password-modal-content">
+        <p id="passwordModalError">Something went wrong</p>
+        <p id="passwordModalSuccess">Something went wrong</p>
+        <form action="">
+          <h5>Current Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="curr-pass"
+            placeholder="Enter your current password"
+            autocomplete="current-password"
+          />
+          <h5>New Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="new-pass"
+            placeholder="Enter your new password"
+            autocomplete="new-password"
+          />
+          <h5>Confirm New Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="confirm-pass"
+            placeholder="Confirm your new password"
+            autocomplete="new-password"
+          />
+          <button id="changePasswordButton">Change Password</button>
+        </form>
       </div>
     </div>
 

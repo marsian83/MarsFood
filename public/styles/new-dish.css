@@ -130,6 +130,7 @@
 }
 
 .preview-container {
+  overflow: hidden;
   padding: 5% 0;
   color: var(--text-primary);
 }

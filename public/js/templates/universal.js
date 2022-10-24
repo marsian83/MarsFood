@@ -4,7 +4,7 @@ var colorPrimary = rootStyle.getPropertyValue("--primary");
 var colorTextPrimary = rootStyle.getPropertyValue("--text-primary");
 var colorTextSecondary = rootStyle.getPropertyValue("--text-secondary");
 var colorForeground = rootStyle.getPropertyValue("--foreground");
-API_KEY="9NYvxvNJ7p6HltaD"
+API_KEY=""
 
 let parameterDivs = document.querySelectorAll(".template-rendering-parameter");
 

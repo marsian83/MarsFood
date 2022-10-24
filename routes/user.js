@@ -421,6 +421,37 @@ router.put("/cart/restaurant/set", redirectLogin, (req, res) => {
   res.status(200).send({ message: "Success" });
 });
 
+router.put("/password/change", redirectLogin, (req, res) => {
+  const { currPass, newPass } = req.query;
+  pool.query(
+    "SELECT * FROM users WHERE user_id=$1 AND password=$2",
+    [req.session.userId, sha256(currPass)],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length <= 0) {
+          return res
+            .status(401)
+            .send({ error: "The current password you entered is incorrect" });
+        } else {
+          pool.query(
+            "UPDATE users SET password=$1 WHERE user_id=$2",
+            [sha256(newPass), req.session.userId],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.status(200).send({ message: "success" });
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
 // DELETE REQUESTS
 router.delete("/cart/remove/:id", redirectLogin, (req, res) => {
   if (req.session.userId) {
