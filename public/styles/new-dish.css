@@ -301,6 +301,7 @@ input[type="radio"] {
   margin-left: calc(50% - 10% - 1.3vw);
   text-align: center;
   color: var(--text-primary);
+  overflow: hidden;
 }
 
 .body-card-dish:hover {

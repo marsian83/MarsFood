@@ -12,24 +12,21 @@ function handleSignupSwitch() {
   document.querySelector("#switch-signup").classList.add("switch-selected");
 }
 
-
-if(!params.switchState || params.switchState==0){
-  handleLoginSwitch()
-}else if (params.switchState==1){
-  handleSignupSwitch()
+if (!params.switchState || params.switchState == 0) {
+  handleLoginSwitch();
+} else if (params.switchState == 1) {
+  handleSignupSwitch();
 }
 
 // Update stats
 async function updateStats() {
-  restaurantsCount = await fetch(`/api/restaurants/count/?apiKey=${API_KEY}`);
-  parsedRestaurantsCount = await restaurantsCount.json();
-  document.getElementById("totalRestaurants").innerText =
-    `${parsedRestaurantsCount.count}`;
-  
-    dishesSoldCount = await fetch(`/api/orders/quantity/total/?apiKey=${API_KEY}`);
-    parsedDishesSoldCount = await dishesSoldCount.json();
-    document.getElementById("totalDishesSold").innerText =
-      `${parsedDishesSoldCount.sum}`;
+  document
+    .getElementById("totalRestaurants")
+    .style.setProperty("--num", params.totalRestaurants);
+
+  document
+    .getElementById("totalDishesSold")
+    .style.setProperty("--num", params.dishesSold);
 }
 
 updateStats();
@@ -64,5 +61,5 @@ window.onclick = () => {
 if (params.loginPrompt) {
   displayError.innerHTML = `<img src="/static/assets/success-check-green.png" alt="success">`;
   displayError.innerHTML += "Successfully registered, you may now login";
-  displayError.style.color="green"
+  displayError.style.color = "green";
 }

@@ -23,7 +23,7 @@ router.use(express.json());
 // AUTHENTICATE API KEY or AUTHENTICATED USER
 router.use((req, res, next) => {
   apiKey = req.query.apiKey;
-  if (req.session.userId) {
+  if (req.session.userId || req.session.restaurantId) {
     return next();
   }
   pool.query("SELECT * FROM apikeys WHERE key=$1", [apiKey], (err, results) => {

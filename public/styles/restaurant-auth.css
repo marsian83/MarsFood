@@ -4,6 +4,21 @@
   font-family: "Montserrat", sans-serif;
 }
 
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+#totalRestaurants,#totalDishesSold {
+  transition: --num 4.4s;
+  counter-set: num var(--num);
+}
+
+#totalRestaurants::after,#totalDishesSold::after {
+  content: counter(num);
+}
+
 .header {
   background-color: var(--foreground);
   color: var(--text-secondary);

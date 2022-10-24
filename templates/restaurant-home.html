@@ -25,7 +25,7 @@
         </div>
         <p id="display-address">Address :</p>
         <p id="display-email">Email :</p>
-        <a href="#">Edit details</a>
+        <a href="javascript:void(0)" id="change-password-link">change password</a>
       </div>
       <div class="add-new-dish">
         <button
@@ -42,6 +42,43 @@
         Loading ...
       </div>
     </div>
+
+    
+    <div id="passwordModal" class="modal">
+      <div class="password-modal-content">
+        <p id="passwordModalError">Something went wrong</p>
+        <p id="passwordModalSuccess">Something went wrong</p>
+        <form action="">
+          <h5>Current Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="curr-pass"
+            placeholder="Enter your current password"
+            autocomplete="current-password"
+          />
+          <h5>New Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="new-pass"
+            placeholder="Enter your new password"
+            autocomplete="new-password"
+          />
+          <h5>Confirm New Password</h5>
+          <input
+            class="modal-input"
+            type="password"
+            id="confirm-pass"
+            placeholder="Confirm your new password"
+            autocomplete="new-password"
+          />
+          <button id="changePasswordButton">Change Password</button>
+        </form>
+      </div>
+    </div>
+
+
     $%=Footer $%=Preloader
   </body>
   <script src="/static/js/restaurant-home.js"></script>

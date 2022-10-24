@@ -55,11 +55,25 @@ router.get("/", (req, res) => {
 });
 
 router.get("/auth", redirectHome, (req, res) => {
-  res
-    .status(200)
-    .send(
-      renderHtml(path.join(__dirname, "../templates/restaurant-auth.html"))
-    );
+  pool.query(
+    "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+    [],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(
+          renderHtml(
+            path.join(__dirname, "../templates/restaurant-auth.html"),
+            {
+              totalRestaurants: results.rows[0].total_restaurants,
+              dishesSold: results.rows[0].dishes_sold,
+            }
+          )
+        );
+      }
+    }
+  );
 });
 
 router.get("/home", redirectLogin, (req, res) => {
@@ -355,6 +369,37 @@ router.put("/orders/mark", redirectLogin, (req, res) => {
     }
   );
   res.redirect("/");
+});
+
+router.put("/password/change", redirectLogin, (req, res) => {
+  const { currPass, newPass } = req.query;
+  pool.query(
+    "SELECT * FROM restaurants WHERE restaurant_id=$1 AND password=$2",
+    [req.session.restaurantId, sha256(currPass)],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length <= 0) {
+          return res
+            .status(401)
+            .send({ error: "The current password you entered is incorrect" });
+        } else {
+          pool.query(
+            "UPDATE restaurants SET password=$1 WHERE restaurant_id=$2",
+            [sha256(newPass), req.session.restaurantId],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                return res.status(200).send({ message: "success" });
+              }
+            }
+          );
+        }
+      }
+    }
+  );
 });
 
 // OTHER REQUESTS

@@ -80,3 +80,63 @@ async function renderPage() {
 }
 
 renderPage();
+
+
+var modal = document.getElementById("passwordModal");
+
+var changePassBtn = document.getElementById("change-password-link");
+
+changePassBtn.onclick = function () {
+  modal.style.display = "block";
+  document.getElementById("passwordModalError").style.display = "none";
+  document.getElementById("passwordModalSuccess").style.display = "none";
+};
+
+window.addEventListener("click", (event) => {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+});
+
+document
+  .getElementById("changePasswordButton")
+  .addEventListener("click", async (event) => {
+    event.preventDefault();
+    let currPass = document.getElementById("curr-pass").value;
+    let newPass = document.getElementById("new-pass").value;
+    let confirmPass = document.getElementById("confirm-pass").value;
+    let errorBox = document.getElementById("passwordModalError");
+    errorBox.style.display = "block";
+    document.getElementById("passwordModalSuccess").style.display = "none";
+    if (newPass.length < 6) {
+      errorBox.textContent =
+        "Choose a password with atleast 6 characters in length";
+    } else if (currPass.length < 6) {
+      errorBox.textContent = "The current password you entered is incorrect";
+    } else if (currPass == newPass) {
+      errorBox.textContent = "The old and new password can't be the same";
+    } else if (newPass != confirmPass) {
+      errorBox.textContent = "Confirmation password does not match";
+    } else {
+      errorBox.style.display = "none";
+      let resp = await fetch(
+        `/restaurant/password/change?currPass=${currPass}&newPass=${newPass}`,
+        { method: "PUT" }
+      );
+      let response = await resp.json();
+      errorBox.style.display = "block";
+      if (response.error) {
+        errorBox.textContent = response.error;
+      } else if (response.message == "success") {
+        errorBox.style.display = "none";
+        document.getElementById("passwordModalSuccess").style.display = "block";
+        document.getElementById("passwordModalSuccess").textContent =
+          "Password changed successfully";
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 3000);
+      } else {
+        errorBox.textContent = "Something went wrong, please try again!";
+      }
+    }
+  });
