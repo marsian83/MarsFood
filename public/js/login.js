@@ -1,6 +1,6 @@
 async function fetchUserValidation(mail, pass) {
   data = await fetch(
-    `/api/users/validate/?apiKey=${API_KEY}&email=${mail}&password=${pass}`
+    `/services/user/auth/validate/?email=${mail}&password=${pass}`
   );
   parsedData = await data.json();
   return parsedData;
@@ -31,7 +31,8 @@ loginButton.addEventListener("click", async function (event) {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
-  let isValid = await fetchUserValidation(email, password);
+  let validations = await fetchUserValidation(email, password);
+  isValid = validations.valid;
 
   popup.classList.add("show");
   if (!isValid) {

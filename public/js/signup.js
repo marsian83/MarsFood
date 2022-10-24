@@ -6,7 +6,7 @@ function ValidateEmail(mail) {
 }
 
 async function fetchUserByMail(mail) {
-  data = await fetch(`/api/users/email/?apiKey=${API_KEY}&email=${mail}`);
+  data = await fetch(`/services/user/email/?email=${mail}`);
   parsedData = await data.json();
   return parsedData;
 }
@@ -43,13 +43,8 @@ registerButton.addEventListener("click", async function (event) {
   let password = document.getElementById("password").value;
   let passwordConfirm = document.getElementById("passwordConfirm").value;
 
-  let userCheck = await fetchUserByMail(email);
-
   popup.classList.add("show");
-  if (userCheck.length) {
-    popup.textContent =
-      "This email is already registered, consider trying to login";
-  } else if (!(name && email && password && passwordConfirm)) {
+  if (!(name && email && password && passwordConfirm)) {
     popup.textContent = "Please fill out all the fields";
   } else if (name.length < 3) {
     popup.textContent = "Name should be atleast 3 characters in length";
@@ -61,7 +56,14 @@ registerButton.addEventListener("click", async function (event) {
     popup.textContent = "Please enter a valid email address";
   } else {
     popup.classList.remove("show");
-    registerForm.submit();
+    let userCheck = await fetchUserByMail(email);
+    if (userCheck.length) {
+      popup.textContent =
+        "This email is already registered, consider trying to login";
+      popup.classList.add("show");
+    } else {
+      registerForm.submit();
+    }
   }
 });
 

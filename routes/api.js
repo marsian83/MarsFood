@@ -56,34 +56,6 @@ router.get("/users/id/:id", (req, res) => {
   );
 });
 
-router.get("/users/email", (req, res) => {
-  pool.query(
-    "SELECT user_id,name,email FROM users WHERE email=$1",
-    [req.query.email],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).send(results.rows);
-      }
-    }
-  );
-});
-
-router.get("/users/validate", (req, res) => {
-  pool.query(
-    "SELECT * FROM users WHERE email=$1 AND password=$2",
-    [req.query.email, sha256(req.query.password || "")],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).send(results.rows);
-      }
-    }
-  );
-});
-
 router.get("/users/id/:id/orders", (req, res) => {
   pool.query(
     "SELECT * FROM orders WHERE user_id=$1 ORDER BY order_time",

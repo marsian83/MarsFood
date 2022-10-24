@@ -30,8 +30,8 @@ const sendMail = async (mail) => {
     secureConnection: false,
     secure: false,
     tls: {
-        rejectUnauthorized: false,
-        ciphers: "SSLv3",
+      rejectUnauthorized: false,
+      ciphers: "SSLv3",
     },
     auth: {
       user: process.env.MAILADDRESS,
@@ -54,7 +54,6 @@ const sendMail = async (mail) => {
 };
 
 //GET REQUESTS
-
 router.get("/password-recovery", (req, res) => {
   res
     .status(200)
@@ -107,6 +106,36 @@ router.get("/forgot-pass/url", (req, res) => {
     .send(
       renderHtml(path.join(__dirname, "../templates/forgot-password.html"))
     );
+});
+
+router.get("/user/auth/validate", (req, res) => {
+  pool.query(
+    "SELECT user_id FROM users WHERE email=$1 AND password=$2",
+    [req.query.email, sha256(req.query.password)],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        return res
+          .status(200)
+          .send({ valid: results.rows.length > 0 ? true : false });
+      }
+    }
+  );
+});
+
+router.get("/user/email", (req, res) => {
+  pool.query(
+    "SELECT user_id,name,email FROM users WHERE email=$1",
+    [req.query.email],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
 });
 
 module.exports = router;
