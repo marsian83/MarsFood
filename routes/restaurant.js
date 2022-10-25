@@ -297,13 +297,13 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
           pool.query(
             "DELETE FROM dishes WHERE dish_id=$1 RETURNING dish_id,image_url",
             [results.rows[0].dish_id],
-            async (err, results) => {
+            (err, results) => {
               if (err) {
                 console.log(err);
               } else {
-                await cloudinary.uploader.destroy(
-                  `dish${results.rows[0].dish_id}-thumbnail`,
-                  { folder: "userdata/images/dishes" },
+                cloudinary.uploader.destroy(
+                  `userdata/images/dishes/dish${req.body.dish_id}-thumbnail`,
+                  { },
                   (err, results) => {
                     if (err) {
                       console.log(err);
