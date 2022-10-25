@@ -14,9 +14,15 @@
 }
 
 .restaurant-detail a {
+  font-weight: 800;
   z-index: 10;
-  color: var(--text-secondary);
+  color: white;
 }
+
+.restaurant-detail a:hover{
+  text-decoration: none;
+}
+
 
 .add-new-dish {
   position: relative;
@@ -29,7 +35,7 @@
 .add-dish-button {
   z-index: 10;
   background-color: var(--primary);
-  color: var(--text-secondary);
+  color: white;
   border: none;
   border-radius: 40rem;
   width: 10rem;
@@ -46,7 +52,7 @@
 .restaurant-detail {
   z-index: 10;
   padding-top: 4vh;
-  color: var(--text-secondary);
+  color: white;
 }
 
 .logout-button-div {
@@ -81,7 +87,7 @@ a {
   height: 2.8rem;
   font-size: 1rem;
   opacity: 90%;
-  color: var(--text-secondary);
+  color: white;
   background-color: var(--primary);
 }
 
@@ -111,7 +117,7 @@ a {
   margin: 3vh 0;
   /* min-height: 4vh; */
   border-radius: 1rem;
-  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+  box-shadow: 0px 0px 10px var(--shadow);
   justify-content: center;
   align-items: center;
 }
@@ -160,7 +166,7 @@ a {
 
 .delete-dish-button {
   background-color: var(--primary);
-  color: var(--text-secondary);
+  color: white;
   border: none;
   border-radius: 40rem;
   width: 8rem;

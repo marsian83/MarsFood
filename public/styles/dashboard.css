@@ -5,13 +5,14 @@
 .header {
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
-  padding-bottom: 5vh;
+  padding-bottom: 4vh;
   background-color: var(--foreground);
-  color: var(--text-secondary);
+  color: white;
   font-family: "Nunito", sans-serif;
 }
 
 .header h3 {
+  color:white;
   font-size: 4rem;
   padding: 5vh 0vw;
   margin: 0;
@@ -24,7 +25,7 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  padding-bottom: 5vh;
+  padding-bottom: 2vh;
 }
 
 .header-list-item-container h6 {
@@ -39,7 +40,12 @@
 }
 
 .header a {
-  color: var(--text-secondary);
+  color: white;
+  font-weight: 800;
+}
+
+.header a:hover{
+  text-decoration: none;
 }
 
 .body-holder {
@@ -135,7 +141,7 @@
   height: 2.8rem;
   font-size: 1rem;
   opacity: 90%;
-  color: var(--text-secondary);
+  color: white;
   background-color: var(--primary);
   transition: 200ms ease;
 }

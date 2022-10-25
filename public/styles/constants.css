@@ -1,11 +1,22 @@
 :root {
-  --primary: #ec3333;
+  /* --primary: #ec3333;
   --background: #ffffff;
   --foreground: #282c3f;
   --text-primary: #282c3f;
   --text-secondary: #ffffff;
   --high-contrast-bg: #000000;
   --high-contrast-fg: #ffffff;
+  --shadow: #00000062; */
+
+  --primary: #ec3333;
+  --background: #000000;
+  --foreground: #171924;
+  --text-primary: #ffffff;
+  --text-secondary: #000000;
+  --high-contrast-bg: #ffffff;
+  --high-contrast-fg: #000000;
+  --shadow:#ffffffb8;
+
   --edge-border-left: 8vw;
   --edge-border-right: 8vw;
 }

@@ -106,7 +106,7 @@
   flex-direction: column;
   align-items: center;
   background: var(--primary);
-  color: var(--text-secondary);
+  color: white;
   padding: 1.23vh 4vw;
   font-family: sans-serif;
   border-radius: 1rem;
@@ -117,7 +117,7 @@
 
 #upload-label:hover {
   transform: scale(1.08);
-  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+  box-shadow: 0px 1px 13px var(--shadow);
 }
 
 #upload-icon {
@@ -256,7 +256,7 @@ input[type="radio"] {
 }
 
 #upload-input-button {
-  color: var(--high-contrast-fg);
+  color: white;
   background-color: var(--primary);
   padding: 1vh 2vw;
   margin: 16vh 0%;
@@ -282,7 +282,7 @@ input[type="radio"] {
 
 #upload-input-button:hover {
   transform: scale(1.05);
-  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+  box-shadow: 0px 1px 13px var(--shadow);
 }
 
 .body-card-dish {
@@ -297,7 +297,7 @@ input[type="radio"] {
   border-radius: 12px;
   cursor: pointer;
   transition: 200ms linear;
-  box-shadow: 0px 1px 13px hsl(0deg 0% 0% / 0.25);
+  box-shadow: 0px 1px 13px var(--shadow);
   margin-left: calc(50% - 10% - 1.3vw);
   text-align: center;
   color: var(--text-primary);

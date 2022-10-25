@@ -32,7 +32,7 @@
   /* min-height: 4vh; */
   color: var(--text-primary);
   border-radius: 1rem;
-  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.5);
+  box-shadow: 0px 0px 10px var(--shadow);
   transition: 200ms ease;
 }
 
@@ -82,7 +82,7 @@
 
 .delivery-orders-button {
   background-color: var(--primary);
-  color: var(--text-secondary);
+  color: white;
   border: none;
   border-radius: 40rem;
   width: 8rem;
@@ -104,7 +104,7 @@
 
 .past-orders-button {
   background-color: var(--primary);
-  color: var(--text-secondary);
+  color:white;
   border: none;
   border-radius: 40rem;
   width: 8rem;

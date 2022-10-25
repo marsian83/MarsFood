@@ -10,7 +10,7 @@
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
   background-color: var(--foreground);
-  color: var(--text-secondary);
+  color: white;
 }  
 
 .help-heading{
