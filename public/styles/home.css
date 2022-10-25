@@ -451,11 +451,11 @@
   background-color: var(--foreground);
 }
 
-.body-card-restaurant div {
+/* .body-card-restaurant div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
+} */
 
 .body-card-restaurant div div h3 {
   margin: 0;
