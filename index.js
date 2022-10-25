@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
 
 const session = require("express-session");
 var favicon = require("serve-favicon");
@@ -8,11 +7,7 @@ var favicon = require("serve-favicon");
 const { pool } = require("./dbconfig");
 
 const {
-  insertComponents,
   renderHtml,
-  redirectHome,
-  redirectLogin,
-  sha256,
 } = require("./functions");
 
 const restaurantRouter = require(path.join(__dirname, "/routes/restaurant.js"));
