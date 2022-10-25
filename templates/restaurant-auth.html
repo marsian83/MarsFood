@@ -42,7 +42,7 @@
             </button>
           </div>
           <div class="container form-container hidden-form" id="login-form">
-            <form action="/restaurant/auth" method="POST">
+            <form action="/restaurant/auth" id="login-form-form" method="POST">
               <div class="container">
                 <input
                   maxlength="64"
@@ -66,7 +66,7 @@
                 />
               </div>
               <div class="container login-button">
-                <input type="submit" value="Login" />
+                <input type="submit" id="login-button" value="Login" />
               </div>
               <div class="forgot-pass">
                 <a href="/services/forgot-password">Forgot password</a>
@@ -74,7 +74,7 @@
             </form>
           </div>
           <div class="container form-container hidden-forn" id="signup-form">
-            <form action="/restaurant/auth" method="POST">
+            <form action="/restaurant/auth" id="register-form" method="POST">
               <div class="container">
                 <input
                   maxlength="64"
@@ -131,7 +131,7 @@
                 />
               </div>
               <div class="container register-button">
-                <input type="submit" value="Register" />
+                <input type="submit" id="register-button" value="Register" />
               </div>
             </form>
           </div>

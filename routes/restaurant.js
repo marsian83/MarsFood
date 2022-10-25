@@ -108,11 +108,26 @@ router.post("/auth", redirectHome, async (req, res) => {
     }
 
     if (errors.length > 0) {
-      res.status(400).send(
-        renderHtml(path.join(__dirname, "../templates/restaurant-auth.html"), {
-          errors: errors,
-          switchState: 1,
-        })
+      pool.query(
+        "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+        [],
+        (err, results) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.status(200).send(
+              renderHtml(
+                path.join(__dirname, "../templates/restaurant-auth.html"),
+                {
+                  errors: errors,
+                  switchState: 1,
+                  totalRestaurants: results.rows[0].total_restaurants,
+                  dishesSold: results.rows[0].dishes_sold,
+                }
+              )
+            );
+          }
+        }
       );
     } else {
       //Entries Validated
@@ -125,14 +140,29 @@ router.post("/auth", redirectHome, async (req, res) => {
           } else {
             if (results.rows.length > 0) {
               errors.push(4);
-              res.status(400).send(
-                renderHtml(
-                  path.join(__dirname, "../templates/restaurant-auth.html"),
-                  {
-                    errors: errors,
-                    switchState: 1,
+              pool.query(
+                "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+                [],
+                (err, results) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    res.status(200).send(
+                      renderHtml(
+                        path.join(
+                          __dirname,
+                          "../templates/restaurant-auth.html"
+                        ),
+                        {
+                          errors: errors,
+                          switchState: 1,
+                          totalRestaurants: results.rows[0].total_restaurants,
+                          dishesSold: results.rows[0].dishes_sold,
+                        }
+                      )
+                    );
                   }
-                )
+                }
               );
             } else {
               pool.query(
@@ -142,17 +172,30 @@ router.post("/auth", redirectHome, async (req, res) => {
                   if (err) {
                     console.log(err);
                   } else {
-                    res.status(400).send(
-                      renderHtml(
-                        path.join(
-                          __dirname,
-                          "../templates/restaurant-auth.html"
-                        ),
-                        {
-                          switchState: 0,
-                          loginPrompt: true,
+                    pool.query(
+                      "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+                      [],
+                      (err, results) => {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          res.status(200).send(
+                            renderHtml(
+                              path.join(
+                                __dirname,
+                                "../templates/restaurant-auth.html"
+                              ),
+                              {
+                                switchState: 0,
+                                loginPrompt: true,
+                                totalRestaurants:
+                                  results.rows[0].total_restaurants,
+                                dishesSold: results.rows[0].dishes_sold,
+                              }
+                            )
+                          );
                         }
-                      )
+                      }
                     );
                   }
                 }
@@ -170,11 +213,26 @@ router.post("/auth", redirectHome, async (req, res) => {
     }
 
     if (errors.length > 0) {
-      res.status(400).send(
-        renderHtml(path.join(__dirname, "../templates/restaurant-auth.html"), {
-          errors: errors,
-          switchState: 0,
-        })
+      pool.query(
+        "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+        [],
+        (err, results) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.status(200).send(
+              renderHtml(
+                path.join(__dirname, "../templates/restaurant-auth.html"),
+                {
+                  errors: errors,
+                  switchState: 0,
+                  totalRestaurants: results.rows[0].total_restaurants,
+                  dishesSold: results.rows[0].dishes_sold,
+                }
+              )
+            );
+          }
+        }
       );
     } else {
       //Entries Validated
@@ -192,14 +250,26 @@ router.post("/auth", redirectHome, async (req, res) => {
                 return res.redirect("/restaurant/home");
               }
             }
-            res.status(400).send(
-              renderHtml(
-                path.join(__dirname, "../templates/restaurant-auth.html"),
-                {
-                  errors: 5,
-                  switchState: 0,
+            pool.query(
+              "SELECT (SELECT COUNT(restaurant_id) FROM restaurants) AS total_restaurants,(SELECT SUM(quantity) FROM orders) AS dishes_sold;",
+              [],
+              (err, results) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send(
+                    renderHtml(
+                      path.join(__dirname, "../templates/restaurant-auth.html"),
+                      {
+                        errors: 5,
+                        switchState: 0,
+                        totalRestaurants: results.rows[0].total_restaurants,
+                        dishesSold: results.rows[0].dishes_sold,
+                      }
+                    )
+                  );
                 }
-              )
+              }
             );
           }
         }
@@ -285,42 +355,6 @@ router.post("/orders/mark", redirectLogin, (req, res) => {
   );
 });
 
-router.post("/dish/delete", redirectLogin, (req, res) => {
-  pool.query(
-    "DELETE FROM sells WHERE dish_id=$1 AND restaurant_id=$2 RETURNING dish_id",
-    [req.body.dish_id, req.app.locals.restaurant.restaurant_id],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        if (results.rows.length > 0) {
-          pool.query(
-            "DELETE FROM dishes WHERE dish_id=$1 RETURNING dish_id,image_url",
-            [results.rows[0].dish_id],
-            (err, results) => {
-              if (err) {
-                console.log(err);
-              } else {
-                cloudinary.uploader.destroy(
-                  `userdata/images/dishes/dish${req.body.dish_id}-thumbnail`,
-                  { },
-                  (err, results) => {
-                    if (err) {
-                      console.log(err);
-                    } else {
-                      return res.redirect("/restaurant/home");
-                    }
-                  }
-                );
-              }
-            }
-          );
-        }
-      }
-    }
-  );
-});
-
 // PUT REQUESTS
 router.put("/orders/mark", redirectLogin, (req, res) => {
   pool.query(
@@ -371,6 +405,43 @@ router.put("/password/change", redirectLogin, (req, res) => {
                 console.log(err);
               } else {
                 return res.status(200).send({ message: "success" });
+              }
+            }
+          );
+        }
+      }
+    }
+  );
+});
+
+//DELETE REQUESTS
+router.delete("/dish/delete", redirectLogin, (req, res) => {
+  pool.query(
+    "DELETE FROM sells WHERE dish_id=$1 AND restaurant_id=$2 RETURNING dish_id",
+    [req.query.dish_id, req.app.locals.restaurant.restaurant_id],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (results.rows.length > 0) {
+          pool.query(
+            "DELETE FROM dishes WHERE dish_id=$1 RETURNING dish_id,image_url",
+            [results.rows[0].dish_id],
+            (err, results) => {
+              if (err) {
+                console.log(err);
+              } else {
+                cloudinary.uploader.destroy(
+                  `userdata/images/dishes/dish${results.rows[0].dish_id}-thumbnail`,
+                  {},
+                  (err, results) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      return res.redirect("/restaurant/home");
+                    }
+                  }
+                );
               }
             }
           );

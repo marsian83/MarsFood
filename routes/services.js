@@ -138,4 +138,34 @@ router.get("/user/email", (req, res) => {
   );
 });
 
+router.get("/restaurant/email", (req, res) => {
+  pool.query(
+    "SELECT restaurant_id,name,address,email FROM restaurants WHERE email=$1",
+    [req.query.email],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(results.rows);
+      }
+    }
+  );
+});
+
+router.get("/restaurant/auth/validate", (req, res) => {
+  pool.query(
+    "SELECT restaurant_id FROM restaurants WHERE email=$1 AND password=$2",
+    [req.query.email, sha256(req.query.password)],
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      } else {
+        return res
+          .status(200)
+          .send({ valid: results.rows.length > 0 ? true : false });
+      }
+    }
+  );
+});
+
 module.exports = router;

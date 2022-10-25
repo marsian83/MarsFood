@@ -22,7 +22,9 @@ async function displayRestaurantData() {
   let data = await fetchRestaurantData();
   document.title = data.name;
   document.getElementById("display-name").innerHTML = `${data.name}`;
-  document.getElementById("restaurant-name-background").innerHTML = `${data.name}`
+  document.getElementById(
+    "restaurant-name-background"
+  ).innerHTML = `${data.name}`;
   document.getElementById(
     "display-address"
   ).innerHTML = `<b>Address : </b>${data.address}`;
@@ -38,7 +40,7 @@ async function displayDishes() {
   dishes.forEach(async (dish) => {
     dish.totalOrders = await fetchDishOrders(dish.dish_id);
     newCard = `
-    <div class="dish-card">
+    <div class="dish-card" id="dish-card-id${dish.dish_id}">
           <img
             src=${dish.image_url || "/static/assets/placeholder_food.png"}
             alt="food-thumbnail"
@@ -46,12 +48,9 @@ async function displayDishes() {
           <div class="dish-card-content">
             <div class="delete-dish">
               <h5>${dish.name}</h5>
-              <form action="/restaurant/dish/delete" method="POST">
-                <input value="${dish.dish_id}" name="dish_id" hidden/>
-                <button class="delete-dish-button" type="submit">
+                <button class="delete-dish-button" onclick="deleteDish(${dish.dish_id})" type="button">
                   DELETE DISH <i class="fa fa-trash"></i>
                 </button>
-              </form>
             </div>
             <div class="container dish-info">
               <div class="dish-info-list-item-container">
@@ -81,6 +80,13 @@ async function renderPage() {
 
 renderPage();
 
+async function deleteDish(did) {
+  if (confirm("Delete dish?")) {
+    document.getElementById(`dish-card-id${did}`).style.opacity='50%'
+    await fetch("/restaurant/dish/delete?dish_id=" + did, { method: "DELETE" });
+    document.getElementById(`dish-card-id${did}`).style.display='none'
+  }
+}
 
 var modal = document.getElementById("passwordModal");
 
