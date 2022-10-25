@@ -5,7 +5,7 @@
 }
 
 input {
-  color: var(--text-primary);
+  color: black;
 }
 
 .form-container {

@@ -205,7 +205,7 @@
 
 .user-reviews-button {
   background-color: var(--foreground);
-  color: var(--text-secondary);
+  color: white;
   padding: 1vh 1vw;
   margin-bottom: 2vh;
   border-radius: 1rem;

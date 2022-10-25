@@ -17,6 +17,7 @@
 }
 
 #searchbar {
+  background-color: var(--background);
   width: 83%;
   margin: 3vh 0;
   height: 6vh;
