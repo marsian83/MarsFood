@@ -69,6 +69,7 @@ MarsFood is a food ordering webapp where consumers can register, browse through 
 <a name="screenshots"></a>
 ## Screenshots
 
+[Click here to view screenshots](https://bit.ly/marsfood-screenshots)
 
 <a name="url"></a>
 ## Hosted URL
@@ -114,7 +115,8 @@ https://marsfood.herokuapp.com
 
 - Cart
     > The user can see all the items they have added to their cart on this page. They can also change the quantity of the particular items and also remove them if the user so desires. The page also comes with the option to checkout.
-
+- Dark Mode
+    > Dark mode has also been implemented which can be toggled at the press of a button and it acts site-wide
 
 
 ***• for restaurants***
@@ -160,7 +162,7 @@ The lighthouse scores are as shown :
 <img src="https://res.cloudinary.com/dw6xcovsv/image/upload/v1666710849/userdata/Screenshots/Screenshot_20221025_083415_ihcgos.png" />
 - The website judges the top dishes and restaurants on not just the basis of their overall review but also the amout review they have _(i.e: a dish with 5 star rating but only 2 reviews would rank lower than a dish with 4 stars but 10 total reviews)_ thus making sure quantity and quality are both taken into account.
 This score is assigned by algorithmicly by the backend before serving the api requests asking for ratings of particular dishes/restaurants. Restaurants also are given a rating by considering the reviews of each of their dishes and averaging them. The thumbnaisl of restaurants are the same as the thumbnail of their top rated dish (again, taking into consideration the aforementioned algorithmic score).
-
+- Searching algorithm is implemented and it works even when the user makes a typing mistake or describes even a broad category.
 
 
 <a name="technologies"></a>
