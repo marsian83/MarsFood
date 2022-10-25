@@ -1,0 +1,15 @@
+#theme-toggler-holder{
+  position: fixed;
+  bottom: 5vh;
+  left: 2vw;
+  z-index: 8;
+}
+
+#theme-toggler-holder img{
+    border-radius: 100%;
+    width: 2.34rem;
+    height: 2.34rem;
+    object-fit: cover;
+    border: 1px solid var(--text-primary);
+    cursor: pointer;
+}

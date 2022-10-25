@@ -56,6 +56,9 @@ app.use(
 
 app.use((req, res, next) => {
   let { userId, restaurantId } = req.session;
+  if(!req.session.theme){
+    req.session.theme='light'
+  }
   if (userId) {
     pool.query(
       "SELECT * FROM users WHERE user_id=$1",

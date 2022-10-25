@@ -168,4 +168,17 @@ router.get("/restaurant/auth/validate", (req, res) => {
   );
 });
 
+router.get("/theme/get", (req, res) => {
+  res.send({ theme: req.session.theme });
+});
+
+//PUT REQUESTS
+router.put("/theme/set/:theme", (req, res) => {
+  let { theme } = req.params;
+  if (theme == "light" || theme == "dark") {
+    req.session.theme = theme;
+  }
+  res.send({ theme: req.session.theme });
+});
+
 module.exports = router;
