@@ -115,6 +115,7 @@ https://marsfood.herokuapp.com
 
 - Cart
     > The user can see all the items they have added to their cart on this page. They can also change the quantity of the particular items and also remove them if the user so desires. The page also comes with the option to checkout.
+    
 - Dark Mode
     > Dark mode has also been implemented which can be toggled at the press of a button and it acts site-wide
 
