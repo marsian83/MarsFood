@@ -62,7 +62,7 @@
   color: var(--text-primary);
   text-align: center;
   text-decoration: none;
-  transition: 200ms ease;
+  transition: transform 420ms ease;
 }
 
 .navbar-item img {

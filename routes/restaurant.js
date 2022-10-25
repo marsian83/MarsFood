@@ -300,15 +300,6 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                storage
-                  .refFromURL(results.rows[0].image_url)
-                  .delete()
-                  .then(function () {
-                    console.log("Dish deleted");
-                  })
-                  .catch(function (err) {
-                    console.log(err);
-                  });
                 return res.redirect("/restaurant/home");
               }
             }
