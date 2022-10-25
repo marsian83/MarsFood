@@ -16,19 +16,10 @@ const {
   sha256,
 } = require("../functions");
 
-const { app } = require("../firebaseconfig");
-
-const {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} = require("firebase/storage");
-
-const storage = getStorage(app);
+const { cloudinary } = require("../cloudinaryconfig");
 
 router.use("/static", express.static(path.join(__dirname, "../public")));
-router.use(fileupload());
+router.use(fileupload({ useTempFiles: true }));
 //redirecting user
 router.use("", (req, res, next) => {
   if (req.session.userId) {
@@ -227,52 +218,6 @@ router.post("/dish/new", redirectLogin, async (req, res) => {
     (err, results) => {
       if (err) {
         console.log(err);
-      } else if (image && image.data) {
-        let newId = results.rows[0].dish_id;
-        const storageRef = ref(storage, `userdata/images/dishes/${newId}.jpg`);
-        const metadata = {
-          contentType: "image/jpeg",
-        };
-        const uploadTask = uploadBytesResumable(
-          storageRef,
-          image.data,
-          metadata
-        );
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-          },
-          (err) => {
-            console.log(err);
-          },
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              pool.query(
-                "UPDATE dishes SET image_url=$1 WHERE dish_id=$2",
-                [downloadURL, newId],
-                (err, results) => {
-                  if (err) {
-                    console.log(err);
-                  }
-                }
-              );
-            });
-            pool.query(
-              "INSERT INTO sells(dish_id,restaurant_id) VALUES($1,$2)",
-              [newId, req.app.locals.restaurant.restaurant_id],
-              (err, results) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  res.redirect("/restaurant/home");
-                }
-              }
-            );
-          }
-        );
       } else {
         let newId = results.rows[0].dish_id;
         pool.query(
@@ -282,7 +227,29 @@ router.post("/dish/new", redirectLogin, async (req, res) => {
             if (err) {
               console.log(err);
             } else {
-              res.redirect("/restaurant/home");
+              if (image && image.data) {
+                cloudinary.uploader
+                  .upload(image.tempFilePath, {
+                    folder: "userdata/images/dishes",
+                    public_id: newId,
+                  })
+                  .then((results) => {
+                    let downloadURL = results.url;
+                    pool.query(
+                      "UPDATE dishes SET image_url=$1 WHERE dish_id=$2",
+                      [downloadURL, newId],
+                      (err, results) => {
+                        if (err) {
+                          console.log(err);
+                        } else {
+                          res.redirect("/restaurant/home");
+                        }
+                      }
+                    );
+                  });
+              } else {
+                res.redirect("/restaurant/home");
+              }
             }
           }
         );
