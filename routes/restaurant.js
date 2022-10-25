@@ -231,7 +231,8 @@ router.post("/dish/new", redirectLogin, async (req, res) => {
                 cloudinary.uploader
                   .upload(image.tempFilePath, {
                     folder: "userdata/images/dishes",
-                    public_id: newId,
+                    public_id: `dish${newId}-thumbnail`,
+                    format: "jpg",
                   })
                   .then((results) => {
                     let downloadURL = results.url;
@@ -294,13 +295,23 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
       } else {
         if (results.rows.length > 0) {
           pool.query(
-            "DELETE FROM dishes WHERE dish_id=$1 RETURNING image_url",
+            "DELETE FROM dishes WHERE dish_id=$1 RETURNING dish_id,image_url",
             [results.rows[0].dish_id],
-            (err, resuls) => {
+            async (err, resuls) => {
               if (err) {
                 console.log(err);
               } else {
-                return res.redirect("/restaurant/home");
+                await cloudinary.uploader.destroy(
+                  `dish${results.rows[0].dish_id}-thumbnail`,
+                  { folder: "userdata/images/dishes" },
+                  (err, results) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      return res.redirect("/restaurant/home");
+                    }
+                  }
+                );
               }
             }
           );
