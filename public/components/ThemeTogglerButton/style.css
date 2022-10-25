@@ -13,3 +13,10 @@
     border: 1px solid var(--text-primary);
     cursor: pointer;
 }
+
+@media only screen and (max-width: 750px) {
+  #theme-toggler-holder{
+    bottom: 2vh;
+    left: 5vw;
+  }
+}

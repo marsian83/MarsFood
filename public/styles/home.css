@@ -625,7 +625,7 @@
   }
 
   .body-card-restaurant div p {
-    color:var(--text-secondary);
+    color:var(--text-primary);
     overflow: hidden;
     height: 7vh;
     margin-top: 2px;
