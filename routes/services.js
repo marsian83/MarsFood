@@ -110,8 +110,8 @@ router.get("/forgot-pass/url", (req, res) => {
 
 router.get("/user/auth/validate", (req, res) => {
   pool.query(
-    "SELECT user_id FROM users WHERE email=$1 AND password=$2",
-    [req.query.email, sha256(req.query.password)],
+    "SELECT user_id FROM users WHERE LOWER(email)=$1 AND password=$2",
+    [req.query.email.toLowerCase(), sha256(req.query.password)],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -126,8 +126,8 @@ router.get("/user/auth/validate", (req, res) => {
 
 router.get("/user/email", (req, res) => {
   pool.query(
-    "SELECT user_id,name,email FROM users WHERE email=$1",
-    [req.query.email],
+    "SELECT user_id,name,email FROM users WHERE LOWER(email)=$1",
+    [req.query.email.toLowerCase()],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -140,8 +140,8 @@ router.get("/user/email", (req, res) => {
 
 router.get("/restaurant/email", (req, res) => {
   pool.query(
-    "SELECT restaurant_id,name,address,email FROM restaurants WHERE email=$1",
-    [req.query.email],
+    "SELECT restaurant_id,name,address,email FROM restaurants WHERE LOWER(email)=$1",
+    [req.query.email.toLowerCase()],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -154,8 +154,8 @@ router.get("/restaurant/email", (req, res) => {
 
 router.get("/restaurant/auth/validate", (req, res) => {
   pool.query(
-    "SELECT restaurant_id FROM restaurants WHERE email=$1 AND password=$2",
-    [req.query.email, sha256(req.query.password)],
+    "SELECT restaurant_id FROM restaurants WHERE LOWER(email)=$1 AND password=$2",
+    [req.query.email.toLowerCase(), sha256(req.query.password)],
     (err, results) => {
       if (err) {
         console.log(err);

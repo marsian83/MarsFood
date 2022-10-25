@@ -17,6 +17,10 @@ async function grabUniversalTheme() {
     colorTextPrimary = rootStyle.getPropertyValue("--text-primary");
     colorTextSecondary = rootStyle.getPropertyValue("--text-secondary");
     colorForeground = rootStyle.getPropertyValue("--foreground");
+    document.querySelectorAll(".navbar-item img").forEach((e) => {
+      e.style = getFilter(colorTextPrimary);
+    });
+    document.querySelector('#body-title-showing img').style = getFilter(colorTextPrimary)
   }
 }
 
