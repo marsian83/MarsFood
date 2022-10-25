@@ -13,10 +13,9 @@ input {
   text-align: center;
   margin-bottom: 3vh;
   transition: 300ms ease;
-  color: var(--foreground);
   font-size: 2ch;
   border-radius: 12px;
-  color: var(--text-primary);
+  color: black;
 }
 
 .form-container {

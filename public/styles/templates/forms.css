@@ -42,7 +42,7 @@ input[type="submit"],
 input[type="reset"] {
   text-align: center;
   background-color: var(--primary);
-  color: var(--high-contrast-fg);
+  color: white;
   border: none;
   border-radius: 16px;
   cursor: pointer;
