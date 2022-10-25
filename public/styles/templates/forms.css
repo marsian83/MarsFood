@@ -27,7 +27,7 @@ input {
   text-align: center;
   margin-bottom: 5vh;
   transition: 300ms ease;
-  color: var(--foreground);
+  color: var(--text-secondary);
   font-size: 2ch;
   border-radius: 12px;
 }

@@ -28,12 +28,14 @@
   } */
 
 .header-right {
+  color:white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 #header-restaurant-name {
+  color:white;
   font-size: 3rem;
   font-family: "Nunito", sans-serif;
   font-weight: 600;

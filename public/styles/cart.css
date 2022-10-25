@@ -74,7 +74,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .quantity-increase,
 .quantity-decrease {
   background-color: var(--background);
-
+  color:var(--text-primary);
   cursor: pointer;
   padding: 0.4vh 0.45vw;
   border-radius: 20%;
@@ -112,10 +112,10 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 0.96rem;
 }
 
-#checkout-button {
+#checkout-button { 
   cursor: pointer;
   background-color: var(--foreground);
-  color: var(--text-secondary);
+  color: white;
   padding: 2vh 1vw;
   width: 10%;
   transition: 400ms ease;
@@ -223,8 +223,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .modal p {
+  color:var(--text-primary);
   font-weight: 500;
   font-size: 1rem;
+}
+
+#payment-holder label{
+  color:var(--text-primary);
 }
 
 #payment-holder {
@@ -256,7 +261,7 @@ input[type="number"]::-webkit-outer-spin-button {
   position: relative;
   width: 10%;
   background-color: var(--foreground);
-  color: var(--text-secondary);
+  color: white;
   cursor: pointer;
   transition: 300ms ease;
 }

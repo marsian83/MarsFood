@@ -1,8 +1,8 @@
 .footer {
-  /* border-top: 1px solid var(--high-contrast-fg); */
+  /* border-top: 1px solid white; */
   padding-left: var(--edge-border-left);
   padding-right: var(--edge-border-right);
-  background-color: var(--high-contrast-bg);
+  background-color: rgb(7, 7, 7);
 }
 
 .footer-info {
@@ -20,7 +20,7 @@
   padding-top: 3vh;
   padding-bottom: 3vh;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
-  color: var(--high-contrast-fg);
+  color: white;
   align-items: center;
   justify-content: space-between;
 }
@@ -41,7 +41,7 @@
   margin-left: 0.5rem;
   font-size: 1.69rem;
   font-weight: 800;
-  color: var(--high-contrast-fg);
+  color: white;
 }
 
 .footer-credit-container {
