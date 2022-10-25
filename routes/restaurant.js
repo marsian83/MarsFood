@@ -333,7 +333,7 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                app
+                storage
                   .refFromURL(results.rows[0].image_url)
                   .delete()
                   .then(function () {
