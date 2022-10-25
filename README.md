@@ -1,30 +1,3 @@
-<style>
-  .photos{
-    display:flex;
-    flex-direction:row ;
-  }
-.photo {
-  margin-top:3rem;
-  display: flex;
-  flex-direction: column;
-  width: 128px;
-  height: 128px;
-  align-items:center;
-  justify-content:center;
-    margin-right:1rem;
-    text-align:center;
-}
-
-.photo a{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.photo a img {
-  border-radius: 100%;}
-</style>
-
 <h1 align="center">MarsFood 🍔</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
