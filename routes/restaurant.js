@@ -23,7 +23,6 @@ const {
   ref,
   uploadBytesResumable,
   getDownloadURL,
-  refFromURL,
 } = require("firebase/storage");
 
 const storage = getStorage(app);
@@ -334,7 +333,8 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                refFromURL(results.rows[0].image_url)
+                app
+                  .refFromURL(results.rows[0].image_url)
                   .delete()
                   .then(function () {
                     console.log("Dish deleted");
