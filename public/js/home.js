@@ -80,7 +80,6 @@ function showBodyShowingDropdown() {
 // Close dropdown if clicked outsied of it
 window.onclick = function (event) {
   if (!event.target.matches("#body-title-showing")) {
-    //} || (!event.target.matches('#body-title-showing img'))) {
     var dropdowns = document.getElementsByClassName(
       "body-showing-dropdown-content"
     );
@@ -211,7 +210,7 @@ async function loadTopRestaurants() {
       src="${restaurant.image_url || "/static/assets/placeholder_food.jpg"}"
       alt="top-restaurant-image"
     />
-    <h4>${restaurant.name}</h4>
+    <h4>${shorten(restaurant.name,38)}</h4>
     <p>${restaurantDishesText}</p>
     <span class="stars-container stars-${closestMultiple(
       (restro.restaurant_rating || 0) * (100 / 5),
@@ -286,13 +285,13 @@ async function loadBodyContent() {
           dish.image_url
         }" alt="Dish Image" onerror="this.style.display='none'">
       
-        <h3>${shorten(dish.name, 28)}</h3>
+        <h3>${shorten(dish.name, 38)}</h3>
         <h2>${new Intl.NumberFormat("en-IN", {
           style: "currency",
           notation: "compact",
           currency: "INR",
         }).format(dish.cost)}</h2>
-        <p>${shorten(restaurantName || "", 100)}</p>
+        <p>${shorten(restaurantName || "", 38)}</p>
       </div>
       <div class="body-card-star-holder">
         <span class="stars-container dish-card-stars stars-${closestMultiple(
@@ -326,7 +325,7 @@ async function loadBodyContent() {
       }
       <div>  
         <div>
-          <h3>${restaurant.name}</h3>
+          <h3>${shorten(restaurant.name,38)}</h3>
           <div class="body-card-star-holder">
           <span class="stars-container stars-${closestMultiple(
             restaurant.rating ? restaurant.rating * (100 / 5) : 0,

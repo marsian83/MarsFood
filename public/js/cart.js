@@ -1,3 +1,8 @@
+const shorten = (str, len) => {
+  return str.length > len ? str.slice(0, len) + "..." : str;
+};
+
+
 async function fetchDishData(did) {
   data = await fetch(`/api/dishes/id/${did}/?apiKey=${API_KEY}`);
   parsedData = await data.json();
@@ -37,8 +42,8 @@ async function renderCart(cart) {
       onerror="this.style.display='none'"
     />
     <div class="container cart-card-right">
-      <h2>${cartItem.dish.name}</h2>
-      <p>sold by ${cartItem.dish.restaurant.name}</p>
+      <h2>${shorten(cartItem.dish.name,38)}</h2>
+      <p>sold by ${shorten(cartItem.dish.restaurant.name,38)}</p>
       <div class="container cart-card-control">
         <button class="quantity-decrease" 
         id="quantity-decrease${cartItem.dish.dish_id}"

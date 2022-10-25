@@ -23,6 +23,7 @@ const {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  refFromURL,
 } = require("firebase/storage");
 
 const storage = getStorage(app);
@@ -327,12 +328,20 @@ router.post("/dish/delete", redirectLogin, (req, res) => {
       } else {
         if (results.rows.length > 0) {
           pool.query(
-            "DELETE FROM dishes WHERE dish_id=$1",
+            "DELETE FROM dishes WHERE dish_id=$1 RETURNING image_url",
             [results.rows[0].dish_id],
             (err, resuls) => {
               if (err) {
                 console.log(err);
               } else {
+                refFromURL(results.rows[0].image_url)
+                  .delete()
+                  .then(function () {
+                    console.log("Dish deleted");
+                  })
+                  .catch(function (err) {
+                    console.log(err);
+                  });
                 return res.redirect("/restaurant/home");
               }
             }

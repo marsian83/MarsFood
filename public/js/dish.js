@@ -114,7 +114,7 @@ async function renderData() {
     (dishSold.sum || 0) + " total orders";
   document.getElementById("header-seller-text").innerHTML =
     "<p>Sold by </p>" +
-    `<a href="/user/restaurant/${restaurantData.restaurant_id}">${restaurantData.name}</a>`;
+    `<a href="/user/restaurant/${restaurantData.restaurant_id}">${shorten(restaurantData.name,38)}</a>`;
   document.getElementById("description").innerText = dishData.description;
   document.querySelector("#buy-button p").innerText =
     "Add to cart now for " +
@@ -268,7 +268,7 @@ async function renderReviews() {
       reviewHolder.innerHTML += `
       <div class="container review-container">
       <div class="review-left">
-        <h3>${user.name}</h3>
+        <h3>${shorten(user.name,20)}</h3>
         <span class="stars-container stars-${closestMultiple(
           (rev.rating ? rev.rating : 0) * (100 / 5),
           5
