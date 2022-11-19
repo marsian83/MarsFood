@@ -15,7 +15,6 @@ const apiRouter = require(path.join(__dirname, "/routes/api.js"));
 
 const app = express();
 app.enable("trust proxy");
-app.set("trust proxy", 1);
 
 PORT = process.env.PORT || 8000;
 HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
