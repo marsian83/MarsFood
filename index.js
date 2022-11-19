@@ -6,9 +6,7 @@ var favicon = require("serve-favicon");
 
 const { pool } = require("./dbconfig");
 
-const {
-  renderHtml,
-} = require("./functions");
+const { renderHtml } = require("./functions");
 
 const restaurantRouter = require(path.join(__dirname, "/routes/restaurant.js"));
 const userRouter = require(path.join(__dirname, "/routes/user.js"));
@@ -17,6 +15,7 @@ const apiRouter = require(path.join(__dirname, "/routes/api.js"));
 
 const app = express();
 app.enable("trust proxy");
+app.set("trust proxy", 1);
 
 PORT = process.env.PORT || 8000;
 HOSTNAME = process.env.HOSTNAME || "127.0.0.1";
@@ -56,8 +55,8 @@ app.use(
 
 app.use((req, res, next) => {
   let { userId, restaurantId } = req.session;
-  if(!req.session.theme){
-    req.session.theme='light'
+  if (!req.session.theme) {
+    req.session.theme = "light";
   }
   if (userId) {
     pool.query(
