@@ -27,7 +27,7 @@ MarsFood is a food ordering webapp where consumers can register, browse through 
 - [Table of Content](#table-of-content)
 - [Screenshots](#screenshots)
 - [Hosted URL](#hosted-url)
-- [## Features](#-features)
+- [Features](#features)
   - [**Frontend-Features**](#frontend-features)
   - [**• Backend-Features**](#-backend-features)
 - [Technologies](#technologies)
